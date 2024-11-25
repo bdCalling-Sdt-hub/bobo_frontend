@@ -1,0 +1,210 @@
+{
+  "navbar": {
+    "Teacher Comment Hub": "Teacher Comment Hub"
+  },
+  "home": {
+    "Student Learning Stages": "Student Learning Stages",
+    "Explore key learning areas, behaviors, and improvements by cycle level": " Explore key learning areas, behaviors, and improvements by cycle level",
+    "Cycle 1": "Cycle 1",
+    "Cycle 2": "Cycle 2",
+    "Cycle 3": "Cycle 3",
+    "Select": "Select"
+  },
+  "login": {
+    "hello": "hello"
+  },
+  "cycleOne": {
+    "Personalized Student Feedback Generation Process": "Personalized Student Feedback Generation Process",
+    "PathWay To Growth": "PathWay To Growth",
+    "Learning Areas": "Learning Areas",
+    "Acquire basic mathematical tools": "Acquire basic mathematical tools",
+    "Mobilize language in all its dimensions": "Mobilize language in all its dimensions",
+    "Act, express, understand through artistic activities ": "Act, express, understand through artistic activities",
+    " Early Mathematical Concepts ": "Early Mathematical Concepts",
+
+    "Music Education": "Music Education",
+    "Time and Space": "Time and Space",
+    "Written Language": "Written Language",
+    "Visual Arts": "Visual Arts",
+    "Fine Motor Skills": "Fine Motor Skills",
+    "Discovry of matter": "Discovry of matter",
+    "Gross Motor Skills": "Gross Motor Skills",
+    "Discovry of living things": "Discovry of living things",
+
+    "Comparing Quantities": "Comparing Quantities",
+    "Discovery of Numbers": "Discovery of Numbers",
+    "Recognizing Shapes": "Recognizing Shapes",
+    "Discovering simple words": "Discovering simple words",
+    "Expressing oneself clearly": "Expressing oneself clearly",
+    "Understanding instructions": "Understanding instructions",
+    "Expressing oneself through rhythm": "Expressing oneself through rhythm",
+    "Singing": "Singing",
+    "Knowing how to orient oneself": "Knowing how to orient oneself",
+    "Understanding time (days, months, seasons)": "Understanding time (days, months, seasons)",
+    "Familiarization with writing": "Familiarization with writing",
+    "Recognition of letters and words": "Recognition of letters and words",
+    "Collage and assembly": "Collage and assembly",
+    "Drawing and painting": "Drawing and painting",
+    "Manipulation of objects": "Manipulation of objects",
+    "Precision of movements": "Precision of movements",
+    "Understanding life cycles": "Understanding life cycles",
+    "Coordination of movements": "Coordination of movements",
+    "Participation in physical activities": "Participation in physical activities",
+    "Discovering materials and objects": "Discovering materials and objects",
+
+    "Autonomous": "Autonomous",
+
+    "Living together": "Living together",
+
+    "RespectFul of rules": "RespectFul of rules",
+
+    "Curious": "Curious",
+
+    "Motor skills": "Motor skills",
+    "Sociability": "Sociability",
+    "Emotion management": "Emotion management",
+    "Oral language": "Oral language",
+    "Listening": "Listening",
+    "Respect for rules ": "Respect for rules",
+    "Grammar": "Grammar",
+    "Oral expression": "Oral expression",
+    "Reading": "Reading",
+    "Spelling": "Spelling",
+    "Text Comprenension": "Text Comprenension",
+    "Writting": "Writting",
+    "Writing production": "Writing production",
+
+    "Attentive": "Attentive",
+    "Class Driver": "Class Driver",
+    "Disruptive": "Disruptive",
+    "Motivate": "Motivate",
+    "Shy": "Shy",
+    "Autonomy": "Autonomy",
+    "Distracted": "Distracted",
+    "Focused": "Focused",
+    "RespectFull of the rules": "RespectFull of the rules",
+    "Talkative": "alkative",
+    "Calm": "Calm",
+    "Dynamism": "Dynamism",
+    "Invested": "Invested",
+    "serious": "serious",
+    "Voluntary": "Voluntary",
+
+    "Concentration": "Concentration",
+    "Learning": "Learning",
+    "Quality of work": "Quality of work",
+    "UnderStanding instructions": "UnderStanding instructions",
+
+    "Dynamic": "Dynamic",
+    "Mathmatics": "Mathmatics",
+    "AttenTion": "AttenTion",
+    "French ": "French",
+    "Problem-solving": "Problem-solving",
+    "Understanding reading text": "Understanding reading text",
+
+    "Calculations": "Calculations",
+    "Geometry": "Geometry",
+    "Measures": "Measures",
+    "Numbers": "Numbers",
+    "Problems": "Problems",
+    "Plastic arts": "Plastic arts",
+    "Participation": "Participation",
+    "Vocabulary": "Vocabulary",
+    "Live together": "Live together",
+    "Respectful of the rules": "Respectful of the rules",
+    "Geograpy": "Geograpy",
+    "History": "History",
+    "The lessons": "The lessons",
+
+    "French (Language and Literature)": "French (Language and Literature)",
+
+    "Math": "Math",
+    "Artistic teachings": "Artistic teachings",
+    "Foreign Language 1": "Foreign Language 1",
+
+    "Foreign Language 2": "Foreign Language 2",
+    "Moral and civic education": "Moral and civic education",
+    "Physical Education and Sports": "Physical Education and Sports",
+    "Questioning the world": "Questioning the world",
+
+    "Behaviors": "Behaviors",
+
+    "Improvements": " Improvments",
+
+    "Conjugation": "Conjugation",
+    "Dictation": "Dictation",
+
+    "Data analysis": "Data analysis",
+    "Measurement and units": "Measurement and units",
+
+    "Numbers and calculation": "Numbers and calculation",
+
+    "Geography": "Geography",
+    "Respect for others": "Respect for others",
+    "Sense of responsibility": "Sense of responsibility",
+
+    "Respect for rule": "Respect for rule",
+    "Team spirit": "Team spirit",
+
+    "Computer Science": "Computer Science",
+    "Life And Earth Science": "Life And Earth Science",
+
+    "Exemplary": "Exemplary",
+    "Oral Language": "Oral Language",
+    "Responsible": "Responsible",
+
+    "Class motivator": "Class motivator",
+
+    "Organized": "Organized",
+    "Respectful": "Respectful",
+
+    "Geographic knowledge": "Geographic knowledge",
+    "Mathematics": "Mathematics",
+    "Respect for rules": "Respect for rules",
+
+    "French": "French",
+    "Group activities": "Group activities",
+
+    "Physical education": "Physical education",
+
+    "Time management": "Time management",
+
+    "Foreign language": "Foreign language",
+
+    "Historical knowledge": "Historical knowledge",
+
+    "Motivated": "Motivated",
+    "Passive": "Passive",
+
+    "Student Name": "Student Name",
+    "Name": "Name",
+    "Select Tone Of Voice": "Select Tone Of Voice",
+    "Select Gender": "Select Gender",
+    "Generate Comment": "Generate Comment",
+
+    "Other": "Other",
+    "Female": "Female",
+    "Male": "Male",
+
+    "": "",
+
+    "Science and Technology": "Science and Technology",
+    "Sports Activitise": "Sports Activitise",
+    "Citizenship": "Citizenship",
+    "History and Geography": "History and Geography",
+    "Artistic Education": "Artistic Education",
+    "Early Mathematical Concepts": "Early Mathematical Concepts",
+
+    "Name is required": "Name is required",
+    "Tone of Voice is required": "Tone of Voice is required",
+    "Gender is required": "Gender is required",
+
+    "Caring": "Caring",
+    "Encouraging": "Encouraging",
+    "Enthusiastic": "Enthusiastic",
+    "Rigorous": "Rigorous",
+    "Generated Comment": "Generated Comment",
+    "Close": "Close",
+    "Your comment has been copied": "Your comment has been copied"
+  }
+}
