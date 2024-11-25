@@ -13,6 +13,7 @@ const CheckboxGroup = ({
   subtitle,
   headbgcolor,
   resetState,
+  color
 }) => {
   const { reset } = useForm(); // Initialize react-hook-form reset
   const [selectedOptions, setSelectedOptions] = useState(
@@ -93,6 +94,7 @@ const CheckboxGroup = ({
 
   return (
     <div>
+     <h3 className="font-medium mb-2 text-center text-xl  " style={{color:color}}>{ t (`${title}`)} </h3>
       <div
         className="flex flex-col space-y-2 p-4 rounded-3xl border"
         style={{

@@ -14,14 +14,16 @@
     "hello": "Bonjour"
   },
   "cycleOne": {
-    "Personalized Student Feedback Generation Process": "Processus personnalisé de génération des retours d'élèves",
+     "Explore the world": "Explorez le monde",
+    "Personalized Student Feedback Generation Process":"Processus personnalisé de génération des retours d'élèves",
     "PathWay To Growth": "Chemin vers la croissance",
     "Learning Areas": "Domaines d'apprentissage",
     "Acquire basic mathematical tools": "Acquérir des outils mathématiques de base",
     "Mobilize language in all its dimensions": "Mobiliser la langue dans toutes ses dimensions",
-    "Act, express, understand through artistic activities": "Agir, exprimer, comprendre à travers des activités artistiques",
+    "Act,express,understand through artistic activities": "Agir, exprimer, comprendre à travers des activités artistiques",
     "Early Mathematical Concepts": "Concepts mathématiques de base",
-
+    
+      
     "Music Education": "Éducation musicale",
     "Time and Space": "Temps et espace",
     "Written Language": "Langage écrit",
@@ -165,6 +167,8 @@
     "Rigorous": "Rigoureux",
     "Generated Comment": "Comment généré",
     "Close": "Fermer",
-    "Your comment has been copied": "Votre commentaire a été copié"
+    "Your comment has been copied": "Votre commentaire a été copié",
+    "Continue as a Guest": "Continuer en tant qu'invité"
+
   }
 }

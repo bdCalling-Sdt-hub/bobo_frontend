@@ -11,6 +11,7 @@ const LearningAreasSection = ({ register, setValue }) => {
         </h2>
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
+
           <CheckboxGroup
             title="Acquire basic mathematical tools"
             subtitle="Early Mathematical Concepts"
@@ -25,12 +26,14 @@ const LearningAreasSection = ({ register, setValue }) => {
             setValue={setValue}
             groupKey="learningAreas.mathematicalTools"
             bgColor="#EBEDFE"
+            color="#303060"
           />
 
           <CheckboxGroup
             title="Mobilize language in all its dimensions"
             subtitle="Oral Language"
             headbgcolor="#33B1FC"
+            color="#33B1FC"
             options={[
               "Discovering simple words",
               "Expressing oneself clearly",
@@ -42,9 +45,10 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#C0E7FE"
           />
           <CheckboxGroup
-            title="Act, express, understand through artistic activities"
+            title="Act,express,understand through artistic activities"
             subtitle="Music Education"
             headbgcolor="#3EB489"
+            color="#3EB489"
             options={["Expressing oneself through rhythm", "Singing"]}
             register={register}
             setValue={setValue}
@@ -53,6 +57,7 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Time and Space"
             headbgcolor="#303060"
             options={[
@@ -66,6 +71,7 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Written Language"
             headbgcolor="#33B1FC"
             options={[
@@ -79,6 +85,7 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Visual Arts"
             headbgcolor="#3EB489"
             options={["Collage and assembly", "Drawing and painting"]}
@@ -89,11 +96,12 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
         </div>
 
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 mt-20">
+        <div className="grid xl:grid-cols-2 md:grid-cols-2 gap-10 mt-20">
           <CheckboxGroup
-            title="Act, express, understand through physical activity"
+            title="Act,express,understand through artistic activities"
             subtitle="Fine Motor Skills"
             headbgcolor="#D65F00"
+            color="#D65F00"
             options={["Manipulation of objects", "Precision of movements"]}
             register={register}
             setValue={setValue}
@@ -104,6 +112,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             title="Explore the world"
             subtitle="Discovry of matter"
             headbgcolor="#D5006D"
+            color="#D5006D"
             options={["Understanding life cycles"]}
             register={register}
             setValue={setValue}
@@ -111,6 +120,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#FFB6C1"
           />
           <CheckboxGroup
+            title=""
             subtitle="Gross Motor Skills"
             headbgcolor="#D65F00"
             options={[
@@ -123,6 +133,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#FFB84D99"
           />
           <CheckboxGroup
+            title=""
             subtitle="Discovry of living things"
             headbgcolor="#D5006D"
             options={["Discovering materials and objects"]}
@@ -143,6 +154,7 @@ const LearningAreasSection = ({ register, setValue }) => {
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 ">
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#FFB84D33"
             options={[
@@ -156,6 +168,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#FFB84D33"
             options={["Calm", "Dynamic", "RespectFul of rules", "Voluntary"]}
@@ -164,6 +177,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#FFB84D33"
             options={["Curious", "Focused", "Shy"]}
@@ -182,6 +196,7 @@ const LearningAreasSection = ({ register, setValue }) => {
         </h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#3EB489"
             options={["Autonomy", "Motor skills", "Sociability"]}
@@ -190,6 +205,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#3EB489"
             options={[
@@ -202,6 +218,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
+            title=""
             subtitle=""
             bgColor="#3EB489"
             options={["Listening", "Respect for rules"]}

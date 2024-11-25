@@ -19,8 +19,8 @@
     "Learning Areas": "Learning Areas",
     "Acquire basic mathematical tools": "Acquire basic mathematical tools",
     "Mobilize language in all its dimensions": "Mobilize language in all its dimensions",
-    "Act, express, understand through artistic activities ": "Act, express, understand through artistic activities",
-    " Early Mathematical Concepts ": "Early Mathematical Concepts",
+    "Act,express,understand through artistic activities":"Act, express,understand through artistic activities",
+    "Early Mathematical Concepts ": "Early Mathematical Concepts",
 
     "Music Education": "Music Education",
     "Time and Space": "Time and Space",
@@ -205,6 +205,8 @@
     "Rigorous": "Rigorous",
     "Generated Comment": "Generated Comment",
     "Close": "Close",
-    "Your comment has been copied": "Your comment has been copied"
+    "Your comment has been copied": "Your comment has been copied",
+    "Explore the world":"Explore the world",
+    "Continue as a Guest" :  "Continue as a Guest"
   }
 }

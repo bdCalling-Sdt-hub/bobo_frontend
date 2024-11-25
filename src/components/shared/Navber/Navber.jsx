@@ -1,7 +1,7 @@
 "use client";
 import useLocaleSwitcher from "@/hooks/useLocaleSwitcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -9,30 +9,28 @@ import Cookies from "js-cookie";
 const Navber = () => {
   const locale = Cookies.get("NEXT_LOCALE");
   const [isLanguageLoading, setIsLanguageLoading] = useState(true);
-  const [language, setLanguage] = useState(locale);
+  const [language, setLanguage] = useState(locale || "fr"); // Default to "fr"
   const { localeSwitcher, isPending } = useLocaleSwitcher();
-  
-  console.log("language :",locale)
+
+  console.log("language :", locale);
 
   // Language switcher handler
   const handleChangeLanguage = (lang) => {
     setLanguage(lang);
+    Cookies.set("NEXT_LOCALE", lang); // Save to cookies
     localeSwitcher(lang);
   };
 
   // Set selected locale on mount
   useEffect(() => {
-    if (locale) {
+    if (!locale) {
+      // Set default language to "fr" if not defined
+      setLanguage("fr");
+      Cookies.set("NEXT_LOCALE", "fr");
+    } else {
       setLanguage(locale);
-      setIsLanguageLoading(false);
-      return;
-    } else if (locale === undefined) {
-      return setIsLanguageLoading(false);
     }
-
-    setLanguage("en");
     setIsLanguageLoading(false);
-    return;
   }, [locale]);
 
   // Translator from next-intl
@@ -55,15 +53,6 @@ const Navber = () => {
       {/* ---------------- Language Switcher -------------- */}
       {!isLanguageLoading && (
         <div className="flex justify-center items-center p-1 px-2 rounded-2xl bg-white w-32 ">
-          <button
-            onClick={() => handleChangeLanguage("en")}
-            className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
-              language === "en" ? "bg-black text-white" : "bg-white text-black"
-            }`}
-            // disabled={isPending}
-          >
-            EN
-          </button>
 
           <button
             onClick={() => handleChangeLanguage("fr")}
@@ -74,6 +63,17 @@ const Navber = () => {
           >
             FR
           </button>
+
+          <button
+            onClick={() => handleChangeLanguage("en")}
+            className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
+              language === "en" ? "bg-black text-white" : "bg-white text-black"
+            }`}
+            // disabled={isPending}
+          >
+            EN
+          </button>
+
         </div>
       )}
     </div>

@@ -12,6 +12,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
           <CheckboxGroup
+            title=""
             subtitle="French (Language and Literature)"
             headbgcolor="#303060"
             options={[
@@ -30,6 +31,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Math"
             headbgcolor="#33B1FC"
             options={[
@@ -45,6 +47,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             bgColor="#C0E7FE"
           />
           <CheckboxGroup
+            title=""
             subtitle="Artistic teachings"
             headbgcolor="#D5006D"
             options={["Music Education", "Plastic arts"]}
@@ -55,6 +58,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Foreign Language 1"
             headbgcolor="#303060"
             options={["Participation", "Vocabulary"]}
@@ -65,6 +69,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Foreign Language 2"
             headbgcolor="#33B1FC"
             options={["Participation", "Vocabulary"]}
@@ -75,6 +80,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Moral and civic education"
             headbgcolor="#D5006D"
             options={["Live together"]}
@@ -85,6 +91,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
+            title=""
             subtitle="Physical Education and Sports"
             headbgcolor="#D65F00"
             options={["Participation", "Respectful of the rules"]}
@@ -94,6 +101,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             bgColor="#FFB84D99"
           />
           <CheckboxGroup
+            title=""
             subtitle="Questioning the world"
             headbgcolor="#D65F00"
             options={["Geograpy", "History", "The lessons"]}
@@ -114,7 +122,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 ">
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={[
               "Attentive",
@@ -128,7 +137,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={[
               "Autonomy",
@@ -142,7 +152,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={["Calm", "Dynamism", "Invested", "serious", "Voluntary"]}
             register={register}
@@ -160,7 +171,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
         </h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#3EB489"
             options={[
               "Attentive",
@@ -174,7 +186,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#3EB489"
             options={["Autonomy", "Dynamic", "Mathmatics", "Reading"]}
             register={register}
@@ -182,7 +195,8 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#3EB489"
             options={[
               "AttenTion",

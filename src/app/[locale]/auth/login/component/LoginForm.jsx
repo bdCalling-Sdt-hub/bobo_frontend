@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { Checkbox } from "@/components/ui/checkbox";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,6 +21,7 @@ export default function LoginForm() {
     console.log(data);
     redirect("/home");
   };
+  const t = useTranslations("cycleOne");
 
   return (
     <form
@@ -108,7 +110,7 @@ export default function LoginForm() {
             type="button"
             className=" w-full block h-[2.7rem]  border-2 border-black bg-transparent text-black  hover:bg-purple-950 hover:text-white"
           >
-            Continue as a Guest
+            {t("Continue as a Guest")}
           </Button>
         </Link>
 
