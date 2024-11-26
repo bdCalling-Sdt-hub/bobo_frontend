@@ -7,7 +7,6 @@ const CycleOne = () => {
       <section>
         <CycleHeroSection bgImage="/heroone.png" />
       </section>
-
       {/* Feedback Section */}
       <CycleForm></CycleForm>
     </div>

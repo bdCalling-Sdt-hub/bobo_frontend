@@ -30,7 +30,6 @@ const CycleForm = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    console.log(data);
 
     try {
       const response = await axios.post("/api/generateFeedback", {
@@ -38,8 +37,15 @@ const CycleForm = () => {
         language: locale,
       });
 
-      const { comment } = response.data; // comment is already a string
-      setResult({ feedback: comment }); // Wrap it in an object with a feedback key
+      let { comment } = response.data;
+
+      if (comment) {
+        const splitComment = comment?.replace(/(^"|"$)/g, "");
+        console.log("Submitted data: split", splitComment);
+        // const splitComment = comment.split(". ");
+        setResult({ feedback: splitComment });
+      }
+      console.log("result", result);
       console.log("Submitted data:", comment);
     } catch (error) {
       console.log("Error generating feedback:", error);
@@ -205,7 +211,7 @@ const CycleForm = () => {
             <div className="mt-4">
               <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
                 {result?.feedback ? (
-                  <p className="break-words">{result.feedback}</p>
+                  <p className="break-words mb-2">{result?.feedback}</p>
                 ) : (
                   <p>No feedback available. Please try again.</p>
                 )}

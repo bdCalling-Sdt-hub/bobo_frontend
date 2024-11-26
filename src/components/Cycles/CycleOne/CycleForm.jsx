@@ -27,7 +27,7 @@ const CycleForm = () => {
     formState: { errors },
   } = useForm();
   const [result, setResult] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
@@ -39,8 +39,15 @@ const CycleForm = () => {
         language: locale,
       });
 
-      const { comment } = response.data; // comment is already a string
-      setResult({ feedback: comment }); // Wrap it in an object with a feedback key
+      let { comment } = response.data;
+
+      if (comment) {
+        const splitComment = comment?.replace(/(^"|"$)/g, "");
+        console.log("Submitted data: split", splitComment);
+        // const splitComment = comment.split(". ");
+        setResult({ feedback: splitComment });
+      }
+      console.log("result", result);
       console.log("Submitted data:", comment);
     } catch (error) {
       console.log("Error generating feedback:", error);
@@ -185,8 +192,15 @@ const CycleForm = () => {
       </div>
 
       {/* Modal */}
-      <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true" />
+      <Dialog
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        className="relative z-50"
+      >
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50"
+          aria-hidden="true"
+        />
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -201,7 +215,7 @@ const CycleForm = () => {
             <div className="mt-4">
               <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
                 {result?.feedback ? (
-                  <p className="break-words">{result.feedback}</p>
+                  <p className="break-words mb-2">{result?.feedback}</p>
                 ) : (
                   <p>No feedback available. Please try again.</p>
                 )}
@@ -226,7 +240,10 @@ const CycleForm = () => {
                 )}
               </div>
             </div>
-            <Button onClick={() => setIsModalOpen(false)} className="mt-4 w-full bg-purple-950">
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              className="mt-4 w-full bg-purple-950"
+            >
               {t("Close")}
             </Button>
           </motion.div>
