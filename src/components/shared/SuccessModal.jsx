@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Copy } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import Swal from "sweetalert2";
+import Success from "../Success";
 
 const SuccessModal = ({ open, setOpen, data }) => {
   const t = useTranslations("cycleOne");
@@ -20,6 +21,7 @@ const SuccessModal = ({ open, setOpen, data }) => {
         className="fixed inset-0 bg-black bg-opacity-50"
         aria-hidden="true"
       />
+      <Success></Success>
       <div className="fixed inset-0 flex items-center justify-center p-4">
         {/* Modal Animation using Framer Motion */}
         <motion.div
