@@ -70,3 +70,19 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* ------------ */
+
+@keyframes bg-animation {
+  0% {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.modal-background {
+  animation: bg-animation 1s ease-in-out;
+}
