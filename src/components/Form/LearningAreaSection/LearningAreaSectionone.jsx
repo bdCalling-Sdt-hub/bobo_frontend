@@ -109,7 +109,7 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
           <CheckboxGroup
             title="Explore the world"
-            subtitle="Discovry of matter"
+            subtitle="Discovery of matter"
             headbgcolor="#D5006D"
             color="#D5006D"
             options={["Understanding life cycles"]}

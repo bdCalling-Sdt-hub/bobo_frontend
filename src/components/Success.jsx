@@ -31,7 +31,7 @@ const Success = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsConfettiVisible(false);
-    }, 7000); // 5000ms = 5 seconds
+    }, 10000); // 5000ms = 5 seconds
 
     // Cleanup timer if the component is unmounted
     return () => clearTimeout(timer);

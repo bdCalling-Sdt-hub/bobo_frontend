@@ -59,8 +59,8 @@ const LearningAreaSectionTwo = ({
               "Oral expression",
               "Reading",
               "Spelling",
-              "Text Comprenension",
-              "Writting",
+              "Text Comprehension",
+              "Writing",
               "Writing production",
             ]}
             register={register}
