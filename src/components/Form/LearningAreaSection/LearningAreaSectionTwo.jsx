@@ -1,4 +1,6 @@
 import CheckboxGroup from "@/components/CheckBox";
+import { Popover } from "@headlessui/react";
+import { Label } from "@radix-ui/react-label";
 import { useTranslations } from "next-intl";
 
 const LearningAreaSectionTwo = ({ register, setValue }) => {
@@ -57,7 +59,7 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             bgColor="#FFB6C1"
           />
 
-          <CheckboxGroup
+          {/* <CheckboxGroup
             title=""
             subtitle="Foreign Language 1"
             headbgcolor="#303060"
@@ -66,7 +68,38 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             setValue={setValue}
             bgColor="#EBEDFE"
             groupKey="learningAreas.foreignLanguage1"
-          />
+          /> */}
+            <div className="mt-8 grid w-full items-center gap-1.5">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="toneOfVoice" className="font-semibold">
+              {t("Select Tone Of Voice")}
+            </Label>
+            <Popover className="relative">
+              <Popover.Button className="text-blue-500 cursor-help">
+                ?
+              </Popover.Button>
+              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
+                Choose the tone of voice preferred for communication
+              </Popover.Panel>
+            </Popover>
+          </div>
+          <div className="relative">
+            <select
+              id="toneOfVoice"
+              placeholder="Tone of voice "
+              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
+              {...register("toneOfVoice", {
+                required: t("Tone of Voice is required"),
+              })}
+            >
+              <option value="Caring">{t("Caring")}</option>
+              <option value="Encouraging">{t("Encouraging")}</option>
+              <option value="Enthusiastic">{t("Enthusiastic")}</option>
+              <option value="Rigorous">{t("Rigorous")}</option>
+            </select>
+          </div>
+         
+        </div>
 
           <CheckboxGroup
             title=""
