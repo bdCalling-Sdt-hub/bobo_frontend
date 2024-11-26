@@ -43,27 +43,19 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale}>
       <body className={`${inter.variable} ${roboto_mono.variable}`}>
-
-
         <ProtectedRoute>
+          <NextIntlClientProvider messages={messages}>
+            <div>
+              <div className="absolute top-2 z-50 w-full">
+                <NavbarWithConditionalRendering></NavbarWithConditionalRendering>
+              </div>
+              <Toaster></Toaster>
+              {children}
 
-        <NextIntlClientProvider messages={messages}>
-          <div>
-            <div className="absolute top-2 z-50 w-full">
-              <NavbarWithConditionalRendering></NavbarWithConditionalRendering>
+              <ScrollToTopButton></ScrollToTopButton>
             </div>
-
-            <Toaster></Toaster>
-           {children}
-
-            <ScrollToTopButton></ScrollToTopButton>
-          </div>
-        </NextIntlClientProvider>
-
-
+          </NextIntlClientProvider>
         </ProtectedRoute>
-        
-
       </body>
     </html>
   );

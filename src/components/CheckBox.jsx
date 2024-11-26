@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 
 const CheckboxGroup = ({
   title,
@@ -12,10 +11,9 @@ const CheckboxGroup = ({
   bgColor,
   subtitle,
   headbgcolor,
-  resetState,
+
   color,
 }) => {
-  const { reset } = useForm(); // Initialize react-hook-form reset
   const [selectedOptions, setSelectedOptions] = useState(
     options.reduce((acc, option) => {
       acc[option] = null; // null means no selection (reset state)
@@ -53,44 +51,45 @@ const CheckboxGroup = ({
   };
 
   // Reset all options when the resetState prop changes to true
-  useEffect(() => {
-    if (resetState) {
-      setSelectedOptions(
-        options.reduce((acc, option) => {
-          acc[option] = null; // Reset all options to null
-          return acc;
-        }, {})
-      );
-      // Reset the form field values using reset()
-      reset({
-        [groupKey]: options.reduce((acc, option) => {
-          acc[option] = null;
-          return acc;
-        }, {}),
-      });
-    }
-  }, [resetState, options, reset, groupKey]);
+  // useEffect(() => {
+  //   if (resetState) {
+  //     setSelectedOptions(
+  //       options.reduce((acc, option) => {
+  //         acc[option] = null; // Reset all options to null
+  //         return acc;
+  //       }, {})
+  //     );
 
-  // This will trigger the reset and form submission
-  useEffect(() => {
-    // Simulating form submission and resetting
-    const simulateFormSubmit = () => {
-      // Your form submission logic here
+  //     // Reset the form field values using reset()
+  //     reset({
+  //       [groupKey]: options.reduce((acc, option) => {
+  //         acc[option] = null;
+  //         return acc;
+  //       }, {}),
+  //     });
+  //   }
+  // }, [resetState, options, reset, groupKey]);
 
-      // Reset selected options after form submission
-      setSelectedOptions(
-        options.reduce((acc, option) => {
-          acc[option] = null; // Reset selected options to null
-          return acc;
-        }, {})
-      );
+  // // This will trigger the reset and form submission
+  // useEffect(() => {
+  //   // Simulating form submission and resetting
+  //   const simulateFormSubmit = () => {
+  //     // Your form submission logic here
 
-      // Reset form values
-      reset();
-    };
+  //     // Reset selected options after form submission
+  //     setSelectedOptions(
+  //       options.reduce((acc, option) => {
+  //         acc[option] = null; // Reset selected options to null
+  //         return acc;
+  //       }, {})
+  //     );
 
-    simulateFormSubmit(); // This simulates the form submission automatically
-  }, [reset, options, resetState]); // Trigger the reset when `resetState` changes or on component load
+  //     // Reset form values
+  //     reset();
+  //   };
+
+  //   simulateFormSubmit(); // This simulates the form submission automatically
+  // }, [reset, options, resetState]); // Trigger the reset when `resetState` changes or on component load
 
   return (
     <div>

@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useRouter } from "@/i18n/routing";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -29,6 +30,7 @@ const CycleForm = () => {
   const [result, setResult] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -45,7 +47,9 @@ const CycleForm = () => {
         const splitComment = comment?.replace(/(^"|"$)/g, "");
         console.log("Submitted data: split", splitComment);
         // const splitComment = comment.split(". ");
-        setResult({ feedback: splitComment });
+        // setResult({ feedback: splitComment });
+        router.push(`/success?data=${splitComment}`);
+
       }
       console.log("result", result);
       console.log("Submitted data:", comment);
@@ -59,7 +63,7 @@ const CycleForm = () => {
     } finally {
       reset();
       setIsLoading(false);
-      setIsModalOpen(true);
+      // setIsModalOpen(true);
     }
   };
 
@@ -155,9 +159,9 @@ const CycleForm = () => {
               className="w-full border rounded-md border-black bg-transparent px-4 py-3"
               {...register("gender", { required: t("Gender is required") })}
             >
-              <option value="Male">{t("Male")}</option>
-              <option value="Female">{t("Female")}</option>
-              <option value="Other">{t("Other")}</option>
+              <option value="Boy">{t("Boy")}</option>
+              <option value="Girl">{t("Girl")}</option>
+            
             </select>
           </div>
           {errors.gender && (

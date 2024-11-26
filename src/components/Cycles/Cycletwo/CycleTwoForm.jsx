@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
+import { useRouter } from "@/i18n/routing";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -30,6 +31,7 @@ const CycleForm = () => {
   const [result, setResult] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -45,8 +47,10 @@ const CycleForm = () => {
       if (comment) {
         const splitComment = comment?.replace(/(^"|"$)/g, "");
         console.log("Submitted data: split", splitComment);
-        // const splitComment = comment.split(". ");
-        setResult({ feedback: splitComment });
+        // const splitComment = comment.split(". ");`
+        router.push(`/success?data=${splitComment}`);
+
+        // setResult({ feedback: splitComment });
       }
       console.log("result", result);
       console.log("Submitted data:", comment);
@@ -60,7 +64,7 @@ const CycleForm = () => {
     } finally {
       reset();
       setIsLoading(false);
-      setIsModalOpen(true);
+      // setIsModalOpen(true);
     }
   };
 
@@ -154,9 +158,8 @@ const CycleForm = () => {
               className="w-full border rounded-md border-black bg-transparent px-4 py-3"
               {...register("gender", { required: t("Gender is required") })}
             >
-              <option value="Male">{t("Male")}</option>
-              <option value="Female">{t("Female")}</option>
-              <option value="Other">{t("Other")}</option>
+              <option value="Boy">{t("Boy")}</option>
+              <option value="Girl">{t("Girl")}</option>
             </select>
           </div>
           {errors.gender && (
@@ -190,63 +193,63 @@ const CycleForm = () => {
       </div>
 
       {/* Modal */}
-      <Dialog
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        className="relative z-50"
-      >
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50"
-          aria-hidden="true"
-        />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          {/* Modal Animation using Framer Motion */}
-          <motion.div
-            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Dialog.Title className="text-lg font-bold">
-              {t("Generated Comment")}
-            </Dialog.Title>
-            <div className="mt-4">
-              <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
-              {result?.feedback ? (
-                  <p className="break-words mb-2">{result?.feedback}</p>
-                ) : (
-                  <p>No feedback available. Please try again.</p>
-                )}
-                {/* Copy Button */}
-                {result?.feedback && (
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(result.feedback);
-                      Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: t("Your comment has been copied"),
-                        showConfirmButton: false,
-                        timer: 1500,
-                      });
-                    }}
-                    className="ml-3 px-3 py-1 rounded"
-                  >
-                    <Copy />
-                  </button>
-                )}
-              </div>
-            </div>
-            <Button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 w-full bg-purple-950"
+      {/* <Dialog
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          className="relative z-50"
+        >
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50"
+            aria-hidden="true"
+          />
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+          
+            <motion.div
+              className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
             >
-              {t("Close")}
-            </Button>
-          </motion.div>
-        </div>
-      </Dialog>
+              <Dialog.Title className="text-lg font-bold">
+                {t("Generated Comment")}
+              </Dialog.Title>
+              <div className="mt-4">
+                <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
+                  {result?.feedback ? (
+                    <p className="break-words mb-2">{result?.feedback}</p>
+                  ) : (
+                    <p>No feedback available. Please try again.</p>
+                  )}
+                  
+                  {result?.feedback && (
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(result.feedback);
+                        Swal.fire({
+                          position: "center",
+                          icon: "success",
+                          title: t("Your comment has been copied"),
+                          showConfirmButton: false,
+                          timer: 1500,
+                        });
+                      }}
+                      className="ml-3 px-3 py-1 rounded"
+                    >
+                      <Copy />
+                    </button>
+                  )}
+                </div>
+              </div>
+              <Button
+                onClick={() => setIsModalOpen(false)}
+                className="mt-4 w-full bg-purple-950"
+              >
+                {t("Close")}
+              </Button>
+            </motion.div>
+          </div>
+        </Dialog> */}
     </form>
   );
 };
