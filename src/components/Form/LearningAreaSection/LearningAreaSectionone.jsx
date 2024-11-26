@@ -11,7 +11,6 @@ const LearningAreasSection = ({ register, setValue }) => {
         </h2>
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
-
           <CheckboxGroup
             title="Acquire basic mathematical tools"
             subtitle="Early Mathematical Concepts"

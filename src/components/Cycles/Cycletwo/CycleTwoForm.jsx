@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -32,6 +33,8 @@ const CycleForm = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+
+    console.log(data);
 
     try {
       const response = await axios.post("/api/generateFeedback", {
@@ -182,7 +185,6 @@ const CycleForm = () => {
       </div>
 
       {/* Modal */}
-      {/* Modal */}
       <Dialog
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -193,7 +195,14 @@ const CycleForm = () => {
           aria-hidden="true"
         />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
+          {/* Modal Animation using Framer Motion */}
+          <motion.div
+            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+          >
             <Dialog.Title className="text-lg font-bold">
               {t("Generated Comment")}
             </Dialog.Title>
@@ -230,7 +239,7 @@ const CycleForm = () => {
             >
               {t("Close")}
             </Button>
-          </Dialog.Panel>
+          </motion.div>
         </div>
       </Dialog>
     </form>

@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-
+import { motion } from "framer-motion";
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
 
@@ -30,13 +30,14 @@ const CycleForm = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-  
+    console.log(data);
+
     try {
       const response = await axios.post("/api/generateFeedback", {
         feedbackData: data,
         language: locale,
       });
-  
+
       const { comment } = response.data; // comment is already a string
       setResult({ feedback: comment }); // Wrap it in an object with a feedback key
       console.log("Submitted data:", comment);
@@ -112,8 +113,7 @@ const CycleForm = () => {
                 required: t("Tone of Voice is required"),
               })}
             >
-            
-            <option value="Caring">{t("Caring")}</option>
+              <option value="Caring">{t("Caring")}</option>
               <option value="Encouraging">{t("Encouraging")}</option>
               <option value="Enthusiastic">{t("Enthusiastic")}</option>
               <option value="Rigorous">{t("Rigorous")}</option>
@@ -145,7 +145,6 @@ const CycleForm = () => {
               className="w-full border rounded-md border-black bg-transparent px-4 py-3"
               {...register("gender", { required: t("Gender is required") })}
             >
-              
               <option value="Male">{t("Male")}</option>
               <option value="Female">{t("Female")}</option>
               <option value="Other">{t("Other")}</option>
@@ -192,7 +191,14 @@ const CycleForm = () => {
           aria-hidden="true"
         />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
+          {/* Modal Animation using Framer Motion */}
+          <motion.div
+            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+          >
             <Dialog.Title className="text-lg font-bold">
               {t("Generated Comment")}
             </Dialog.Title>
@@ -208,7 +214,6 @@ const CycleForm = () => {
                   <button
                     onClick={() => {
                       navigator.clipboard.writeText(result.feedback);
-
                       Swal.fire({
                         position: "center",
                         icon: "success",
@@ -228,9 +233,9 @@ const CycleForm = () => {
               onClick={() => setIsModalOpen(false)}
               className="mt-4 w-full bg-purple-950"
             >
-             {t("Close")}
+              {t("Close")}
             </Button>
-          </Dialog.Panel>
+          </motion.div>
         </div>
       </Dialog>
     </form>

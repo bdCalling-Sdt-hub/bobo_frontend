@@ -9,6 +9,7 @@ import { getMessages } from "next-intl/server";
 import { Inter, Roboto_Mono } from "next/font/google";
 import { ToastProvider } from "@/components/ui/toast";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "@/components/ProtectedRoutes/ProtechtedRoutes";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,10 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale}>
       <body className={`${inter.variable} ${roboto_mono.variable}`}>
+
+
+        <ProtectedRoute>
+
         <NextIntlClientProvider messages={messages}>
           <div>
             <div className="absolute top-2 z-50 w-full">
@@ -54,6 +59,11 @@ export default async function RootLayout({ children, params }) {
             <ScrollToTopButton></ScrollToTopButton>
           </div>
         </NextIntlClientProvider>
+
+
+        </ProtectedRoute>
+        
+
       </body>
     </html>
   );

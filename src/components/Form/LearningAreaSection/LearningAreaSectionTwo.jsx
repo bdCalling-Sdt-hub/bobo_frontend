@@ -1,10 +1,24 @@
+"use client";
+
 import CheckboxGroup from "@/components/CheckBox";
-import { Popover } from "@headlessui/react";
-import { Label } from "@radix-ui/react-label";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 const LearningAreaSectionTwo = ({ register, setValue }) => {
   const t = useTranslations("cycleOne");
+
+  const [selectedLanguages, setSelectedLanguages] = useState({
+    language1: "",
+    language2: "",
+  });
+
+  const handleDropdownChange = (field, value) => {
+    setSelectedLanguages((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   return (
     <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
       <div className="mt-6 bg-sky-50 rounded-md border-l-2 border-black p-10">
@@ -69,48 +83,80 @@ const LearningAreaSectionTwo = ({ register, setValue }) => {
             bgColor="#EBEDFE"
             groupKey="learningAreas.foreignLanguage1"
           /> */}
-            <div className="mt-8 grid w-full items-center gap-1.5">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="toneOfVoice" className="font-semibold">
-              {t("Select Tone Of Voice")}
-            </Label>
-            <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
-                ?
-              </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
-                Choose the tone of voice preferred for communication
-              </Popover.Panel>
-            </Popover>
-          </div>
-          <div className="relative">
-            <select
-              id="toneOfVoice"
-              placeholder="Tone of voice "
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
-              {...register("toneOfVoice", {
-                required: t("Tone of Voice is required"),
-              })}
-            >
-              <option value="Caring">{t("Caring")}</option>
-              <option value="Encouraging">{t("Encouraging")}</option>
-              <option value="Enthusiastic">{t("Enthusiastic")}</option>
-              <option value="Rigorous">{t("Rigorous")}</option>
-            </select>
-          </div>
-         
-        </div>
 
-          <CheckboxGroup
-            title=""
-            subtitle="Foreign Language 2"
-            headbgcolor="#33B1FC"
-            options={["Participation", "Vocabulary"]}
-            register={register}
-            setValue={setValue}
-            groupKey="learningAreas.foreignLanguage2"
-            bgColor="#C0E7FE"
-          />
+          {/* Dropdown for Foreign Language 1 */}
+          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+            <div>
+              <select
+                id="ForeignLanguage1"
+                defaultValue="" // defaultValue to make it uncontrolled
+                className="w-full rounded-2xl bg-purple-900 text-white text-center px-4 py-3"
+                {...register("Foreign Language 1", {
+                  
+                })}
+                onChange={
+                  (e) => handleDropdownChange("language1", e.target.value) // Identify dropdown by field
+                }
+              >
+                <option value="" disabled hidden>
+                  Foreign Language 1
+                </option>
+                <option value="Anglais">Anglais</option>
+                <option value="Arabe">Arabe</option>
+                <option value="Espagnol">Espagnol</option>
+                <option value="Italien">Italien</option>
+                <option value="Portugais">Portugais</option>
+              </select>
+
+              {/* Pass the selected dropdown value as groupKey */}
+              <CheckboxGroup
+                title=""
+                subtitle=""
+                options={["Participation", "Vocabulary"]}
+                register={register}
+                setValue={setValue}
+                bgColor="#EBEDFE"
+                groupKey={`learningAreas.${selectedLanguages.language1}`}
+              />
+            </div>
+          </div>
+
+          {/* Dropdown for Foreign Language 2 */}
+          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+            <div>
+              <select
+                id="ForeignLanguage2"
+                defaultValue="" // Use defaultValue for an uncontrolled component
+                className="w-full rounded-2xl bg-[#33B1FC] text-white text-center px-4 py-3"
+                {...register("Foreign Language 2", {
+                 
+                })}
+                onChange={(e) =>
+                  handleDropdownChange("language2", e.target.value)
+                }
+              >
+                <option value="" disabled hidden>
+                  Foreign Language 2
+                </option>
+                <option value="Anglais">Anglais</option>
+                <option value="Arabe">Arabe</option>
+                <option value="Espagnol">Espagnol</option>
+                <option value="Italien">Italien</option>
+                <option value="Portugais">Portugais</option>
+              </select>
+
+              {/* Pass the selected dropdown value as groupKey */}
+              <CheckboxGroup
+                title=""
+                subtitle=""
+                options={["Participation", "Vocabulary"]}
+                register={register}
+                setValue={setValue}
+                bgColor="#EBEDFE"
+                groupKey={`learningAreas.${selectedLanguages.language2}`}
+              />
+            </div>
+          </div>
 
           <CheckboxGroup
             title=""

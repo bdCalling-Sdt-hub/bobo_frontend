@@ -53,7 +53,6 @@ const Navber = () => {
       {/* ---------------- Language Switcher -------------- */}
       {!isLanguageLoading && (
         <div className="flex justify-center items-center p-1 px-2 rounded-2xl bg-white w-32 ">
-
           <button
             onClick={() => handleChangeLanguage("fr")}
             className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
@@ -73,7 +72,6 @@ const Navber = () => {
           >
             EN
           </button>
-
         </div>
       )}
     </div>

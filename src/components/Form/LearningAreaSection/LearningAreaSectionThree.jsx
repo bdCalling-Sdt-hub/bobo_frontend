@@ -1,8 +1,24 @@
+"use client";
+
 import CheckboxGroup from "@/components/CheckBox";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 const LearningAreaSectionThree = ({ register, setValue }) => {
   const t = useTranslations("cycleOne");
+
+  const [selectedLanguages, setSelectedLanguages] = useState({
+    language1: "",
+    language2: "",
+  });
+
+  const handleDropdownChange = (field, value) => {
+    setSelectedLanguages((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   return (
     <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
       <div className="mt-6 bg-sky-50 rounded-md border-l-2 border-black p-10">
@@ -12,7 +28,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
           <CheckboxGroup
-          title=""
+            title=""
             subtitle="French (Language and Literature)"
             headbgcolor="#303060"
             options={[
@@ -31,7 +47,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Mathematics"
             headbgcolor="#33B1FC"
             options={[
@@ -47,7 +63,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#C0E7FE"
           />
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Artistic Education"
             headbgcolor="#D5006D"
             options={["Music Education", "Visual Arts"]}
@@ -57,19 +73,79 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#FFB6C1"
           />
 
-          <CheckboxGroup
-           title=""
-            subtitle="Foreign Language 1"
-            headbgcolor="#303060"
-            options={["Participation", "Vocabulary"]}
-            register={register}
-            setValue={setValue}
-            bgColor="#EBEDFE"
-            groupKey="learningAreas.foreignLanguage1"
-          />
+          {/* Dropdown for Foreign Language 1 */}
+          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+            <div>
+              <select
+                id="ForeignLanguage1"
+                defaultValue="" // defaultValue to make it uncontrolled
+                className="w-full rounded-2xl bg-purple-900 text-white text-center px-4 py-3"
+                {...register("Foreign Language 1", {})}
+                onChange={
+                  (e) => handleDropdownChange("language1", e.target.value) // Identify dropdown by field
+                }
+              >
+                <option value="" disabled hidden>
+                  Foreign Language 1
+                </option>
+                <option value="Anglais">Anglais</option>
+                <option value="Arabe">Arabe</option>
+                <option value="Espagnol">Espagnol</option>
+                <option value="Italien">Italien</option>
+                <option value="Portugais">Portugais</option>
+              </select>
 
+              {/* Pass the selected dropdown value as groupKey */}
+              <CheckboxGroup
+                title=""
+                subtitle=""
+                options={["Participation", "Vocabulary"]}
+                register={register}
+                setValue={setValue}
+                bgColor="#EBEDFE"
+                groupKey={`learningAreas.${selectedLanguages.language1}`}
+              />
+            </div>
+          </div>
+
+          {/* Dropdown for Foreign Language 2 */}
+          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+            <div>
+              <select
+                id="ForeignLanguage2"
+                defaultValue="" // Use defaultValue for an uncontrolled component
+                className="w-full rounded-2xl bg-[#33B1FC] text-white text-center px-4 py-3"
+                {...register("Foreign Language 2", {})}
+                onChange={(e) =>
+                  handleDropdownChange("language2", e.target.value)
+                }
+              >
+                <option value="" disabled hidden>
+                  Foreign Language 2
+                </option>
+                <option value="Anglais">Anglais</option>
+                <option value="Arabe">Arabe</option>
+                <option value="Espagnol">Espagnol</option>
+                <option value="Italien">Italien</option>
+                <option value="Portugais">Portugais</option>
+              </select>
+
+              {/* Pass the selected dropdown value as groupKey */}
+              <CheckboxGroup
+                title=""
+                subtitle=""
+                options={["Participation", "Vocabulary"]}
+                register={register}
+                setValue={setValue}
+                bgColor="#EBEDFE"
+                groupKey={`learningAreas.${selectedLanguages.language2}`}
+              />
+            </div>
+          </div>
+
+          {/* 
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Foreign Language 2"
             headbgcolor="#33B1FC"
             options={["Participation", "Vocabulary"]}
@@ -77,10 +153,10 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             setValue={setValue}
             groupKey="learningAreas.foreignLanguage2"
             bgColor="#C0E7FE"
-          />
+          /> */}
 
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="History and Geography"
             headbgcolor="#D5006D"
             options={["Geography", "History"]}
@@ -91,7 +167,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
           />
 
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Citizenship"
             headbgcolor="#D65F00"
             options={["Respect for others", "Sense of responsibility"]}
@@ -101,7 +177,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#FFB84D99"
           />
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Sports Activitise"
             headbgcolor="#D65F00"
             options={["Participation", "Respect for rule", "Team spirit"]}
@@ -111,7 +187,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#FFB84D99"
           />
           <CheckboxGroup
-           title=""
+            title=""
             subtitle="Science and Technology"
             headbgcolor="#D65F00"
             options={["Computer Science", "Life And Earth Science"]}
@@ -127,13 +203,13 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
       <div className="bg-orange-50 mt-20 p-10 rounded-2xl border-l border-black ">
         <h1 className="text-center text-3xl mb-5 font-bold text-[#D65F00]">
-       {t("Behaviors")}
+          {t("Behaviors")}
         </h1>
 
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 ">
           <CheckboxGroup
-           title=""
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={[
               "Attentive",
@@ -147,8 +223,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
-           title=""
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={[
               "Autonomous",
@@ -162,8 +238,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="behavior"
           />
           <CheckboxGroup
-           title=""
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#FFB84D33"
             options={[
               "Class motivator",
@@ -186,8 +262,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
         </h1>
         <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
           <CheckboxGroup
-           title=""
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#3EB489"
             options={[
               "Autonomy",
@@ -200,8 +276,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
-           title=""
-           subtitle=""
+            title=""
+            subtitle=""
             bgColor="#3EB489"
             options={[
               "French",
@@ -214,7 +290,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="improvements"
           />
           <CheckboxGroup
-           title=""
+            title=""
             bgColor="#3EB489"
             subtitle=""
             options={[

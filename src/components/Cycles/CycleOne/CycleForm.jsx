@@ -3,6 +3,7 @@ import LearningAreasSection from "@/components/Form/LearningAreaSection/Learning
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { motion } from "framer-motion";
 
 import { Dialog, Popover } from "@headlessui/react";
 import axios from "axios";
@@ -184,17 +185,16 @@ const CycleForm = () => {
       </div>
 
       {/* Modal */}
-      <Dialog
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        className="relative z-50"
-      >
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50"
-          aria-hidden="true"
-        />
+      <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+          >
             <Dialog.Title className="text-lg font-bold">
               {t("Generated Comment")}
             </Dialog.Title>
@@ -226,13 +226,10 @@ const CycleForm = () => {
                 )}
               </div>
             </div>
-            <Button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 w-full bg-purple-950"
-            >
+            <Button onClick={() => setIsModalOpen(false)} className="mt-4 w-full bg-purple-950">
               {t("Close")}
             </Button>
-          </Dialog.Panel>
+          </motion.div>
         </div>
       </Dialog>
     </form>
