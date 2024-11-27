@@ -34,7 +34,7 @@ const CycleForm = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-
+    console.log(data)
     try {
       const response = await axios.post("/api/generateFeedback", {
         feedbackData: data,
