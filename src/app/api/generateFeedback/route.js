@@ -18,13 +18,12 @@ export async function POST(req) {
     }
 
     // Convert the improvements object to a string, only including areas that need improvement (i.e., where true)
-    const improvementComments = Object.entries(improvements)
-      .filter(([area, needsImprovement]) => needsImprovement === true) // Only include areas that need improvement
-      .map(([area]) => `${area} needs improvement`) // Generate improvement statements
-      .join(", "); // Join all statements with commas
-
-    // Log improvementComments for debugging
-    console.log(improvementComments);
+    const improvementComments = improvements
+      ? Object.entries(improvements)
+          .filter(([area, needsImprovement]) => needsImprovement === true) // Only include areas that need improvement
+          .map(([area]) => `${area} needs improvement`) // Generate improvement statements
+          .join(", ") // Join all statements with commas
+      : ""; // De
 
     let prompt = "";
 
