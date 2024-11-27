@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import ReactConfetti from "react-confetti";
 
@@ -8,7 +8,8 @@ const Success = () => {
     height: window.innerHeight,
   });
 
-  const [isConfettiVisible, setIsConfettiVisible] = useState(true);
+  const [isConfettiVisible, setIsConfettiVisible] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false); // To track the fade-out state
 
   // Update the window dimensions when the window is resized
   useEffect(() => {
@@ -27,14 +28,29 @@ const Success = () => {
     };
   }, []);
 
-  // Set the confetti to stop after a specific time (e.g., 5 seconds)
+  // Set the confetti to start on success and stop after a specific time
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsConfettiVisible(false);
-    }, 10000); // 5000ms = 5 seconds
+    // Simulating success event by triggering after the component mounts
+    const successTimeout = setTimeout(() => {
+      setIsConfettiVisible(true); // Trigger confetti on success
+    }, 0.0); // Wait 1 second before triggering confetti
 
-    // Cleanup timer if the component is unmounted
-    return () => clearTimeout(timer);
+    // Set a timer to start fading out the confetti after 9 seconds
+    const fadeOutTimer = setTimeout(() => {
+      setIsFadingOut(true); // Start fade-out effect
+    }, 9000); // 9000ms = 9 seconds
+
+    // Set a timer to stop the confetti after 10 seconds
+    const stopConfettiTimer = setTimeout(() => {
+      setIsConfettiVisible(false);
+    }, 15000); // 10000ms = 10 seconds
+
+    // Cleanup timers if the component unmounts
+    return () => {
+      clearTimeout(successTimeout);
+      clearTimeout(fadeOutTimer);
+      clearTimeout(stopConfettiTimer);
+    };
   }, []);
 
   return (
@@ -43,9 +59,12 @@ const Success = () => {
         <ReactConfetti
           width={windowDimensions.width} // Full width of the window
           height={windowDimensions.height} // Full height of the window
+          style={{
+            opacity: isFadingOut ? 0 : 1, // Apply fade-out effect
+            transition: "opacity 1s ease-out", // Smooth transition for opacity
+          }}
         />
       )}
-
     </div>
   );
 };

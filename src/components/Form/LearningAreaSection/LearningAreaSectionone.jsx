@@ -239,3 +239,5 @@ const LearningAreasSection = ({ register, setValue }) => {
 };
 
 export default LearningAreasSection;
+
+

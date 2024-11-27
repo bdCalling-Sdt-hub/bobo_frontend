@@ -1,5 +1,4 @@
 "use client";
-
 import SuccessModal from "@/components/shared/SuccessModal";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";

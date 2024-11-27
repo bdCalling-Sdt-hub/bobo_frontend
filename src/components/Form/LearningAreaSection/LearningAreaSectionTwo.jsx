@@ -103,7 +103,7 @@ const LearningAreaSectionTwo = ({
               <select
                 id="ForeignLanguage1"
                 value={selectedLanguages.language1}
-                className="w-full rounded-2xl bg-purple-900 text-white text-center px-4 py-3"
+                className="w-full rounded-2xl bg-[#303060] text-white text-center px-4 py-3"
                 {...register("Foreign Language 1")}
                 onChange={(e) =>
                   handleDropdownChange("language1", e.target.value)
@@ -122,7 +122,7 @@ const LearningAreaSectionTwo = ({
               {/* Show the selected language title */}
               {selectedLanguages.language1 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  Foreign Language 1: {selectedLanguages.language1}
+                  Foreign Language 1:( {selectedLanguages.language1})
                 </h3>
               )}
 
@@ -139,18 +139,16 @@ const LearningAreaSectionTwo = ({
           </div>
 
           {/* Dropdown for Foreign Language 2 */}
+
           <div className="mt-3 grid w-full gap-1.5 bg-[#C0E7FE] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage2"
-                value={selectedLanguages.language2} // Controlled value
+                value={selectedLanguages.language2}
                 className="w-full rounded-2xl bg-[#33B1FC] text-white text-center px-4 py-3"
                 {...register("Foreign Language 2")}
                 onChange={(e) =>
-                  setSelectedLanguages((prev) => ({
-                    ...prev,
-                    ["language2"]: e.target.value,
-                  }))
+                  handleDropdownChange("language2", e.target.value)
                 }
               >
                 <option value="" disabled hidden>
@@ -163,7 +161,13 @@ const LearningAreaSectionTwo = ({
                 <option value="Portugais">Portugais</option>
               </select>
 
-              {/* Pass the selected dropdown value as groupKey */}
+              {/* Show the selected language title */}
+              {selectedLanguages.language2 && (
+                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                  Foreign Language 2: ({selectedLanguages.language2})
+                </h3>
+              )}
+
               <CheckboxGroup
                 title=""
                 subtitle=""

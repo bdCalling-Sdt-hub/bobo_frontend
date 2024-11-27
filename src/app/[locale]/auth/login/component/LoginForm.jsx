@@ -36,7 +36,7 @@ export default function LoginForm() {
       {/* <h1 className=" text-center text-2xl font-bold">Sign In </h1> */}
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="name" className="font-semibold">
-          Email
+        {t("Email")}
         </Label>
         <Input
           type="email"

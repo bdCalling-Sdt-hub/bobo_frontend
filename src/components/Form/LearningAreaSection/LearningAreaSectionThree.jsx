@@ -72,17 +72,17 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="learningAreas.artisticEducation"
             bgColor="#FFB6C1"
           />
-
           {/* Dropdown for Foreign Language 1 */}
+
           <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage1"
-                defaultValue="" // defaultValue to make it uncontrolled
-                className="w-full rounded-2xl bg-purple-900 text-white text-center px-4 py-3"
-                {...register("Foreign Language 1", {})}
-                onChange={
-                  (e) => handleDropdownChange("language1", e.target.value) // Identify dropdown by field
+                value={selectedLanguages.language1}
+                className="w-full rounded-2xl bg-[#303060] text-white text-center px-4 py-3"
+                {...register("Foreign Language 1")}
+                onChange={(e) =>
+                  handleDropdownChange("language1", e.target.value)
                 }
               >
                 <option value="" disabled hidden>
@@ -95,7 +95,13 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
                 <option value="Portugais">Portugais</option>
               </select>
 
-              {/* Pass the selected dropdown value as groupKey */}
+              {/* Show the selected language title */}
+              {selectedLanguages.language1 && (
+                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                  Foreign Language 1:( {selectedLanguages.language1})
+                </h3>
+              )}
+
               <CheckboxGroup
                 title=""
                 subtitle=""
@@ -109,13 +115,14 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
           </div>
 
           {/* Dropdown for Foreign Language 2 */}
-          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+
+          <div className="mt-3 grid w-full gap-1.5 bg-[#C0E7FE] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage2"
-                defaultValue="" // Use defaultValue for an uncontrolled component
+                value={selectedLanguages.language2}
                 className="w-full rounded-2xl bg-[#33B1FC] text-white text-center px-4 py-3"
-                {...register("Foreign Language 2", {})}
+                {...register("Foreign Language 2")}
                 onChange={(e) =>
                   handleDropdownChange("language2", e.target.value)
                 }
@@ -126,23 +133,28 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
                 <option value="Espagnol">Espagnol</option>
-                <option value="Italien">Italien</option>
+
                 <option value="Portugais">Portugais</option>
               </select>
 
-              {/* Pass the selected dropdown value as groupKey */}
+              {/* Show the selected language title */}
+              {selectedLanguages.language2 && (
+                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                  Foreign Language 2: ({selectedLanguages.language2})
+                </h3>
+              )}
+
               <CheckboxGroup
                 title=""
                 subtitle=""
                 options={["Participation", "Vocabulary"]}
                 register={register}
                 setValue={setValue}
-                bgColor="#EBEDFE"
+                bgColor="#C0E7FE"
                 groupKey={`learningAreas.${selectedLanguages.language2}`}
               />
             </div>
           </div>
-
           {/* 
           <CheckboxGroup
             title=""
