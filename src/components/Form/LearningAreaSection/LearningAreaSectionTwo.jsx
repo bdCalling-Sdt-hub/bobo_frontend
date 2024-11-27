@@ -53,7 +53,7 @@ const LearningAreaSectionTwo = ({
           <CheckboxGroup
             title=""
             subtitle="French (Language and Literature)"
-            headbgcolor="#303060"
+            headbgcolor="#33B1FC"
             options={[
               "Grammar",
               "Oral expression",
@@ -66,13 +66,13 @@ const LearningAreaSectionTwo = ({
             register={register}
             setValue={setValue}
             groupKey="learningAreas.frenchLanguageLiterature"
-            bgColor="#EBEDFE"
+            bgColor="#C0E7FE"
           />
 
           <CheckboxGroup
             title=""
             subtitle="Math"
-            headbgcolor="#33B1FC"
+            headbgcolor="#D65F00"
             options={[
               "Calculations",
               "Geometry",
@@ -83,7 +83,7 @@ const LearningAreaSectionTwo = ({
             register={register}
             setValue={setValue}
             groupKey="learningAreas.math"
-            bgColor="#C0E7FE"
+            bgColor="#FFB84D99"
           />
           <CheckboxGroup
             title=""
@@ -98,19 +98,19 @@ const LearningAreaSectionTwo = ({
 
           {/* Dropdown for Foreign Language 1 */}
 
-          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+          <div className="mt-3 grid w-full gap-1.5 bg-[#FF72564D] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage1"
                 value={selectedLanguages.language1}
-                className="w-full rounded-2xl bg-[#303060] text-white text-center px-4 py-3"
+                className="w-full rounded-2xl bg-[#CC4A31] text-white text-center px-4 py-3"
                 {...register("Foreign Language 1")}
                 onChange={(e) =>
                   handleDropdownChange("language1", e.target.value)
                 }
               >
                 <option value="" disabled hidden>
-                  Foreign Language 1
+                 {t("Foreign Language 1")}
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
@@ -122,7 +122,7 @@ const LearningAreaSectionTwo = ({
               {/* Show the selected language title */}
               {selectedLanguages.language1 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  Foreign Language 1:( {selectedLanguages.language1})
+                  {t("Foreign Language 1")}:( {selectedLanguages.language1})
                 </h3>
               )}
 
@@ -132,7 +132,7 @@ const LearningAreaSectionTwo = ({
                 options={["Participation", "Vocabulary"]}
                 register={register}
                 setValue={setValue}
-                bgColor="#EBEDFE"
+                bgColor=""
                 groupKey={`learningAreas.${selectedLanguages.language1}`}
               />
             </div>
@@ -140,19 +140,19 @@ const LearningAreaSectionTwo = ({
 
           {/* Dropdown for Foreign Language 2 */}
 
-          <div className="mt-3 grid w-full gap-1.5 bg-[#C0E7FE] p-3 rounded-3xl">
+          <div className="mt-3 grid w-full gap-1.5 bg-[#FFFFE0] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage2"
                 value={selectedLanguages.language2}
-                className="w-full rounded-2xl bg-[#33B1FC] text-white text-center px-4 py-3"
+                className="w-full rounded-2xl bg-[#D4A017] text-white text-center px-4 py-3"
                 {...register("Foreign Language 2")}
                 onChange={(e) =>
                   handleDropdownChange("language2", e.target.value)
                 }
               >
                 <option value="" disabled hidden>
-                  Foreign Language 2
+                {t("Foreign Language 2")}
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
@@ -164,7 +164,7 @@ const LearningAreaSectionTwo = ({
               {/* Show the selected language title */}
               {selectedLanguages.language2 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  Foreign Language 2: ({selectedLanguages.language2})
+                  {t("Foreign Language 2")}: ({selectedLanguages.language2})
                 </h3>
               )}
 
@@ -174,7 +174,7 @@ const LearningAreaSectionTwo = ({
                 options={["Participation", "Vocabulary"]}
                 register={register}
                 setValue={setValue}
-                bgColor="#C0E7FE"
+                bgColor="#FFFFE0"
                 groupKey={`learningAreas.${selectedLanguages.language2}`}
               />
             </div>
@@ -183,34 +183,34 @@ const LearningAreaSectionTwo = ({
           <CheckboxGroup
             title=""
             subtitle="Moral and civic education"
-            headbgcolor="#D5006D"
+            headbgcolor="#3EB489"
             options={["Live together"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.MoralandCivicEducation"
-            bgColor="#FFB6C1"
+            bgColor="#BDFCC9"
           />
 
           <CheckboxGroup
             title=""
             subtitle="Physical Education and Sports"
-            headbgcolor="#D65F00"
+            headbgcolor="#303060"
             options={["Participation", "Respectful of the rules"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.physicalactivity"
-            bgColor="#FFB84D99"
+            bgColor="#EBEDFE"
           />
 
           <CheckboxGroup
             title=""
             subtitle="Questioning the world"
-            headbgcolor="#D65F00"
+            headbgcolor="#000080"
             options={["Geograpy", "History", "The lessons"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.physicalactivity"
-            bgColor="#FFB84D99"
+            bgColor="#5A7CA533"
           />
         </div>
       </div>
@@ -277,7 +277,7 @@ const LearningAreaSectionTwo = ({
             subtitle=""
             bgColor="#3EB489"
             options={[
-              "Attentive",
+              
               "Concentration",
               "Learning",
               "Quality of work",

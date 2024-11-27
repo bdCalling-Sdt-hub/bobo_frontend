@@ -36,12 +36,12 @@ export default function LoginForm() {
       {/* <h1 className=" text-center text-2xl font-bold">Sign In </h1> */}
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="name" className="font-semibold">
-        {t("Email")}
+          {t("Email")}
         </Label>
         <Input
           type="email"
           id="email"
-          placeholder="Email"
+          placeholder={t("Email")}
           className="border-black bg-transparent px-4 py-5"
           {...register("email", {
             required: "Email is required",

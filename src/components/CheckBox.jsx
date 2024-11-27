@@ -55,7 +55,7 @@ const CheckboxGroup = ({
       <h3 className="font-bold mb-2 text-center text-2xl" style={{ color: color }}>
         {t(`${title}`)}
       </h3>
-      <div className="flex flex-col space-y-2 p-4 rounded-3xl border" style={{ backgroundColor: bgColor }}>
+      <div className="flex flex-col space-y-2 p-4 rounded-3xl " style={{ backgroundColor: bgColor }}>
         <h1 className="text-center p-2 rounded-3xl text-white" style={{ backgroundColor: headbgcolor }}>
           {t(`${subtitle}`)}
         </h1>

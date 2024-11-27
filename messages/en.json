@@ -73,10 +73,11 @@
     "Motivate": "Motivate",
     "Shy": "Shy",
     "Autonomy": "Autonomy",
+    "Autonomy ": "Autonomy",
     "Distracted": "Distracted",
     "Focused": "Focused",
     "RespectFull of the rules": "RespectFull of the rules",
-    "Talkative": "alkative",
+    "Talkative": "Talkative",
     "Calm": "Calm",
     "Dynamism": "Dynamism",
     "Invested": "Invested",
@@ -108,8 +109,8 @@
     "French (Language and Literature)": "French (Language and Literature)",
     "Math": "Math",
     "Artistic teachings": "Artistic teachings",
-    "Foreign Language 1": "Foreign Language 1",
-    "Foreign Language 2": "Foreign Language 2",
+   
+    
     "Moral and civic education": "Moral and civic education",
     "Physical Education and Sports": "Physical Education and Sports",
     "Questioning the world": "Questioning the world",
@@ -175,7 +176,10 @@
     "Girl": "Girl",
      "Attention" : "Attention",
      "Text Comprehension" : "Text Comprehension",
-     "Email" : "Email"
+     "Email" : "Email",
+     "Foreign Language 1": "Foreign Language 1",
+     "Foreign Language 2": "Foreign Language 2",
+      "Email is required": "Email is required"
    
      
 
