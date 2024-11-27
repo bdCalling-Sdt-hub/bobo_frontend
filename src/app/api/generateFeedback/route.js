@@ -22,8 +22,8 @@ export async function POST(req) {
 
     if (language === "fr") {
       // French language prompt
-      const pronoun = feedbackData.gender === "female" ? "elle" : "il";
-      const possessive = feedbackData.gender === "female" ? "sa" : "son";
+      const pronoun = feedbackData.gender === "Girl" ? "elle" : "il";
+      const possessive = feedbackData.gender === "Girl" ? "sa" : "son";
 
       // Build improvement areas
 
@@ -45,8 +45,8 @@ export async function POST(req) {
       `;
     } else {
       // English language prompt
-      const pronoun = feedbackData.gender === "female" ? "she" : "he";
-      const possessive = feedbackData.gender === "female" ? "her" : "his";
+      const pronoun = feedbackData.gender === "Girl" ? "she" : "he";
+      const possessive = feedbackData.gender === "Girl" ? "her" : "his";
 
       // Build improvement areas
 
