@@ -17,7 +17,15 @@ export async function POST(req) {
       });
     }
 
-    // Define the prompt based on the language and tone
+    // Convert the improvements object to a string, only including areas that need improvement (i.e., where true)
+    const improvementComments = Object.entries(improvements)
+      .filter(([area, needsImprovement]) => needsImprovement === true) // Only include areas that need improvement
+      .map(([area]) => `${area} needs improvement`) // Generate improvement statements
+      .join(", "); // Join all statements with commas
+
+    // Log improvementComments for debugging
+    console.log(improvementComments);
+
     let prompt = "";
 
     if (language === "fr") {
@@ -25,18 +33,19 @@ export async function POST(req) {
       const pronoun = feedbackData.gender === "Girl" ? "elle" : "il";
       const possessive = feedbackData.gender === "Girl" ? "sa" : "son";
 
-      // Build improvement areas
-
+      // Build the full prompt
       prompt = `
       Écrivez un commentaire détaillé pour le bulletin de l'élève, basé sur les données suivantes. Le commentaire doit être informatif, détaillé, mais ne pas dépasser 6 lignes. Utilisez le ton suivant : '${
         feedbackData?.toneOfVoice
       }'.  
-      Un 'true' signifie que l'élève fait bien, tandis qu'un 'false' signifie que l'élève doit améliorer ses compétences et fournir plus d'efforts.  
+      Un 'true' signifie que l'élève doit améliorer ses compétences, tandis qu'un 'false' signifie que l'élève fait bien dans ce domaine.  
       Ne commencez ni ne terminez le commentaire par des phrases génériques. 
       
-      Améliorations nécessaires : ${improvements}
+      Améliorations nécessaires : ${
+        improvementComments || "Aucune amélioration nécessaire"
+      }
       
-      Autres commentaires : ${others}
+      Autres commentaires : ${JSON.stringify(others)}
 
       Commentaires : ${JSON.stringify(feedbackData)}
 
@@ -48,18 +57,19 @@ export async function POST(req) {
       const pronoun = feedbackData.gender === "Girl" ? "she" : "he";
       const possessive = feedbackData.gender === "Girl" ? "her" : "his";
 
-      // Build improvement areas
-
+      // Build the full prompt
       prompt = `
       Write a detailed comment for the student's report card based on the following feedback. The comment should be informative, detailed, and no more than 6 lines. Use the following tone: '${
         feedbackData?.toneOfVoice
       }'.  
-      A 'true' means the student is doing well, while a 'false' means the student needs improvement and more effort.  
+      A 'true' means the student needs improvement, while a 'false' means the student is doing well in that area.  
       Do not begin or end the comment with generic sentences. 
 
-      Improvements needed: ${improvements}
+      Improvements needed in the following areas: ${
+        improvementComments || "No improvements needed"
+      }
       
-      Other feedback: ${others}
+      Other feedback: ${JSON.stringify(others)}
 
       Feedback: ${JSON.stringify(feedbackData)}
 
