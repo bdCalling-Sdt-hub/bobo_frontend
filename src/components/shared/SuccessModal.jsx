@@ -25,7 +25,7 @@ const SuccessModal = ({ open, setOpen, data }) => {
       <div className="fixed inset-0 flex items-center justify-center p-4">
         {/* Modal Animation using Framer Motion */}
         <motion.div
-          className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+          className="bg-white rounded-lg p-6 shadow-lg w-full max-w-[50%] mx-auto"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
