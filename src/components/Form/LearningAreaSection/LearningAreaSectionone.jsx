@@ -202,6 +202,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={["Autonomy", "Motor skills", "Sociability"]}
           />
           <CheckboxGroup
             title=""
@@ -215,6 +216,11 @@ const LearningAreasSection = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={[
+              "Emotion management",
+              "Oral language",
+              "Understanding instructions",
+            ]}
           />
           <CheckboxGroup
             title=""
@@ -224,6 +230,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={["Listening", "Respect for rules"]}
           />
         </div>
       </div>

@@ -97,15 +97,16 @@ const LearningAreaSectionTwo = ({
           />
 
           {/* Dropdown for Foreign Language 1 */}
+
           <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage1"
-                value={selectedLanguages.language1} // Controlled value
+                value={selectedLanguages.language1}
                 className="w-full rounded-2xl bg-purple-900 text-white text-center px-4 py-3"
                 {...register("Foreign Language 1")}
-                onChange={
-                  (e) => handleDropdownChange("language1", e.target.value) // Update state
+                onChange={(e) =>
+                  handleDropdownChange("language1", e.target.value)
                 }
               >
                 <option value="" disabled hidden>
@@ -117,6 +118,13 @@ const LearningAreaSectionTwo = ({
                 <option value="Italien">Italien</option>
                 <option value="Portugais">Portugais</option>
               </select>
+
+              {/* Show the selected language title */}
+              {selectedLanguages.language1 && (
+                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                  Foreign Language 1: {selectedLanguages.language1}
+                </h3>
+              )}
 
               <CheckboxGroup
                 title=""
@@ -131,7 +139,7 @@ const LearningAreaSectionTwo = ({
           </div>
 
           {/* Dropdown for Foreign Language 2 */}
-          <div className="mt-3 grid w-full gap-1.5 bg-[#EBEDFE] p-3 rounded-3xl">
+          <div className="mt-3 grid w-full gap-1.5 bg-[#C0E7FE] p-3 rounded-3xl">
             <div>
               <select
                 id="ForeignLanguage2"
@@ -162,7 +170,7 @@ const LearningAreaSectionTwo = ({
                 options={["Participation", "Vocabulary"]}
                 register={register}
                 setValue={setValue}
-                bgColor="#EBEDFE"
+                bgColor="#C0E7FE"
                 groupKey={`learningAreas.${selectedLanguages.language2}`}
               />
             </div>
@@ -234,7 +242,7 @@ const LearningAreaSectionTwo = ({
               "Autonomy",
               "Distracted",
               "Focused",
-              "RespectFull of the rules",
+              "Respectful of the rules",
               "Talkative",
             ]}
             register={register}
@@ -271,6 +279,13 @@ const LearningAreaSectionTwo = ({
               "Quality of work",
               "UnderStanding instructions",
             ]}
+            hideMinusFor={[
+              "Attentive",
+              "Concentration",
+              "Learning",
+              "Quality of work",
+              "UnderStanding instructions",
+            ]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
@@ -280,6 +295,7 @@ const LearningAreaSectionTwo = ({
             subtitle=""
             bgColor="#3EB489"
             options={["Autonomy", "Dynamic", "Mathmatics", "Reading"]}
+            hideMinusFor={["Autonomy", "Dynamic", "Mathmatics", "Reading"]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
@@ -289,7 +305,13 @@ const LearningAreaSectionTwo = ({
             subtitle=""
             bgColor="#3EB489"
             options={[
-              "AttenTion",
+              "Attention",
+              "French",
+              "Problem-solving",
+              "Understanding reading text",
+            ]}
+            hideMinusFor={[
+              "Attention",
               "French",
               "Problem-solving",
               "Understanding reading text",

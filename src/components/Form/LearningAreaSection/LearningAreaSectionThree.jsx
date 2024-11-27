@@ -37,7 +37,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
               "Grammar",
               "Oral expression",
               "Reading",
-              "Text Comprenension",
+              "Text Comprehension",
               "Writing production",
             ]}
             register={register}
@@ -274,6 +274,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={[
+              "Autonomy",
+              "Geographic knowledge",
+              "Mathematics",
+              "Respect for rules",
+            ]}
           />
           <CheckboxGroup
             title=""
@@ -288,6 +294,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={[
+              "French",
+              "Group activities",
+              "Physical education",
+              "Time management",
+            ]}
           />
           <CheckboxGroup
             title=""
@@ -302,6 +314,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             register={register}
             setValue={setValue}
             groupKey="improvements"
+            hideMinusFor={[
+              "Foreign language",
+              "Historical knowledge",
+              "Participation",
+              "Quality of work",
+            ]}
           />
         </div>
       </div>
