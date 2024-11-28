@@ -198,11 +198,11 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={["Autonomy", "Listening",   "Respect for rules"]}
+            options={["Autonomy",     "Emotion management",  "Respect for rules"]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
-            hideMinusFor={["Autonomy", "Listening",  "Motor skills", "Respect for rules", "Sociability"]}
+            hideMinusFor={["Autonomy", "Listening",     "Emotion management",  "Motor skills", "Respect for rules", "Sociability"]}
           />
           <CheckboxGroup
             title=""
@@ -210,7 +210,9 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#3EB489"
             options={[
               "Understanding instructions",
-              "Emotion management",
+              "Oral language", 
+              "Sociability" 
+          
             
             ]}
             register={register}
@@ -220,13 +222,14 @@ const LearningAreasSection = ({ register, setValue }) => {
               "Emotion management",
               "Oral language",
               "Understanding instructions",
+              "Sociability" 
             ]}
           />
           <CheckboxGroup
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={[ "Motor skills",   "Oral language", "Sociability"  ]}
+            options={[ "Listening",  "Motor skills",    ]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
