@@ -33,11 +33,11 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             headbgcolor="#33B1FC"
             options={[
               "Conjugation",
-              "Dictation",
-              "Grammar",
-              "Oral expression",
-              "Reading",
               "Text Comprehension",
+              "Dictation",
+              "Oral expression",
+              "Grammar",
+              "Reading",
               "Writing production",
             ]}
             register={register}
@@ -66,7 +66,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             title=""
             subtitle="Artistic Education"
             headbgcolor="#D5006D"
-            options={["Music Education", "Visual Arts"]}
+            options={[ "Visual Arts","Music Education", ]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.artisticEducation"
@@ -192,7 +192,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             title=""
             subtitle="Sports Activitise"
             headbgcolor="#3EB489"
-            options={["Participation", "Respect for rule", "Team spirit"]}
+            options={["Team spirit","Participation", "Respect for rule", ]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.physicalactivity"
@@ -226,8 +226,9 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             options={[
               "Attentive",
               "Distracted",
-              "Exemplary",
+             
               "Oral Language",
+              "Organized",
               "Responsible",
             ]}
             register={register}
@@ -240,10 +241,11 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#FFB84D33"
             options={[
               "Autonomous",
+             
               "Dynamic",
               "Motivated",
               "Passive",
-              "Talkative",
+              "Respectful",
             ]}
             register={register}
             setValue={setValue}
@@ -254,10 +256,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             subtitle=""
             bgColor="#FFB84D33"
             options={[
+              "Talkative",
+              "Exemplary",
               "Class motivator",
+             
               "Disruptive",
-              "Organized",
-              "Respectful",
+         
             ]}
             register={register}
             setValue={setValue}
@@ -278,55 +282,70 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             subtitle=""
             bgColor="#3EB489"
             options={[
-              "Autonomy ",
-              "Geographic knowledge",
-              "Mathematics",
-              "Respect for rules",
-            ]}
-            register={register}
-            setValue={setValue}
-            groupKey="improvements"
-            hideMinusFor={[
-              "Autonomy ",
-              "Geographic knowledge",
-              "Mathematics",
-              "Respect for rules",
-            ]}
-          />
-          <CheckboxGroup
-            title=""
-            subtitle=""
-            bgColor="#3EB489"
-            options={[
-              "French",
+              
               "Group activities",
-              "Physical education",
+              "Geographic knowledge",
+              
               "Time management",
-            ]}
-            register={register}
-            setValue={setValue}
-            groupKey="improvements"
-            hideMinusFor={[
-              "French",
-              "Group activities",
-              "Physical education",
-              "Time management",
-            ]}
-          />
-          <CheckboxGroup
-            title=""
-            bgColor="#3EB489"
-            subtitle=""
-            options={[
-              "Foreign language",
-              "Historical knowledge",
               "Participation",
+            
+            ]}
+            register={register}
+            setValue={setValue}
+            groupKey="improvements"
+            hideMinusFor={[
+              "Group activities",
+              "Time management",
+              
+              "Time management",
+              "Autonomy ",
+              "Geographic knowledge",
+              "Mathematics",
+              "Participation",
+              "Respect for rules",
+            ]}
+          />
+          <CheckboxGroup
+            title=""
+            subtitle=""
+            bgColor="#3EB489"
+            options={[
+              "Autonomy ",
+           
+              "Physical education",
+              "Foreign language",
+              "Respect for rules",
+             
+            ]}
+            register={register}
+            setValue={setValue}
+            groupKey="improvements"
+            hideMinusFor={[
+              "Autonomy ",
+              "Foreign language",
+              "French",
+              "Group activities",
+              "Physical education",
+              "Time management",
+              "Respect for rules",
+            ]}
+          />
+          <CheckboxGroup
+            title=""
+            bgColor="#3EB489"
+            subtitle=""
+            options={[
+              "Historical knowledge",
+              "French",
+              "Mathematics",
+             
               "Quality of work",
             ]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
             hideMinusFor={[
+              "French",
               "Foreign language",
               "Historical knowledge",
               "Participation",

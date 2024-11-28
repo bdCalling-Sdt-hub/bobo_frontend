@@ -34,9 +34,9 @@ const LearningAreasSection = ({ register, setValue }) => {
             headbgcolor="#33B1FC"
             color="#33B1FC"
             options={[
+              "Understanding instructions",
               "Discovering simple words",
               "Expressing oneself clearly",
-              "Understanding instructions",
             ]}
             register={register}
             setValue={setValue}
@@ -48,7 +48,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             subtitle="Music Education"
             headbgcolor="#3EB489"
             color="#3EB489"
-            options={["Expressing oneself through rhythm", "Singing"]}
+            options={["Singing", "Expressing oneself through rhythm"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.artisticactivities"
@@ -60,8 +60,8 @@ const LearningAreasSection = ({ register, setValue }) => {
             subtitle="Time and Space"
             headbgcolor="#303060"
             options={[
-              "Knowing how to orient oneself",
               "Understanding time (days, months, seasons)",
+              "Knowing how to orient oneself",
             ]}
             register={register}
             setValue={setValue}
@@ -158,9 +158,9 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#FFB84D33"
             options={[
               "Autonomous",
+             "Calm",
               "Disruptive",
               "Living together",
-              "Talkative",
             ]}
             register={register}
             setValue={setValue}
@@ -170,7 +170,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={["Calm", "Dynamic", "RespectFul of rules", "Voluntary"]}
+            options={[  "Talkative", "Focused", "RespectFul of rules", "Voluntary"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -179,7 +179,7 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={["Curious", "Focused", "Shy"]}
+            options={["Curious", "Dynamic", "Shy"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -198,20 +198,20 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={["Autonomy", "Motor skills", "Sociability"]}
+            options={["Autonomy", "Listening",   "Respect for rules"]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
-            hideMinusFor={["Autonomy", "Motor skills", "Sociability"]}
+            hideMinusFor={["Autonomy", "Listening",  "Motor skills", "Respect for rules", "Sociability"]}
           />
           <CheckboxGroup
             title=""
             subtitle=""
             bgColor="#3EB489"
             options={[
-              "Emotion management",
-              "Oral language",
               "Understanding instructions",
+              "Emotion management",
+            
             ]}
             register={register}
             setValue={setValue}
@@ -226,12 +226,12 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={["Listening", "Respect for rules"]}
+            options={[ "Motor skills",   "Oral language", "Sociability"  ]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
-            hideMinusFor={["Listening", "Respect for rules"]}
-          />
+            hideMinusFor={[ "Motor skills","Listening", "Sociability" ,  "Oral language", "Respect for rules"]}
+          /> 
         </div>
       </div>
     </div>
@@ -239,5 +239,3 @@ const LearningAreasSection = ({ register, setValue }) => {
 };
 
 export default LearningAreasSection;
-
-

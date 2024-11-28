@@ -55,12 +55,13 @@ const LearningAreaSectionTwo = ({
             subtitle="French (Language and Literature)"
             headbgcolor="#33B1FC"
             options={[
-              "Grammar",
+              "Text Comprehension",
               "Oral expression",
+              "Writing",
+              "Grammar",
               "Reading",
               "Spelling",
-              "Text Comprehension",
-              "Writing",
+
               "Writing production",
             ]}
             register={register}
@@ -89,7 +90,7 @@ const LearningAreaSectionTwo = ({
             title=""
             subtitle="Artistic teachings"
             headbgcolor="#D5006D"
-            options={["Music Education", "Plastic arts"]}
+            options={["Plastic arts", "Music Education"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.artisticTeachings"
@@ -110,7 +111,7 @@ const LearningAreaSectionTwo = ({
                 }
               >
                 <option value="" disabled hidden>
-                 {t("Foreign Language 1")}
+                  {t("Foreign Language 1")}
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
@@ -152,7 +153,7 @@ const LearningAreaSectionTwo = ({
                 }
               >
                 <option value="" disabled hidden>
-                {t("Foreign Language 2")}
+                  {t("Foreign Language 2")}
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
@@ -227,13 +228,16 @@ const LearningAreaSectionTwo = ({
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={[
-              "Attentive",
-              "Class Driver",
-              "Disruptive",
-              "Motivate",
-              "Shy",
-            ]}
+            options={["Attentive", "Calm", "Distracted", "Motivate", "serious"]}
+            register={register}
+            setValue={setValue}
+            groupKey="behavior"
+          />
+          <CheckboxGroup
+            title=""
+            subtitle=""
+            bgColor="#FFB84D33"
+            options={["Autonomy", "Focused", "Invested", "Disruptive", "Shy"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -243,21 +247,12 @@ const LearningAreaSectionTwo = ({
             subtitle=""
             bgColor="#FFB84D33"
             options={[
-              "Autonomy",
-              "Distracted",
-              "Focused",
-              "Respectful of the rules",
               "Talkative",
+              "Dynamism",
+              "Class Driver",
+              "Respectful of the rules",
+              "Voluntary",
             ]}
-            register={register}
-            setValue={setValue}
-            groupKey="behavior"
-          />
-          <CheckboxGroup
-            title=""
-            subtitle=""
-            bgColor="#FFB84D33"
-            options={["Calm", "Dynamism", "Invested", "serious", "Voluntary"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -276,19 +271,15 @@ const LearningAreaSectionTwo = ({
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={[
-              
-              "Concentration",
-              "Learning",
-              "Quality of work",
-              "UnderStanding instructions",
-            ]}
+            options={["Learning", "Concentration", "Dynamic", "Mathmatics"]}
             hideMinusFor={[
               "Attentive",
               "Concentration",
               "Learning",
               "Quality of work",
+              "Dynamic",
               "UnderStanding instructions",
+              "Mathmatics",
             ]}
             register={register}
             setValue={setValue}
@@ -298,8 +289,21 @@ const LearningAreaSectionTwo = ({
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={["Autonomy", "Dynamic", "Mathmatics", "Reading"]}
-            hideMinusFor={["Autonomy", "Dynamic", "Mathmatics", "Reading"]}
+            options={[
+              "Autonomy",
+              "Understanding reading text",
+              "French",
+              "Problem-solving",
+            ]}
+            hideMinusFor={[
+              "Autonomy",
+              "Dynamic",
+              "Understanding reading text",
+              "French",
+              "Mathmatics",
+              "Problem-solving",
+              "Reading",
+            ]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
@@ -310,15 +314,18 @@ const LearningAreaSectionTwo = ({
             bgColor="#3EB489"
             options={[
               "Attention",
-              "French",
-              "Problem-solving",
-              "Understanding reading text",
+              "UnderStanding instructions",
+              "Reading",
+              "Quality of work",
             ]}
             hideMinusFor={[
               "Attention",
               "French",
               "Problem-solving",
               "Understanding reading text",
+              "Reading",
+              "UnderStanding instructions",
+              "Quality of work",
             ]}
             register={register}
             setValue={setValue}
