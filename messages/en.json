@@ -1,6 +1,8 @@
 {
   "navbar": {
-    "Teacher Comment Hub": "Teacher Comment Hub"
+    "Teacher Comment Hub": "Teacher Comment Hub",
+    "Go Back": "Go Back",
+    "Show Guide": "Show Guide"
   },
   "home": {
     "Student Learning Stages": "Student Learning Stages",
@@ -89,7 +91,7 @@
     "UnderStanding instructions": "UnderStanding instructions",
     "Dynamic": "Dynamic",
     "Mathmatics": "Mathmatics",
-    
+
     "French ": "French",
     "Problem-solving": "Problem-solving",
     "Understanding reading text": "Understanding reading text",
@@ -109,8 +111,7 @@
     "French (Language and Literature)": "French (Language and Literature)",
     "Math": "Math",
     "Artistic teachings": "Artistic teachings",
-   
-    
+
     "Moral and civic education": "Moral and civic education",
     "Physical Education and Sports": "Physical Education and Sports",
     "Questioning the world": "Questioning the world",
@@ -174,107 +175,11 @@
     "Continue as a Guest": "Continue as a Guest",
     "Boy": "Boy",
     "Girl": "Girl",
-     "Attention" : "Attention",
-     "Text Comprehension" : "Text Comprehension",
-     "Email" : "Email",
-     "Foreign Language 1": "Foreign Language 1",
-     "Foreign Language 2": "Foreign Language 2",
-      "Email is required": "Email is required"
-   
-     
-
-    
-    
-   
-    
-
-
-
-
-
-
-     
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-   
-    
+    "Attention": "Attention",
+    "Text Comprehension": "Text Comprehension",
+    "Email": "Email",
+    "Foreign Language 1": "Foreign Language 1",
+    "Foreign Language 2": "Foreign Language 2",
+    "Email is required": "Email is required"
   }
 }

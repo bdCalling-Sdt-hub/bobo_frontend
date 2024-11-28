@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { Dialog, Popover } from "@headlessui/react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { Copy } from "lucide-react";
+import { Copy, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -34,7 +34,7 @@ const CycleForm = () => {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    console.log(data)
+    console.log(data);
     try {
       const response = await axios.post("/api/generateFeedback", {
         feedbackData: data,
@@ -49,7 +49,6 @@ const CycleForm = () => {
         // const splitComment = comment.split(". ");
         // setResult({ feedback: splitComment });
         router.push(`/success?data=${splitComment}`);
-
       }
       console.log("result", result);
       console.log("Submitted data:", comment);
@@ -161,7 +160,6 @@ const CycleForm = () => {
             >
               <option value="Boy">{t("Boy")}</option>
               <option value="Girl">{t("Girl")}</option>
-            
             </select>
           </div>
           {errors.gender && (

@@ -1,6 +1,8 @@
 {
   "navbar": {
-    "Teacher Comment Hub": "Plateforme de commentaires des enseignants"
+    "Teacher Comment Hub": "Plateforme de commentaires des enseignants",
+    "Go Back": "Retourner",
+    "Show Guide": "Montrer le guide"
   },
   "home": {
     "Student Learning Stages": "Étapes d’apprentissage des étudiants",

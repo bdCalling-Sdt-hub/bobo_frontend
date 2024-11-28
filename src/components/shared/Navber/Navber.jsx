@@ -2,9 +2,11 @@
 import useLocaleSwitcher from "@/hooks/useLocaleSwitcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+
+import { Button } from "@/components/ui/button";
 
 const Navber = () => {
   const locale = Cookies.get("NEXT_LOCALE");
@@ -21,7 +23,7 @@ const Navber = () => {
     localeSwitcher(lang);
   };
 
-  // Set selected locale on mount
+  //
   useEffect(() => {
     if (!locale) {
       // Set default language to "fr" if not defined
@@ -35,6 +37,21 @@ const Navber = () => {
 
   // Translator from next-intl
   const t = useTranslations("navbar");
+  const router = useRouter();
+  const [isUserGuide, setIsUserGuide] = useState(false); 
+
+  useEffect(() => {
+    setIsUserGuide(router.pathname === "/userguide");
+  }, [router.pathname]);
+
+  const handleToggleNavigation = () => {
+    if (isUserGuide) {
+      router.back(); 
+    } else {
+      router.push("/userguide"); 
+    }
+    setIsUserGuide(!isUserGuide); 
+  };
 
   return (
     <div className=" flex justify-between w-[80%] mx-auto shadow-md px-4 p-1 rounded-2xl bg-white bg-opacity-60 ">
@@ -51,29 +68,49 @@ const Navber = () => {
       </Link>
 
       {/* ---------------- Language Switcher -------------- */}
-      {!isLanguageLoading && (
-        <div className="flex justify-center items-center p-1 px-2 rounded-2xl bg-white w-32 ">
-          <button
-            onClick={() => handleChangeLanguage("fr")}
-            className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
-              language === "fr" ? "bg-black text-white" : "bg-white text-black"
-            }`}
-            // disabled={isPending}
-          >
-            FR
-          </button>
 
-          <button
-            onClick={() => handleChangeLanguage("en")}
-            className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
-              language === "en" ? "bg-black text-white" : "bg-white text-black"
-            }`}
-            // disabled={isPending}
-          >
-            EN
-          </button>
-        </div>
-      )}
+      <div className="flex gap-5 justify-center items-center">
+
+{/* user guide button */}
+
+        <Button
+          onClick={handleToggleNavigation}
+          className="px-4 py-2 text-white rounded"
+        >
+          {isUserGuide ? t("Go Back" ): t("Show Guide")}
+        </Button>
+
+
+
+
+        {!isLanguageLoading && (
+          <div className="flex justify-center items-center p-1 px-2 rounded-2xl bg-white w-32 ">
+            <Button
+              onClick={() => handleChangeLanguage("fr")}
+              className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
+                language === "fr"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
+              }`}
+              // disabled={isPending}
+            >
+              FR
+            </Button>
+
+            <button
+              onClick={() => handleChangeLanguage("en")}
+              className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
+                language === "en"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
+              }`}
+              // disabled={isPending}
+            >
+              EN
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
