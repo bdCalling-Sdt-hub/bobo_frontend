@@ -346,6 +346,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             groupKey="improvements"
             hideMinusFor={[
               "French",
+              "Mathematics",
               "Foreign language",
               "Historical knowledge",
               "Participation",
