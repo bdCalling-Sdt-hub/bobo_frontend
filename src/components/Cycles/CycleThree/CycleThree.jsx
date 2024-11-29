@@ -50,7 +50,7 @@ const CycleThree = () => {
                 {guide}{" "}
                 <Link className="text-blue-600" href="/userguide">
                   {" "}
-                  Click Here
+                  {t("Click Here")}
                 </Link>{" "}
               </p>
 
