@@ -176,6 +176,7 @@
     "Email": "Courriel",
     "Email is required": "L'email est requis",
 
-    "Attentive": "Attentif"
+    "Attentive": "Attentif",
+    "Never show this again" : "Ne plus jamais afficher ceci"
   }
 }
