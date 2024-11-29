@@ -11,9 +11,9 @@
     "Cycle 2": "Cycle 2",
     "Cycle 3": "Cycle 3",
     "Select": "Sélectionner",
-   "Please_explore_Cycle_One_more_details_and_guide": "Veuillez explorer le Cycle one, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le bouton Guide ci-dessus. Merci.",
-   "Please_explore_Cycle_Two_more_details_and_guide": "Veuillez explorer le Cycle two, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le bouton Guide ci-dessus. Merci.",
-   "Please_explore_Cycle_Three_more_details_and_guide": "Veuillez explorer le Cycle three, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le bouton Guide ci-dessus. Merci."
+    "Please_explore_Cycle_One_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci.",
+    "Please_explore_Cycle_Two_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci.",
+    "Please_explore_Cycle_Three_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci."
   },
   "login": {
     "hello": "Bonjour"
@@ -182,6 +182,6 @@
     "Attentive": "Attentif",
     "Never show this again": "Ne plus jamais afficher ceci",
     "Hello everyone": "Bonjour tout le monde,",
-        "User Guide":"Guide de l'utilisateur"
+    "User Guide": "Guide de l'utilisateur"
   }
 }

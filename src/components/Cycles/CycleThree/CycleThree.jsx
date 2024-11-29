@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const CycleThree = () => {
   const searchParams = useSearchParams();
@@ -45,7 +46,13 @@ const CycleThree = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
               <h2 className="text-xl font-semibold mb-4">{t("User Guide")}</h2>
-              <p className="text-gray-700 mb-6">{guide}</p>
+              <p className="text-gray-700 mb-6">
+                {guide}{" "}
+                <Link className="text-blue-600" href="/userguide">
+                  {" "}
+                  Click Here
+                </Link>{" "}
+              </p>
 
               <div className="mb-4 flex items-center">
                 <input

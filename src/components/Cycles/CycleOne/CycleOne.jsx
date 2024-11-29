@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const CycleOne = () => {
   const searchParams = useSearchParams();
@@ -13,7 +14,7 @@ const CycleOne = () => {
   const [neverShowAgain, setNeverShowAgain] = useState(false);
   const guide = searchParams.get("guide");
 
-  const t = useTranslations("cycleOne")
+  const t = useTranslations("cycleOne");
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuideCycleOne");
@@ -45,9 +46,15 @@ const CycleOne = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
               <h2 className="text-xl font-semibold mb-4">{t("User Guide")}</h2>
-              <p className="text-gray-700 mb-6">{guide}</p>
+              <p className="text-gray-700">
+                {guide}{" "}
+                <Link className="text-blue-600" href="/userguide">
+                  {" "}
+                  Click Here
+                </Link>{" "}
+              </p>
 
-              <div className="mb-4 flex items-center">
+              <div className="mb-4 flex items-center mt-5">
                 <input
                   type="checkbox"
                   id="neverShowAgain"
