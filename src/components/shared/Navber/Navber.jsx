@@ -54,7 +54,7 @@ const Navber = () => {
   };
 
   return (
-    <div className=" flex justify-between w-[80%] mx-auto shadow-md px-4 p-1 rounded-2xl bg-white bg-opacity-60 ">
+    <div className=" md:flex justify-between w-[80%] mx-auto shadow-md px-4 p-1 rounded-2xl bg-white bg-opacity-60 ">
       <Link href="/home">
         <Avatar className=" flex gap-x-5 justify-center items-center">
           <AvatarImage
@@ -69,13 +69,13 @@ const Navber = () => {
 
       {/* ---------------- Language Switcher -------------- */}
 
-      <div className="flex gap-5 justify-center items-center">
+      <div className="flex md:gap-5 justify-center items-center">
 
 {/* user guide button */}
 
         <Button
           onClick={handleToggleNavigation}
-          className="px-4 py-2 text-white rounded"
+          className="px-4 py-2 text-white rounded "
         >
           {isUserGuide ? t("Go Back" ): t("Show Guide")}
         </Button>

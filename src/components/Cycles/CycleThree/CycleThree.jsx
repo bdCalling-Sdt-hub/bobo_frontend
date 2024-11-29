@@ -13,8 +13,7 @@ const CycleThree = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [neverShowAgain, setNeverShowAgain] = useState(false);
   const guide = searchParams.get("guide");
-  const t = useTranslations("cycleOne")
-
+  const t = useTranslations("cycleOne");
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuideCycleThree");
@@ -45,7 +44,7 @@ const CycleThree = () => {
         {showPopup && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-              <h2 className="text-xl font-semibold mb-4">User Guide</h2>
+              <h2 className="text-xl font-semibold mb-4">{t("User Guide")}</h2>
               <p className="text-gray-700 mb-6">{guide}</p>
 
               <div className="mb-4 flex items-center">
@@ -56,8 +55,8 @@ const CycleThree = () => {
                   onChange={handleCheckboxChange}
                   className="mr-2"
                 />
-                <label htmlFor="neverShowAgain" className="text-gray-700">
-              {t( "Never show this again")}
+                <label htmlFor="neverShowAgain" className="text-purple-900">
+                  {t("Never show this again")}
                 </label>
               </div>
 

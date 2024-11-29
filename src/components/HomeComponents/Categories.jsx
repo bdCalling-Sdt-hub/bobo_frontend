@@ -12,27 +12,28 @@ const Categories = () => {
   const router = useRouter();
   const t = useTranslations("home");
 
+
   const category = [
     {
       id: 1,
       title: "Cycle 1",
       img: cy1,
       link: "/cycleone",
-      guide: "Explore Cycle 1, a perfect option for beginners!",
+      guide:t( "Please_explore_Cycle_One_more_details_and_guide"),
     },
     {
       id: 2,
       title: "Cycle 2",
       img: cy2,
       link: "/cycletwo",
-      guide: "Check out Cycle 2, a medium-difficulty cycle.",
+      guide:t( "Please_explore_Cycle_Two_more_details_and_guide"),
     },
     {
       id: 3,
       title: "Cycle 3",
       img: cy3,
       link: "/cyclethree",
-      guide: "Discover Cycle 3, designed for advanced users.",
+      guide:t( "Please_explore_Cycle_Three_more_details_and_guide"),
     },
   ];
 

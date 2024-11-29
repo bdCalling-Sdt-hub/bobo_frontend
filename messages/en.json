@@ -10,7 +10,10 @@
     "Cycle 1": "Cycle 1",
     "Cycle 2": "Cycle 2",
     "Cycle 3": "Cycle 3",
-    "Select": "Select"
+    "Select": "Select",
+   "Please_explore_Cycle_One_more_details_and_guide": "Please explore Cycle One, along with more details and the guide. For further information, kindly click on the Guide button above. Thank you.",
+   "Please_explore_Cycle_Two_more_details_and_guide": "Please explore Cycle Two, along with more details and the guide. For further information, kindly click on the Guide button above. Thank you.",
+   "Please_explore_Cycle_Three_more_details_and_guide": "Please explore Cycle Three, along with more details and the guide. For further information, kindly click on the Guide button above. Thank you."
   },
   "login": {
     "hello": "hello"
@@ -181,6 +184,8 @@
     "Foreign Language 1": "Foreign Language 1",
     "Foreign Language 2": "Foreign Language 2",
     "Email is required": "Email is required",
-    "Never show this again" : "Never show this again"
+    "Never show this again": "Never show this again",
+    "Hello everyone": "Hello everyone",
+    "User Guide":"User Guide"
   }
 }
