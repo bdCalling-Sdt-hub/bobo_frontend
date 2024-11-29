@@ -77,7 +77,7 @@ const Navber = () => {
           onClick={handleToggleNavigation}
           className="px-4 py-2 text-white rounded "
         >
-          {isUserGuide ? t("Go Back" ): t("Show Guide")}
+          {isUserGuide ? t("Go Back" ): t("User Guide")}
         </Button>
 
 
