@@ -44,7 +44,7 @@ export default function LoginForm() {
           placeholder={t("Email")}
           className="border-black bg-transparent px-4 py-5"
           {...register("email", {
-            required:t("Email is required"),
+            required: t("Email is required"),
             validate: (value) => {
               const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
               if (!emailRegex.test(value)) {

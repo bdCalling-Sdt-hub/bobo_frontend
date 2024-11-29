@@ -108,9 +108,9 @@ const Page = () => {
       <h5>
         Cette version est actuellement en bêta. Si vous identifiez des éléments
         manquants ou des améliorations possibles, n&apos;hésitez pas à nous en
-        informer via cette address <a href="">teachercommenthub@gmail.com.</a> Nous sommes
-        ouverts à faire les ajustements nécessaires pour bénéficier à toute
-        notre communauté.
+        informer via cette address <a href="">teachercommenthub@gmail.com.</a>{" "}
+        Nous sommes ouverts à faire les ajustements nécessaires pour bénéficier
+        à toute notre communauté.
       </h5>
 
       <h3>Finalisation</h3>
