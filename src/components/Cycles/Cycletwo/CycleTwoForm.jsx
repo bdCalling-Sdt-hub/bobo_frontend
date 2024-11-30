@@ -103,7 +103,38 @@ const CycleForm = () => {
           )}
         </div>
 
+        {/* Gender Dropdown */}
+        <div className="mt-8 grid w-full items-center gap-1.5">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="gender" className="font-semibold">
+              {t("Select Gender")}
+            </Label>
+            <Popover className="relative">
+              <Popover.Button className="text-blue-500 cursor-help">
+                ?
+              </Popover.Button>
+              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
+                Select the gender of the student
+              </Popover.Panel>
+            </Popover>
+          </div>
+          <div className="relative">
+            <select
+              id="gender"
+              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
+              {...register("gender", { required: t("Gender is required") })}
+            >
+              <option value="Boy">{t("Boy")}</option>
+              <option value="Girl">{t("Girl")}</option>
+            </select>
+          </div>
+          {errors.gender && (
+            <span className="text-red-500">{errors.gender.message}</span>
+          )}
+        </div>
+
         {/* Tone of Voice Dropdown */}
+
         <div className="mt-8 grid w-full items-center gap-1.5">
           <div className="flex items-center justify-between">
             <Label htmlFor="toneOfVoice" className="font-semibold">
@@ -134,36 +165,6 @@ const CycleForm = () => {
           </div>
           {errors.toneOfVoice && (
             <span className="text-red-500">{errors.toneOfVoice.message}</span>
-          )}
-        </div>
-
-        {/* Gender Dropdown */}
-        <div className="mt-8 grid w-full items-center gap-1.5">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="gender" className="font-semibold">
-              {t("Select Gender")}
-            </Label>
-            <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
-                ?
-              </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
-                Select the gender of the student
-              </Popover.Panel>
-            </Popover>
-          </div>
-          <div className="relative">
-            <select
-              id="gender"
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
-              {...register("gender", { required: t("Gender is required") })}
-            >
-              <option value="Boy">{t("Boy")}</option>
-              <option value="Girl">{t("Girl")}</option>
-            </select>
-          </div>
-          {errors.gender && (
-            <span className="text-red-500">{errors.gender.message}</span>
           )}
         </div>
       </div>
