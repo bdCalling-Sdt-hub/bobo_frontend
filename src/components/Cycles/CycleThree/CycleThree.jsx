@@ -86,3 +86,4 @@ const CycleThree = () => {
 };
 
 export default CycleThree;
+"okey let me have a lool by the way has your team changed the open ai to use gpt-40 mini and not GPT 4"
