@@ -5,15 +5,15 @@
     "User Guide": "Guide de l'utilisateur"
   },
   "home": {
-    "Student Learning Stages": "Étapes d’apprentissage des étudiants",
-    "Explore key learning areas, behaviors, and improvements by cycle level": "Explorez les principaux domaines d'apprentissage, les comportements et les améliorations par niveau de cycle",
+    "Student Learning Stages": "élèves d’apprentissages des étudiants",
+    "Explore key learning areas, behaviors, and improvements by cycle level": "Explorez les principaux domaines d'apprentissages, les comportements et les améliorations par cycle",
     "Cycle 1": "Cycle 1",
     "Cycle 2": "Cycle 2",
     "Cycle 3": "Cycle 3",
     "Select": "Sélectionner",
-    "Please_explore_Cycle_One_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci.",
-    "Please_explore_Cycle_Two_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci.",
-    "Please_explore_Cycle_Three_more_details_and_guide": "Veuillez explorer le guide utilisateur, ainsi que plus de détails et le guide. Pour plus d'informations, veuillez cliquer sur le lien ci-dessous. Merci."
+    "Please_explore_Cycle_One_more_details_and_guide": "Veuillez explorer le guide d'utilisateur pour comprendre l'utilisation de l'application.",
+    "Please_explore_Cycle_Two_more_details_and_guide": "Veuillez explorer le guide d'utilisateur pour comprendre l'utilisation de l'application.",
+    "Please_explore_Cycle_Three_more_details_and_guide": "Veuillez explorer le guide d'utilisateur pour comprendre l'utilisation de l'application."
   },
   "login": {
     "hello": "Bonjour"
@@ -21,7 +21,7 @@
   "cycleOne": {
     "Personalized Student Feedback Generation Process": "Création de commentaires personnalisés pour les élèves",
     "PathWay To Growth": "Chemin vers la croissance",
-    "Learning Areas": "Domaines d'apprentissage",
+    "Learning Areas": "Domaines d'apprentissages",
     "Acquire basic mathematical tools": "Acquérir les premiers outils mathématiques",
     "Mobilize language in all its dimensions": "Mobiliser le langage dans toutes ses dimensions",
     "Act,express,understand through artistic activities": "Agir, s'exprimer, comprendre à travers des activités artistiques",
@@ -147,12 +147,12 @@
     "Gender is required": "Le genre est requis",
     "": "",
     "Explore the world": "Explorez le monde",
-    "Student Name": "Nom de l'étudiant",
+    "Student Name": "Nom de l’élève",
     "Name": "Nom",
     "Select Tone Of Voice": "Sélectionner le ton de la voix",
     "Select Gender": "Sélectionner le genre",
     "Generate Comment": "Générer un commentaire",
-    "Caring": "Attentionné",
+    "Caring": "Bienveillant",
     "Encouraging": "Encourageant",
     "Enthusiastic": "Enthousiaste",
     "Rigorous": "Rigoureux",
@@ -184,6 +184,6 @@
     "Hello everyone": "Bonjour tout le monde,",
     "User Guide": "Guide de l'utilisateur",
 
-    "Click Here": "Cliquez ici"
+    "Click Here": "Veuillez cliquer ici."
   }
 }

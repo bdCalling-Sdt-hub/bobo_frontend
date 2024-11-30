@@ -5,15 +5,15 @@
      "User Guide": "User Guide"
   },
   "home": {
-    "Student Learning Stages": "Student Learning Stages",
+    "Student Learning Stages": "Pupils Learning Stages",
     "Explore key learning areas, behaviors, and improvements by cycle level": " Explore key learning areas, behaviors, and improvements by cycle level",
     "Cycle 1": "Cycle 1",
     "Cycle 2": "Cycle 2",
     "Cycle 3": "Cycle 3",
     "Select": "Select",
-    "Please_explore_Cycle_One_more_details_and_guide": "Please explore user guide, along with more details and the guide. For further information, kindly click on the link below. Thank you.",
-    "Please_explore_Cycle_Two_more_details_and_guide": "Please explore user guide, along with more details and the guide. For further information, kindly click on the link below. Thank you.",
-    "Please_explore_Cycle_Three_more_details_and_guide": "Please explore user guide, along with more details and the guide. For further information, kindly click on the link below. Thank you."
+    "Please_explore_Cycle_One_more_details_and_guide": "Please explore the user guide,to understand how to use the application.",
+    "Please_explore_Cycle_Two_more_details_and_guide": "Please explore the user guide,to understand how to use the application.",
+    "Please_explore_Cycle_Three_more_details_and_guide": "Please explore the user guide,to understand how to use the application."
   },
   "login": {
     "hello": "hello"
@@ -149,7 +149,7 @@
     "Historical knowledge": "Historical knowledge",
     "Motivated": "Motivated",
     "Passive": "Passive",
-    "Student Name": "Student Name",
+    "Student Name": "Name of the pupil",
     "Name": "Name",
     "Select Tone Of Voice": "Select Tone Of Voice",
     "Select Gender": "Select Gender",
@@ -187,6 +187,6 @@
     "Never show this again": "Never show this again",
     "Hello everyone": "Hello everyone",
     "User Guide": "User Guide",
-    "Click Here" : "Click Here"
+    "Click Here" : "Please Click Here"
   }
 }
