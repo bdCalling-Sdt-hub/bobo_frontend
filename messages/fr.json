@@ -5,7 +5,7 @@
     "User Guide": "Guide de l'utilisateur"
   },
   "home": {
-    "Student Learning Stages": "élèves d’apprentissages des étudiants",
+    "Student Learning Stages": "Étapes d'apprentissages des élèves",
     "Explore key learning areas, behaviors, and improvements by cycle level": "Explorez les principaux domaines d'apprentissages, les comportements et les améliorations par cycle",
     "Cycle 1": "Cycle 1",
     "Cycle 2": "Cycle 2",
@@ -184,6 +184,8 @@
     "Hello everyone": "Bonjour tout le monde,",
     "User Guide": "Guide de l'utilisateur",
 
-    "Click Here": "Veuillez cliquer ici."
+    "Click Here": "Veuillez cliquer ici.",
+    "Germany":"Allemand",
+    "Chinese":"Chinois"
   }
 }

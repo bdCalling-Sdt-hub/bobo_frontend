@@ -25,7 +25,7 @@ const Page = () => {
             présenter l&apos;application que j&apos;ai développée avec une
             personne qui m’est très chère. Cette application vous permet de
             générer instantanément des commentaires pour vos élèves à la fin de
-            chaque trimestre, et ce, à la vitesse de la lumière. Voici un guide
+            chaque trimestre, et ce,<span className="font-bold underline">à la vitesse de la lumière.</span>  Voici un guide
             rapide pour vous aider à naviguer efficacement dans
             l&apos;application.
           </h5>
@@ -112,9 +112,9 @@ const Page = () => {
           <h3>Conseils d&apos;Utilisation</h3>
 
           <h5>
-            <span className="span"> ⦁ Sélection Pertinente: </span>Il n&apos;est
+            <span className="span"> ⦁ Sélection Pertinente: </span>  <span className=" font-bold underline">  Il n&apos;est
             pas nécessaire de commenter toutes les compétences pour chaque
-            élève. Choisissez ce qui est pertinent afin de ne pas surcharger le
+            élève. </span> Choisissez ce qui est pertinent afin de ne pas surcharger le
             commentaire. . <br />
             <sp className="span">
               {" "}
@@ -146,7 +146,7 @@ const Page = () => {
             Cette version est actuellement en phase bêta. Si vous identifiez des
             éléments manquants ou des améliorations possibles, n&apos;hésitez
             pas à nous en informer via cette adresse :
-            support@teachercommentshub.com. Nous sommes ouverts à faire les
+          <span className=" font-bold underline"> support@teachercommentshub.com.</span> Nous sommes ouverts à faire les
             ajustements nécessaires pour satisfaire les enseignants.
           </h5>
         </div>
