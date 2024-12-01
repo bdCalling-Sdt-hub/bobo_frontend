@@ -125,7 +125,7 @@ const LearningAreaSectionTwo = ({
               {/* Show the selected language title */}
               {selectedLanguages.language1 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  {t("Foreign Language 1")}:( {selectedLanguages.language1})
+                  {t("Foreign Language 1")}:( {t(`${selectedLanguages.language1}`)})
                 </h3>
               )}
 
@@ -169,7 +169,7 @@ const LearningAreaSectionTwo = ({
               {/* Show the selected language title */}
               {selectedLanguages.language2 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  {t("Foreign Language 2")}: ({selectedLanguages.language2})
+                  {t("Foreign Language 2")}: ({t(`${selectedLanguages.language2}`)})
                 </h3>
               )}
 

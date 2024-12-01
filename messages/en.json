@@ -188,7 +188,12 @@
     "Hello everyone": "Hello everyone",
     "User Guide": "User Guide",
     "Click Here" : "Please Click Here",
-    "Germany" : "Germany",
-    "Chinese":"Chinese"
+    "Germany" : "German",
+    "Chinese":"Chinese",
+    "Portugais":"Portugais",
+    "Italien":"Italien",
+    "Espagnol":"Espagnol",
+    "Arabe":"Arabe",
+    "Anglais":"Anglais"
   }
 }

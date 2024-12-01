@@ -81,7 +81,6 @@
     "Text Comprehension": "Compréhension de textes",
     "Writing": "Écriture",
     "Writing production": "Production écrite",
-
     "Class Driver": "Moteur de classe",
     "Motivate": "Motivé",
     "Distracted": "Distrait",
@@ -178,14 +177,17 @@
     "Your comment has been copied": "Votre commentaire a été copié",
     "Email": "Courriel",
     "Email is required": "L'email est requis",
-
     "Attentive": "Attentif",
     "Never show this again": "Ne plus jamais afficher ceci",
     "Hello everyone": "Bonjour tout le monde,",
     "User Guide": "Guide de l'utilisateur",
-
     "Click Here": "Veuillez cliquer ici.",
-    "Germany":"Allemand",
-    "Chinese":"Chinois"
+    "Germany": "Allemand",
+    "Chinese": "Chinois",
+    "Portugais": "Portugais",
+    "Italien": "Italien",
+    "Espagnol": "Espagnol",
+    "Arabe": "Arabe",
+    "Anglais": "Anglais"
   }
 }
