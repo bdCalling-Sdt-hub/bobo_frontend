@@ -66,7 +66,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             title=""
             subtitle="Artistic Education"
             headbgcolor="#D5006D"
-            options={[ "Visual Arts","Music Education", ]}
+            options={["Visual Arts", "Music Education"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.artisticEducation"
@@ -90,9 +90,9 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
+                <option value="Germany">{t("Germany")}</option>
                 <option value="Chinese">{t("Chinese")}</option>
                 <option value="Espagnol">Espagnol</option>
-                <option value="Germany">{t("Germany")}</option>
                 <option value="Italien">Italien</option>
                 <option value="Portugais">Portugais</option>
               </select>
@@ -100,7 +100,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
               {/* Show the selected language title */}
               {selectedLanguages.language1 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  {t("Foreign Language 1")}:( {t(`${selectedLanguages.language1}`)})
+                  {t("Foreign Language 1")}:({" "}
+                  {t(`${selectedLanguages.language1}`)})
                 </h3>
               )}
 
@@ -134,10 +135,10 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
+                <option value="Germany">{t("Germany")}</option>
                 <option value="Chinese">{t("Chinese")}</option>
 
                 <option value="Espagnol">Espagnol</option>
-                <option value="Germany">{t("Germany")}</option>
                 <option value="Italien">Italien</option>
                 <option value="Portugais">Portugais</option>
               </select>
@@ -145,7 +146,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
               {/* Show the selected language title */}
               {selectedLanguages.language2 && (
                 <h3 className="mt-2 text-xl text-purple-600 font-semibold">
-                  {t("Foreign Language 2")}: ({t(`${selectedLanguages.language2}`)})
+                  {t("Foreign Language 2")}: (
+                  {t(`${selectedLanguages.language2}`)})
                 </h3>
               )}
 
@@ -197,7 +199,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             title=""
             subtitle="Sports Activitise"
             headbgcolor="#3EB489"
-            options={["Team spirit","Participation", "Respect for rule", ]}
+            options={["Team spirit", "Participation", "Respect for rule"]}
             register={register}
             setValue={setValue}
             groupKey="learningAreas.physicalactivity"
@@ -228,14 +230,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={[
-              "Attentive",
-              "Distracted",
-             
-            
-              "Organized",
-              "Responsible",
-            ]}
+            options={["Attentive", "Distracted", "Organized", "Responsible"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -246,7 +241,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#FFB84D33"
             options={[
               "Autonomous",
-             
+
               "Dynamic",
               "Motivated",
               "Passive",
@@ -264,9 +259,8 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
               "Talkative",
               "Exemplary",
               "Class motivator",
-             
+
               "Disruptive",
-         
             ]}
             register={register}
             setValue={setValue}
@@ -287,13 +281,11 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             subtitle=""
             bgColor="#3EB489"
             options={[
-              
               "Group activities",
               "Geographic knowledge",
-              
+
               "Time management",
               "Participation",
-            
             ]}
             register={register}
             setValue={setValue}
@@ -301,7 +293,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             hideMinusFor={[
               "Group activities",
               "Time management",
-              
+
               "Time management",
               "Autonomy ",
               "Geographic knowledge",
@@ -316,11 +308,10 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
             bgColor="#3EB489"
             options={[
               "Autonomy ",
-           
+
               "Physical education",
               "Foreign language",
               "Respect for rules",
-             
             ]}
             register={register}
             setValue={setValue}
@@ -343,7 +334,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
               "Historical knowledge",
               "French",
               "Mathematics",
-             
+
               "Quality of work",
             ]}
             register={register}

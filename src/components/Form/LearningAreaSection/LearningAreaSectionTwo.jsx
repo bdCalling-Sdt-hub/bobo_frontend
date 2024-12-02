@@ -115,9 +115,9 @@ const LearningAreaSectionTwo = ({
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
+                <option value="Germany">{t("Germany")}</option>
                 <option value="Chinese">{t("Chinese")}</option>
                 <option value="Espagnol">Espagnol</option>
-                <option value="Germany">{t("Germany")}</option>
                 <option value="Italien">Italien</option>
                 <option value="Portugais">Portugais</option>
               </select>
@@ -159,9 +159,9 @@ const LearningAreaSectionTwo = ({
                 </option>
                 <option value="Anglais">Anglais</option>
                 <option value="Arabe">Arabe</option>
+                <option value="Germany">{t("Germany")}</option>
                 <option value="Chinese">{t("Chinese")}</option>
                 <option value="Espagnol">Espagnol</option>
-                <option value="Germany">{t("Germany")}</option>
                 <option value="Italien">Italien</option>
                 <option value="Portugais">Portugais</option>
               </select>
