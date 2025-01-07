@@ -43,23 +43,23 @@ const Categories = () => {
   };
 
   return (
-    <div className="grid xl:grid-cols-3 lg:grid-cols-2 justify-center gap-8 items-center">
+    <div className="grid items-center justify-center gap-8 lg:grid-cols-2 xl:grid-cols-3">
       {category.map((item, index) => (
         <div
           key={item.id}
           className={`${
             bgColors[index % bgColors.length]
-          } rounded-lg pb-8 relative`}
+          } relative rounded-lg pb-8`}
         >
           <div>
-            <Image className="w-[332px] h-[186px]" src={item.img} alt="img" />
-            <div className="rounded-2xl flex flex-col relative justify-center items-center bg-white -mt-10 py-5 space-y-3 w-11/12 m-auto">
+            <Image className="h-[186px] w-[332px]" src={item.img} alt="img" />
+            <div className="relative m-auto -mt-10 flex w-11/12 flex-col items-center justify-center space-y-3 rounded-2xl bg-white py-5">
               <h1 className="text-2xl">{t(`${item.title}`)}</h1>
 
               <Button
                 varient="default"
                 size="lg"
-                className="bg-white text-black text-lg border-2 border-black hover:bg-purple-950 hover:text-white"
+                className="border-2 border-black bg-white text-lg text-black hover:bg-purple-950 hover:text-white"
                 onClick={() => handleNavigate(item.link, item.guide)}
               >
                 {t("Select")}

@@ -1,11 +1,10 @@
-import React from "react";
 import ForgetPasswordForm from "./component/ForgetPasswordForm";
 
 const page = () => {
   return (
     <div>
       <div
-        className="flex justify-center items-center h-screen bg-cover bg-center"
+        className="flex h-screen items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: "url(/authbg.png)" }}
       >
         <ForgetPasswordForm />

@@ -2,7 +2,7 @@
   "navbar": {
     "Teacher Comment Hub": "Teacher Comment Hub",
     "Go Back": "Go Back",
-     "User Guide": "User Guide"
+    "User Guide": "User Guide"
   },
   "home": {
     "Student Learning Stages": "Pupils Learning Stages",
@@ -187,13 +187,13 @@
     "Never show this again": "Never show this again",
     "Hello everyone": "Hello everyone",
     "User Guide": "User Guide",
-    "Click Here" : "Please Click Here",
-    "Germany" : "German",
-    "Chinese":"Chinese",
-    "Portugais":"Portugais",
-    "Italien":"Italien",
-    "Espagnol":"Espagnol",
-    "Arabe":"Arabe",
-    "Anglais":"Anglais"
+    "Click Here": "Please Click Here",
+    "Germany": "German",
+    "Chinese": "Chinese",
+    "Portugais": "Portugais",
+    "Italien": "Italien",
+    "Espagnol": "Espagnol",
+    "Arabe": "Arabe",
+    "Anglais": "Anglais"
   }
 }

@@ -7,10 +7,17 @@ const NavbarWithConditionalRendering = () => {
   const pathname = usePathname();
 
   // List of routes where the Navbar should be hidden
-  const hiddenRoutes = ["/auth", "/success"];
+  const hiddenRoutes = [
+    "/auth",
+    "/success",
+    "/guestAuth",
+    "/schoolAccountAuth",
+  ];
 
   // Check if the current route matches any hidden route
-  const shouldHideNavbar = hiddenRoutes.some(route => pathname.startsWith(route));
+  const shouldHideNavbar = hiddenRoutes.some((route) =>
+    pathname.startsWith(route),
+  );
 
   return !shouldHideNavbar ? <Navber /> : null;
 };

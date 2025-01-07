@@ -11,6 +11,12 @@ module.exports = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+			  mainColor: "#AED2D2",
+			  darkBlue: "#303060",
+			  lightBlue: "#EDF6F9",
+			  subs:"#42A6A8D9",
+			  danger:"#FF0000",
+
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

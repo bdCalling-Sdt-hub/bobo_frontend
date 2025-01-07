@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CycleHeroSection = ({ bgImage }) => {
   return (
-    <div className="h-auto w-full flex items-center justify-center overflow-hidden">
+    <div className="flex h-auto w-full items-center justify-center overflow-hidden">
       <Image
         src={bgImage}
         alt="Background Image"

@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 
 const Home = () => {
-  redirect("/fr/auth/login");
+  redirect("/fr/guestAuth/welComePage");
 
   return <div></div>;
 };

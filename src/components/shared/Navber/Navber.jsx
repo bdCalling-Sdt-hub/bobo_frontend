@@ -38,7 +38,7 @@ const Navber = () => {
   // Translator from next-intl
   const t = useTranslations("navbar");
   const router = useRouter();
-  const [isUserGuide, setIsUserGuide] = useState(false); 
+  const [isUserGuide, setIsUserGuide] = useState(false);
 
   useEffect(() => {
     setIsUserGuide(router.pathname === "/userguide");
@@ -46,22 +46,27 @@ const Navber = () => {
 
   const handleToggleNavigation = () => {
     if (isUserGuide) {
-      router.back(); 
+      router.back();
     } else {
-      router.push("/userguide"); 
+      router.push("/userguide");
     }
-    setIsUserGuide(!isUserGuide); 
+    setIsUserGuide(!isUserGuide);
   };
 
   return (
-    <div className=" md:flex justify-between w-[80%] mx-auto shadow-md px-4 p-1 rounded-2xl bg-white bg-opacity-60 ">
-      <Link href="/home">
-        <Avatar className=" flex gap-x-5 justify-center items-center">
-          <AvatarImage
-            className=" w-10 rounded-full"
-            src="https://github.com/shadcn.png"
-          />
-          <h1 className=" md:text-2xl">{t("Teacher Comment Hub")}</h1>
+    <div className="mx-auto w-[80%] justify-between rounded-2xl bg-white bg-opacity-60 p-1 px-4 shadow-md md:flex">
+      <Link href="">
+        <Avatar className="flex items-center justify-center gap-x-5">
+          <Link href={"/personalInfo"}>
+            <AvatarImage
+              className="w-10 rounded-full"
+              src="https://github.com/shadcn.png"
+            />
+          </Link>
+
+          <Link href={"/home"}>
+            <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
+          </Link>
 
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
@@ -69,25 +74,21 @@ const Navber = () => {
 
       {/* ---------------- Language Switcher -------------- */}
 
-      <div className="flex md:gap-5 justify-center items-center">
-
-{/* user guide button */}
+      <div className="flex items-center justify-center md:gap-5">
+        {/* user guide button */}
 
         <Button
           onClick={handleToggleNavigation}
-          className="px-4 py-2 text-white rounded "
+          className="rounded px-4 py-2 text-white"
         >
-          {isUserGuide ? t("Go Back" ): t("User Guide")}
+          {isUserGuide ? t("Go Back") : t("User Guide")}
         </Button>
 
-
-
-
         {!isLanguageLoading && (
-          <div className="flex justify-center items-center p-1 px-2 rounded-2xl bg-white w-32 ">
+          <div className="flex w-32 items-center justify-center rounded-2xl bg-white p-1 px-2">
             <Button
               onClick={() => handleChangeLanguage("fr")}
-              className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
+              className={`rounded px-4 py-2 transition-all duration-300 ease-in-out ${
                 language === "fr"
                   ? "bg-black text-white"
                   : "bg-white text-black"
@@ -99,7 +100,7 @@ const Navber = () => {
 
             <button
               onClick={() => handleChangeLanguage("en")}
-              className={`px-4 py-2 rounded transition-all duration-300 ease-in-out ${
+              className={`rounded px-4 py-2 transition-all duration-300 ease-in-out ${
                 language === "en"
                   ? "bg-black text-white"
                   : "bg-white text-black"
