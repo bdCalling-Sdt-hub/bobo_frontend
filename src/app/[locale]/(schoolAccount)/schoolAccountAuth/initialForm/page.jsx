@@ -1,4 +1,4 @@
-import InitialForm from "@/components/SchoolAccountAuth/InitialForm";
+import InitialForm from "@/components/SchoolAccount/SchoolAccountAuth/InitialForm";
 import React from "react";
 
 const page = () => {

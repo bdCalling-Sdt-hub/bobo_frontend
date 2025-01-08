@@ -44,6 +44,7 @@ const RecentUser = () => {
       email: "tiyonbhuiyan.201@gmail.com",
     },
   ];
+
   return (
     <div className="my-10 mb-10 w-[80%] rounded-md bg-white">
       <Table>
@@ -70,6 +71,15 @@ const RecentUser = () => {
           ))}
         </TableBody>
       </Table>
+
+      <div className="mt-10 p-2">
+        <Button
+          type="submit"
+          className="text-blac mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 px-12 text-white"
+        >
+          Submit All
+        </Button>
+      </div>
     </div>
   );
 };

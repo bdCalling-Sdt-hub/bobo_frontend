@@ -28,7 +28,7 @@ export default function SchoolLoginForm() {
     console.log(data);
     localStorage.setItem("userEmail", data.email);
 
-    router.push("/schoolAccount/schoolHome");
+    router.push("/schoolHome");
   };
 
   const t = useTranslations("cycleOne");

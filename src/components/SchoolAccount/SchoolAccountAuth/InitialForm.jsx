@@ -59,7 +59,7 @@ const InitialForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none focus:outline-none"
           />
           {errors.firstName && (
-            <p className="text-danger mt-1">First Name is required</p>
+            <p className="mt-1 text-danger">First Name is required</p>
           )}
         </div>
 
@@ -79,7 +79,7 @@ const InitialForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">Last Name is required</p>
+            <p className="mt-1 text-danger">Last Name is required</p>
           )}
         </div>
 
@@ -101,7 +101,7 @@ const InitialForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.email && (
-            <p className="text-danger mt-1">Email is required</p>
+            <p className="mt-1 text-danger">Email is required</p>
           )}
         </div>
         {/* job role */}
@@ -120,7 +120,7 @@ const InitialForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">Job Role is required</p>
+            <p className="mt-1 text-danger">Job Role is required</p>
           )}
         </div>
 
@@ -140,7 +140,7 @@ const InitialForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">School Name is required</p>
+            <p className="mt-1 text-danger">School Name is required</p>
           )}
         </div>
       </div>
