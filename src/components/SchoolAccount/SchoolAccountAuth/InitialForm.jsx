@@ -35,7 +35,7 @@ const InitialForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSignUpSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
+      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
       <h2 className="mb-3 text-center text-4xl font-semibold">Welcome</h2>
       <p className="text-primary-black mb-10 text-center">
@@ -149,7 +149,7 @@ const InitialForm = () => {
         // // loading={isLoading}
         // disabled={isLoading}
         type="submit"
-        className="mt-10 h-[2.8rem] w-full rounded-xl bg-black font-semibold"
+        className="mt-10 h-[2.8rem] w-full rounded-xl bg-purple-950 font-semibold"
       >
         {/* {isLoading ? <CustomLoader /> : "Create Account"} */}
         Submit

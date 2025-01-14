@@ -3,7 +3,7 @@ import ChangePassword from "@/components/personalinformation/Setttings/ChangePas
 
 const page = () => {
   return (
-    <div>
+    <div className="mt-2">
       <ChangePassword />
       <AccountDelete />
     </div>

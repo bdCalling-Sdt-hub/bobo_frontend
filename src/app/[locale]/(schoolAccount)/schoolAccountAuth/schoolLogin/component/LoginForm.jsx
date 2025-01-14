@@ -24,11 +24,14 @@ export default function SchoolLoginForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    localStorage.setItem("userEmail", data.email);
+  const role = "school";
 
-    router.push("/schoolHome");
+  const onSubmit = async (data) => {
+    const maindata = { role, ...data };
+    console.log(maindata);
+    sessionStorage.setItem("role", maindata.role);
+
+    router.push("/premiumPlanForSchoolAccount");
   };
 
   const t = useTranslations("cycleOne");
@@ -39,6 +42,7 @@ export default function SchoolLoginForm() {
       className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
     >
       <h1 className="text-center text-2xl font-bold">Sign In </h1>
+      {/* email */}
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="email" className="font-semibold">
           {t("Email")}
@@ -63,6 +67,8 @@ export default function SchoolLoginForm() {
           <span className="shake-hr text-red-500">{errors.email.message}</span>
         )}
       </div>
+
+      {/* password */}
 
       <div className="mt-8 grid w-full items-center gap-1.5">
         <div className="flex items-center justify-between">
@@ -110,9 +116,9 @@ export default function SchoolLoginForm() {
       <div>
         <Button
           type="submit"
-          className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent px-12 text-black hover:bg-purple-950 hover:text-white"
+          className="mt-10 block h-[2.7rem] w-full border-2 bg-purple-950 px-12 text-xl text-white hover:bg-purple-950 hover:text-white"
         >
-          SIGN IN
+          SignIn
         </Button>
 
         {/* <Button

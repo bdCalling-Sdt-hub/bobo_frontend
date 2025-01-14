@@ -30,11 +30,11 @@ const SchoolRegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSignUpSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
+      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
       <div className="space-y-8">
         {/*  name */}
-        <div className="grid w-full items-center gap-2">
+        <div className="grid w-full items-center gap-1">
           <Label
             htmlFor="lastName"
             className="text-primary-black mb-1 block font-semibold"
@@ -49,12 +49,12 @@ const SchoolRegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">Last Name is required</p>
+            <p className="mt-1 text-danger">Last Name is required</p>
           )}
         </div>
 
         {/* Contact */}
-        <div className="grid w-full items-center gap-2">
+        <div className="grid w-full items-center gap-1">
           <Label
             htmlFor="contact"
             className="text-primary-black mb-1 block font-semibold"
@@ -76,12 +76,12 @@ const SchoolRegisterForm = () => {
           />
 
           {errors.contact && (
-            <p className="text-danger mt-1">Contact is required</p>
+            <p className="mt-1 text-danger">Contact is required</p>
           )}
         </div>
 
         {/* email */}
-        <div className="grid w-full items-center gap-2">
+        <div className="grid w-full items-center gap-1">
           <Label
             htmlFor="email"
             className="text-primary-black mb-1 block font-semibold"
@@ -98,12 +98,12 @@ const SchoolRegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.email && (
-            <p className="text-danger mt-1">Email is required</p>
+            <p className="mt-1 text-danger">Email is required</p>
           )}
         </div>
 
         {/* new password */}
-        <div className="mt-6 grid w-full items-center gap-2">
+        <div className="mt-6 grid w-full items-center gap-1">
           <Label
             htmlFor="password"
             className="text-primary-black font-semibold"
@@ -135,12 +135,12 @@ const SchoolRegisterForm = () => {
           </div>
 
           {errors.password && (
-            <p className="text-danger mt-1">{errors.password.message}</p>
+            <p className="mt-1 text-danger">{errors.password.message}</p>
           )}
         </div>
 
         {/* confirm password */}
-        <div className="mt-6 grid w-full items-center gap-2">
+        <div className="mt-6 grid w-full items-center gap-1">
           <Label
             htmlFor="confirmPassword"
             className="text-primary-black font-semibold"
@@ -171,12 +171,12 @@ const SchoolRegisterForm = () => {
           </div>
 
           {errors.confirmPassword && (
-            <p className="text-danger mt-1">{errors.confirmPassword.message}</p>
+            <p className="mt-1 text-danger">{errors.confirmPassword.message}</p>
           )}
         </div>
 
         {/* job role */}
-        <div className="grid w-full items-center gap-2">
+        <div className="grid w-full items-center gap-1">
           <Label
             htmlFor="jobrole"
             className="text-primary-black mb-1 block font-semibold"
@@ -191,12 +191,12 @@ const SchoolRegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">Job Role is required</p>
+            <p className="mt-1 text-danger">Job Role is required</p>
           )}
         </div>
 
         {/* school name */}
-        <div className="grid w-full items-center gap-2">
+        <div className="grid w-full items-center gap-1">
           <Label
             htmlFor="lastName"
             className="text-primary-black mb-1 block font-semibold"
@@ -211,7 +211,7 @@ const SchoolRegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">School Name is required</p>
+            <p className="mt-1 text-danger">School Name is required</p>
           )}
         </div>
       </div>
@@ -220,7 +220,7 @@ const SchoolRegisterForm = () => {
         // // loading={isLoading}
         // disabled={isLoading}
         type="submit"
-        className="mt-10 h-[2.8rem] w-full rounded-xl bg-black font-semibold"
+        className="mt-10 h-[2.8rem] w-full rounded-xl bg-purple-950 text-xl font-semibold"
       >
         {/* {isLoading ? <CustomLoader /> : "Create Account"} */}
         Create Account

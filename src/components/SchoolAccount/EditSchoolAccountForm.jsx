@@ -19,7 +19,7 @@ const EditSchoolAccountForm = () => {
   } = useForm();
 
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState("/default-profile.jpg");
+  const [imagePreview, setImagePreview] = useState(profile);
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -63,10 +63,40 @@ const EditSchoolAccountForm = () => {
       <CardHeader>
         <CardTitle className="text-center">Personal Information</CardTitle>
       </CardHeader>
+
       <CardContent>
+        <div className="text-center">
+          {/* Profile Image */}
+          <Image
+            src={imagePreview}
+            alt="Profile"
+            width={96}
+            height={96}
+            className="mx-auto h-24 w-24 rounded-full border-2 border-black object-cover"
+          />
+
+          {/* Change Picture Button with Hidden Input */}
+          <div className="mt-4">
+            <Button
+              variant="outline"
+              className="cursor-pointer bg-darkBlue text-white"
+              onClick={() => document.getElementById("imageUpload").click()}
+            >
+              Change Picture
+            </Button>
+            <Input
+              type="file"
+              id="imageUpload"
+              accept="image/jpeg, image/png"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Profile Image */}
-          <div className="mb-6 flex justify-center">
+          {/* <div className="mb-6 flex justify-center">
             <div className="text-center">
               <Image
                 src={imagePreview || profile}
@@ -98,7 +128,7 @@ const EditSchoolAccountForm = () => {
                 </DialogContent>
               </Dialog>
             </div>
-          </div>
+          </div> */}
 
           {/* Full Name */}
           <div>

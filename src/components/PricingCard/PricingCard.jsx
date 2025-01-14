@@ -2,6 +2,8 @@
 import Swal from "sweetalert2";
 import { Button } from "../ui/button";
 import { useRouter } from "@/i18n/routing";
+import TeacherQuantityModal from "../TeacherQuantityModal/TeacherQuantityModal";
+import { useState } from "react";
 
 export const PricingCard = ({
   price,
@@ -9,8 +11,15 @@ export const PricingCard = ({
   duration,
   description,
   comments,
+  role,
 }) => {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleBuyForSchool = () => {
+    setIsModalOpen(true);
+  };
+
   const handleBuy = () => {
     Swal.fire({
       title: `You have successfully bought the ${title}.`,
@@ -32,12 +41,27 @@ export const PricingCard = ({
       <p className="mb-4 text-sm text-gray-600">
         Includes {comments} comments.
       </p>
-      <Button
-        onClick={handleBuy}
-        className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
-      >
-        Buy Now
-      </Button>
+
+      {role === "school" ? (
+        <Button
+          onClick={handleBuyForSchool}
+          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
+        >
+          Buy Now for School
+        </Button>
+      ) : (
+        <Button
+          onClick={handleBuy}
+          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
+        >
+          Buy Now
+        </Button>
+      )}
+
+      <TeacherQuantityModal
+        isOpen={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </div>
   );
 };

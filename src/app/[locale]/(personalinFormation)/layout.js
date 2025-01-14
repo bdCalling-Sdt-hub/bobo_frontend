@@ -4,14 +4,18 @@ import React from "react";
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-mainColor h-screen flex">
+    <div className="bg-mainColor lg:h-screen h-full flex">
+
       {/* Sidebar */}
-     <div className=" mt-20 flex mx-auto w-[80%] ">
-    <div className=" mt-10">
+     <div className="md:flex mx-auto lg:w-[80%] md:p-5  ">
+    <div className="mt-[130px]">
     <Sidebar />
     </div>
-     <main className="flex-1 p-8">{children}</main>
+     <main className="lg:flex-1  md:p-8 md:mt-[85px] ">{children}</main>
      </div>
+     
+
+
     </div>
   );
 };

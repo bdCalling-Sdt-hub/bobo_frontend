@@ -16,13 +16,13 @@ const page = () => {
           </p>
 
           <Link href="/guestAuth/upgradeAccount">
-            <Button className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent text-black hover:bg-purple-950 hover:text-white">
-              signup
+            <Button className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 text-xl hover:text-white">
+              Signup
             </Button>
           </Link>
 
           <Link href="/guestAuth/verifyEmail">
-            <Button className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent text-black hover:bg-purple-950 hover:text-white">
+            <Button className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent text-xl text-black hover:bg-purple-950 hover:text-white">
               Continue as a Guest
             </Button>
           </Link>

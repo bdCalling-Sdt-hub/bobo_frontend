@@ -1,7 +1,6 @@
-import React from "react";
-import { PricingCard } from "../PricingCard/PricingCard";
+import { PricingCard } from "@/components/PricingCard/PricingCard";
 
-const PricingTable = () => {
+const PremiumPricingTableSchool = () => {
   const plans = [
     {
       price: "€8.99",
@@ -20,7 +19,7 @@ const PricingTable = () => {
       comments: 60,
     },
     {
-      price: "€24.47",
+      price: "€27.47",
       title: "Extended-Year Plan",
       duration: "(3 Terms / 3 Periods)",
       description:
@@ -30,14 +29,14 @@ const PricingTable = () => {
   ];
 
   return (
-    <div className="mx-auto flex h-full min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
-      <div className="rounded-md bg-subs md:p-20">
+    <div className="mx-auto flex h-screen min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
+      <div className="rounded-md bg-subs p-20">
         <h1 className="mb-4 text-center text-3xl font-bold text-white">
-          Standard Plan: Access to one cycle of your choice
+          Premium Plan: All Cycles, All Features
         </h1>
         <p className="mb-8 text-center text-lg text-white">
-          Select a single cycle to get started with tailored features for your
-          teaching journey.
+          Unlock the ultimate teaching experience with unrestricted access
+          across every cycle.
         </p>
         <div className="flex flex-wrap justify-center gap-8">
           {plans.map((plan, index) => (
@@ -48,6 +47,7 @@ const PricingTable = () => {
               duration={plan.duration}
               description={plan.description}
               comments={plan.comments}
+              role={"school"}
             />
           ))}
         </div>
@@ -56,4 +56,4 @@ const PricingTable = () => {
   );
 };
 
-export default PricingTable;
+export default PremiumPricingTableSchool;

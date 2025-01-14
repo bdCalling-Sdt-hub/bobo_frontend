@@ -1,10 +1,16 @@
 "use client";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 
 const SchoolAccountSideber = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handlelogout = () => {
+    sessionStorage.removeItem("role");
+    router.push("/guestAuth/welComePage");
+  };
 
   const navItems = [
     {
@@ -28,11 +34,11 @@ const SchoolAccountSideber = () => {
       icon: <FaCog />,
     },
 
-    {
-      label: "Log Out",
-      path: "/guestAuth/welComePage",
-      icon: <FaSignOutAlt />,
-    },
+    // {
+    //   label: "Log Out",
+    //   path: "/guestAuth/welComePage",
+    //   icon: <FaSignOutAlt />,
+    // },
   ];
 
   return (
@@ -54,6 +60,14 @@ const SchoolAccountSideber = () => {
             </Link>
           </li>
         ))}
+
+        {/* logout button */}
+        <li
+          onClick={handlelogout}
+          className={`flex items-center gap-4 rounded-md p-2 text-gray-600 hover:bg-white hover:text-darkBlue`}
+        >
+          <FaSignOutAlt /> Logout
+        </li>
       </ul>
     </div>
   );

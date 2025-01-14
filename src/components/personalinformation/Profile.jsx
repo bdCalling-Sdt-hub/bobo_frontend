@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/toast";
 import Image from "next/image";
 import profile from "/public/PImage.jpg";
@@ -14,12 +13,11 @@ const ProfileForm = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState("/default-profile.jpg");
+  const [imagePreview, setImagePreview] = useState(profile);
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -59,47 +57,41 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="mx-auto mt-2 max-w-4xl bg-white bg-opacity-70 pt-0">
+    <div className="mx-auto mt-2 w-full max-w-5xl bg-white bg-opacity-70 pt-0">
       <CardHeader>
         <CardTitle className="text-center">Personal Information</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="text-center">
           {/* Profile Image */}
-          <div className="mb-6 flex justify-center">
-            <div className="text-center">
-              <Image
-                src={imagePreview || profile}
-                alt="Profile"
-                width={96}
-                height={96}
-                className="mx-auto h-24 w-24 rounded-full border-2 border-black object-cover"
-              />
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mt-2 bg-darkBlue text-white"
-                  >
-                    Change Picture
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <Label htmlFor="imageUpload">
-                    Upload a new profile picture
-                  </Label>
-                  <Input
-                    type="file"
-                    id="imageUpload"
-                    accept="image/jpeg, image/png"
-                    onChange={handleImageChange}
-                    className="mt-2 border-black"
-                  />
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
+          <Image
+            src={imagePreview}
+            alt="Profile"
+            width={96}
+            height={96}
+            className="mx-auto h-24 w-24 rounded-full border-2 border-black object-cover"
+          />
 
+          {/* Change Picture Button with Hidden Input */}
+          <div className="mt-4">
+            <Button
+              variant="outline"
+              className="cursor-pointer bg-darkBlue text-white"
+              onClick={() => document.getElementById("imageUpload").click()}
+            >
+              Change Picture
+            </Button>
+            <Input
+              type="file"
+              id="imageUpload"
+              accept="image/jpeg, image/png"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
           {/* Full Name */}
           <div>
             <Label htmlFor="fullName">Full Name</Label>
@@ -169,7 +161,7 @@ const ProfileForm = () => {
           </div>
 
           {/* Save Changes */}
-          <Button type="submit" className="w-full bg-darkBlue">
+          <Button type="submit" className="w-full bg-darkBlue text-white">
             Save Changes
           </Button>
         </form>

@@ -4,7 +4,7 @@ import SchoolAccountSideber from "@/components/SchoolAccount/SchoolAccountSideba
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-mainColor h-screen flex">
+    <div className="bg-mainColor min-h-screen h-full flex">
       {/* Sidebar */}
      <div className=" mt-20 flex mx-auto w-[80%] ">
     <div className=" mt-10">

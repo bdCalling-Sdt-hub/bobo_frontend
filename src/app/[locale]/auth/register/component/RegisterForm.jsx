@@ -1,6 +1,6 @@
 "use client";
 
-import { Link, redirect } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -22,16 +22,18 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
   const onSignUpSubmit = async (data) => {
     console.log(data);
-    redirect("/home");
+    router.push("/subscriptionPanel");
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSignUpSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
+      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-12"
     >
+      <h1 className="text-center text-2xl font-bold">Create Account</h1>
       <div className="space-y-8">
         {/* first name */}
         <div className="grid w-full items-center gap-2">
@@ -50,7 +52,7 @@ const RegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none focus:outline-none"
           />
           {errors.firstName && (
-            <p className="text-danger mt-1">First Name is required</p>
+            <p className="mt-1 text-danger">First Name is required</p>
           )}
         </div>
 
@@ -70,7 +72,7 @@ const RegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="text-danger mt-1">Last Name is required</p>
+            <p className="mt-1 text-danger">Last Name is required</p>
           )}
         </div>
 
@@ -97,7 +99,7 @@ const RegisterForm = () => {
           />
 
           {errors.contact && (
-            <p className="text-danger mt-1">Contact is required</p>
+            <p className="mt-1 text-danger">Contact is required</p>
           )}
         </div>
 
@@ -119,7 +121,7 @@ const RegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.email && (
-            <p className="text-danger mt-1">Email is required</p>
+            <p className="mt-1 text-danger">Email is required</p>
           )}
         </div>
 
@@ -156,7 +158,7 @@ const RegisterForm = () => {
           </div>
 
           {errors.password && (
-            <p className="text-danger mt-1">{errors.password.message}</p>
+            <p className="mt-1 text-danger">{errors.password.message}</p>
           )}
         </div>
 
@@ -192,7 +194,7 @@ const RegisterForm = () => {
           </div>
 
           {errors.confirmPassword && (
-            <p className="text-danger mt-1">{errors.confirmPassword.message}</p>
+            <p className="mt-1 text-danger">{errors.confirmPassword.message}</p>
           )}
         </div>
       </div>

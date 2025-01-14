@@ -11,7 +11,7 @@ import { Button } from "@headlessui/react";
 const CurrentPlan = () => {
   return (
     <div>
-      <Card className="mx-auto max-w-md rounded-lg border border-gray-200 bg-white shadow-md">
+      <Card className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white shadow-md">
         <CardHeader>
           <CardTitle className="text-lg font-bold text-darkBlue">
             Plan Type: Standard Plan

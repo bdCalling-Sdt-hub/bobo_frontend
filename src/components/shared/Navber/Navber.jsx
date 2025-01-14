@@ -22,7 +22,7 @@ const Navber = () => {
     Cookies.set("NEXT_LOCALE", lang); // Save to cookies
     localeSwitcher(lang);
   };
-
+  const role = sessionStorage.getItem("role");
   //
   useEffect(() => {
     if (!locale) {
@@ -57,16 +57,30 @@ const Navber = () => {
     <div className="mx-auto w-[80%] justify-between rounded-2xl bg-white bg-opacity-60 p-1 px-4 shadow-md md:flex">
       <Link href="">
         <Avatar className="flex items-center justify-center gap-x-5">
-          <Link href={"/personalInfo"}>
-            <AvatarImage
-              className="w-10 rounded-full"
-              src="https://github.com/shadcn.png"
-            />
-          </Link>
-
-          <Link href={"/home"}>
-            <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
-          </Link>
+          {role === "school" ? (
+            <Link href={"/editschoolAcount"}>
+              <AvatarImage
+                className="w-10 rounded-full"
+                src="https://github.com/shadcn.png"
+              />
+            </Link>
+          ) : (
+            <Link href={"/personalInfo"}>
+              <AvatarImage
+                className="w-10 rounded-full"
+                src="https://github.com/shadcn.png"
+              />
+            </Link>
+          )}
+          {role === "school" ? (
+            <Link href={"/schoolHome"}>
+              <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
+            </Link>
+          ) : (
+            <Link href={"/home"}>
+              <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
+            </Link>
+          )}
 
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
@@ -75,8 +89,13 @@ const Navber = () => {
       {/* ---------------- Language Switcher -------------- */}
 
       <div className="flex items-center justify-center md:gap-5">
-        {/* user guide button */}
+        {/*--------------- contact section `-------------*/}
 
+        <Link href={"/contact"}>
+          <h1 className="rounded border bg-white px-4 py-2">Contact</h1>
+        </Link>
+
+        {/* user guide button */}
         <Button
           onClick={handleToggleNavigation}
           className="rounded px-4 py-2 text-white"

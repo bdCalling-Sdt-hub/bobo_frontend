@@ -110,7 +110,7 @@ export default function LoginForm() {
       <div>
         <Button
           type="submit"
-          className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent px-12 text-black hover:bg-purple-950 hover:text-white"
+          className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 px-12 text-white"
         >
           SIGN IN
         </Button>
