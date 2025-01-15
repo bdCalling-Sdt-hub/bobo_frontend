@@ -7,9 +7,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { Inter, Roboto_Mono } from "next/font/google";
-import { ToastProvider } from "@/components/ui/toast";
-import { Toaster } from "react-hot-toast";
+
+
 import ProtectedRoute from "@/components/ProtectedRoutes/ProtechtedRoutes";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,7 +50,7 @@ export default async function RootLayout({ children, params }) {
               <div className="absolute top-2 z-50 w-full">
                 <NavbarWithConditionalRendering></NavbarWithConditionalRendering>
               </div>
-              <Toaster></Toaster>
+              <Toaster richColors position="top-center" />
               {children}
 
               <ScrollToTopButton></ScrollToTopButton>

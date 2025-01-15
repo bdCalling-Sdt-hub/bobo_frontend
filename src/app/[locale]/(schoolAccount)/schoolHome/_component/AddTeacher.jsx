@@ -4,16 +4,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const AddTeacher = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
+
+    toast.success("Teacher added successfully");
+    reset();
   };
   const t = useTranslations("cycleOne");
   return (

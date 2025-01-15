@@ -32,6 +32,7 @@ const SchoolRegisterForm = () => {
       onSubmit={handleSubmit(onSignUpSubmit)}
       className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
+      <h1 className="text-center text-2xl font-bold">Create Account</h1>
       <div className="space-y-8">
         {/*  name */}
         <div className="grid w-full items-center gap-1">

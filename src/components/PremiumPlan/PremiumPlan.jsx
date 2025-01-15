@@ -30,7 +30,7 @@ const PremiumPricingTable = () => {
 
   return (
     <div className="mx-auto flex h-screen min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
-      <div className="bg-subs rounded-md p-20">
+      <div className="rounded-md bg-subs p-20">
         <h1 className="mb-4 text-center text-3xl font-bold text-white">
           Premium Plan: All Cycles, All Features
         </h1>

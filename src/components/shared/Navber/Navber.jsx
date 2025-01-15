@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-
+import { HiMenu, HiX } from "react-icons/hi";
 import { Button } from "@/components/ui/button";
 
 const Navber = () => {
@@ -22,7 +22,10 @@ const Navber = () => {
     Cookies.set("NEXT_LOCALE", lang); // Save to cookies
     localeSwitcher(lang);
   };
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const role = sessionStorage.getItem("role");
+
+  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
   //
   useEffect(() => {
     if (!locale) {
@@ -55,6 +58,7 @@ const Navber = () => {
 
   return (
     <div className="mx-auto w-[80%] justify-between rounded-2xl bg-white bg-opacity-60 p-1 px-4 shadow-md md:flex">
+      {/* ---------------- Avatar -------------- */}
       <Link href="">
         <Avatar className="flex items-center justify-center gap-x-5">
           {role === "school" ? (
@@ -86,23 +90,87 @@ const Navber = () => {
         </Avatar>
       </Link>
 
-      {/* ---------------- Language Switcher -------------- */}
+      {/* ---------------- Navigation Menu -------------- */}
+      <div className="mx-auto justify-center rounded-2xl md:flex">
+        {/* Drawer Button for Small Screens */}
+        <div className="flex items-center md:hidden">
+          <button onClick={toggleDrawer} className="mt-2 text-2xl">
+            {isDrawerOpen ? <HiX /> : <HiMenu />}
+          </button>
+        </div>
 
-      <div className="flex items-center justify-center md:gap-5">
-        {/*--------------- contact section `-------------*/}
-
-        <Link href={"/contact"}>
-          <h1 className="rounded border bg-white px-4 py-2">Contact</h1>
-        </Link>
-
-        {/* user guide button */}
-        <Button
-          onClick={handleToggleNavigation}
-          className="rounded px-4 py-2 text-white"
+        {/* Drawer Content */}
+        <div
+          className={`fixed left-0 top-0 z-40 h-full w-3/4 max-w-xs bg-white shadow-md transition-transform ${
+            isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+          } md:hidden`}
         >
-          {isUserGuide ? t("Go Back") : t("User Guide")}
-        </Button>
+          <button
+            onClick={toggleDrawer}
+            className="absolute right-4 top-4 text-2xl"
+          >
+            <HiX />
+          </button>
+          <nav className="mt-16 flex flex-col gap-4 p-4">
+            <Link
+              href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
+            >
+              <Button
+                onClick={toggleDrawer}
+                className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
+              >
+                Dashboard
+              </Button>
+            </Link>
 
+            <Link href="/contact">
+              <Button
+                onClick={toggleDrawer}
+                className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
+              >
+                Contact
+              </Button>
+            </Link>
+
+            <Button
+              onClick={() => {
+                toggleDrawer();
+                handleToggleNavigation();
+              }}
+              className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
+            >
+              {isUserGuide ? t("Go Back") : t("User Guide")}
+            </Button>
+          </nav>
+        </div>
+
+        {/* Normal Nav for Medium and Larger Screens */}
+        <div className="hidden flex-col items-center justify-center gap-2 md:flex md:flex-row md:gap-5">
+          <Link
+            href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
+          >
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto">
+              Dashboard
+            </Button>
+          </Link>
+
+          <Link href="/contact">
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto">
+              Contact
+            </Button>
+          </Link>
+
+          <Button
+            onClick={handleToggleNavigation}
+            className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
+          >
+            {isUserGuide ? t("Go Back") : t("User Guide")}
+          </Button>
+        </div>
+      </div>
+
+      <div className="-mt-8 flex items-center justify-center md:mt-0 md:gap-5">
+        {/* ---------------- Language Switcher -------------- */}
         {!isLanguageLoading && (
           <div className="flex w-32 items-center justify-center rounded-2xl bg-white p-1 px-2">
             <Button
