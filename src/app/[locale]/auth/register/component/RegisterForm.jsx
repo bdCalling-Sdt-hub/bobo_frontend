@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Controller, useForm } from "react-hook-form";
 import { PhoneInput } from "@/components/PhoneInput/PhoneInput";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
-import CustomLoader from "@/components/CustomLoader/CustomLoader";
+// import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useState } from "react";
 
 const RegisterForm = () => {
