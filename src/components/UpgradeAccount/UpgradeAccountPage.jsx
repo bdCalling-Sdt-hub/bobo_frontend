@@ -39,7 +39,7 @@ const UpgradeAccountPage = () => {
       className="flex h-screen items-center justify-center bg-cover bg-center"
       style={{ backgroundImage: "url(/authbg.png)" }}
     >
-      <div className="flex flex-col items-center rounded-lg bg-gray-50 p-5 px-20 py-20  ">
+      <div className="flex flex-col items-center rounded-lg bg-gray-50 p-5 px-20 py-20">
         <h1 className="mb-6 text-2xl font-semibold text-gray-800">
           Your trial has ended! Continue using our platform by upgrading to one
           of the plans below.
