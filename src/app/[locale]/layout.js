@@ -52,7 +52,6 @@ export default async function RootLayout({ children, params }) {
               </div>
               <Toaster richColors position="top-center" />
               {children}
-
               <ScrollToTopButton></ScrollToTopButton>
             </div>
           </NextIntlClientProvider>

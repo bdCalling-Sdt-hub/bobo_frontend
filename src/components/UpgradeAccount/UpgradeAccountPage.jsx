@@ -69,7 +69,7 @@ const UpgradeAccountPage = () => {
                 ))}
               </ul>
               <Link href={card.path} className="w-full">
-                <Button className="w-full rounded-md bg-purple-950 px-6 py-2 text-xl text-white">
+                <Button className="hover: w-full rounded-md bg-purple-950 px-6 py-2 text-xl text-white hover:border-2 hover:border-black hover:bg-transparent hover:text-black">
                   {card.buttonText}
                 </Button>
               </Link>

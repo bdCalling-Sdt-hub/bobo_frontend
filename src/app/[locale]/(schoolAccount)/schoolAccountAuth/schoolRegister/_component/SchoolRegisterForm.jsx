@@ -1,6 +1,6 @@
 "use client";
 
-import { Link, redirect } from "@/i18n/routing";
+import { Link, redirect, useRouter } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -9,11 +9,13 @@ import { PhoneInput } from "@/components/PhoneInput/PhoneInput";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const SchoolRegisterForm = () => {
   const [formError, setFormError] = useState(null);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,10 +23,19 @@ const SchoolRegisterForm = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+  const role = "school";
   const onSignUpSubmit = async (data) => {
-    console.log(data);
-    redirect("/home");
+    const maindata = { role, ...data };
+    console.log(maindata);
+    sessionStorage.setItem("role", maindata.role);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Acccount create successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    router.push("/premiumPlanForSchoolAccount");
   };
 
   return (

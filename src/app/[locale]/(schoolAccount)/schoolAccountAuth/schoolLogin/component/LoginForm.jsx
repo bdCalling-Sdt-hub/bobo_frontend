@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 
 import { Link, useRouter } from "@/i18n/routing";
+import Swal from "sweetalert2";
 
 export default function SchoolLoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +31,13 @@ export default function SchoolLoginForm() {
     const maindata = { role, ...data };
     console.log(maindata);
     sessionStorage.setItem("role", maindata.role);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "user login successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
 
     router.push("/premiumPlanForSchoolAccount");
   };

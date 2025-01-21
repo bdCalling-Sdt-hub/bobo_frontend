@@ -9,6 +9,7 @@ import { PhoneInput } from "@/components/PhoneInput/PhoneInput";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 // import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const RegisterForm = () => {
   const [formError, setFormError] = useState(null);
@@ -25,6 +26,13 @@ const RegisterForm = () => {
   const router = useRouter();
   const onSignUpSubmit = async (data) => {
     console.log(data);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Acccount create successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     router.push("/subscriptionPanel");
   };
 
