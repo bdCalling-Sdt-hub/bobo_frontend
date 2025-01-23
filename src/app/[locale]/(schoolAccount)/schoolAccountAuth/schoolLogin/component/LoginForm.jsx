@@ -34,7 +34,7 @@ export default function SchoolLoginForm() {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "user login successfully",
+      title: "user signin successfully",
       showConfirmButton: false,
       timer: 1500,
     });
