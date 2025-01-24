@@ -4,13 +4,13 @@ import { useTranslations } from "next-intl";
 const LearningAreasSection = ({ register, setValue }) => {
   const t = useTranslations("cycleOne");
   return (
-    <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
-      <div className="mt-6 bg-sky-50 rounded-md border-l border-black p-10">
-        <h2 className="text-3xl mb-3 text-purple-600 font-semibold text-center">
+    <div className="text-primary-black rounded-lg bg-opacity-70 p-5 lg:mx-auto lg:w-[70%]">
+      <div className="mt-6 rounded-md border-l border-black bg-sky-50 p-10">
+        <h2 className="mb-3 text-center text-3xl font-semibold text-purple-600">
           {t("Learning Areas")}
         </h2>
 
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
+        <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title="Acquire basic mathematical tools"
             subtitle="Early Mathematical Concepts"
@@ -95,7 +95,7 @@ const LearningAreasSection = ({ register, setValue }) => {
           />
         </div>
 
-        <div className="grid xl:grid-cols-2 md:grid-cols-2 gap-10 mt-20">
+        <div className="mt-20 grid gap-10 md:grid-cols-2 xl:grid-cols-2">
           <CheckboxGroup
             title="Act,express,understand through artistic activities"
             subtitle="Fine Motor Skills"
@@ -144,24 +144,19 @@ const LearningAreasSection = ({ register, setValue }) => {
         </div>
       </div>
 
-      {/* Behavior Section */}
+      {/*======================================= Behavior Section======================================== */}
 
-      <div className="bg-orange-50 mt-20 p-10 border-l border-black rounded-lg">
-        <h1 className="text-center text-3xl mb-5 font-bold text-[#D65F00]">
+      <div className="mt-20 rounded-lg border-l border-black bg-orange-50 p-10">
+        <h1 className="mb-5 text-center text-3xl font-bold text-[#D65F00]">
           {t("Behaviors")}
         </h1>
 
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 ">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={[
-              "Autonomous",
-             "Calm",
-              "Disruptive",
-              "Living together",
-            ]}
+            options={["Autonomous", "Calm", "Disruptive", "Living together"]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -170,7 +165,12 @@ const LearningAreasSection = ({ register, setValue }) => {
             title=""
             subtitle=""
             bgColor="#FFB84D33"
-            options={[  "Talkative", "Focused", "RespectFul of rules", "Voluntary"]}
+            options={[
+              "Talkative",
+              "Focused",
+              "RespectFul of rules",
+              "Voluntary",
+            ]}
             register={register}
             setValue={setValue}
             groupKey="behavior"
@@ -187,22 +187,29 @@ const LearningAreasSection = ({ register, setValue }) => {
         </div>
       </div>
 
-      {/* Improvement Section */}
+      {/* ===========================Improvement Section============================= */}
 
-      <div className="  bg-green-50 mt-20 p-10 border-l border-black rounded-lg ">
-        <h1 className="text-center text-3xl mb-5 font-bold text-[#3EB489]">
+      <div className="mt-20 rounded-lg border-l border-black bg-green-50 p-10">
+        <h1 className="mb-5 text-center text-3xl font-bold text-[#3EB489]">
           {t("Improvements")}
         </h1>
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={["Autonomy",     "Emotion management",  "Respect for rules"]}
+            options={["Autonomy", "Emotion management", "Respect for rules"]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
-            hideMinusFor={["Autonomy", "Listening",     "Emotion management",  "Motor skills", "Respect for rules", "Sociability"]}
+            hideMinusFor={[
+              "Autonomy",
+              "Listening",
+              "Emotion management",
+              "Motor skills",
+              "Respect for rules",
+              "Sociability",
+            ]}
           />
           <CheckboxGroup
             title=""
@@ -210,10 +217,8 @@ const LearningAreasSection = ({ register, setValue }) => {
             bgColor="#3EB489"
             options={[
               "Understanding instructions",
-              "Oral language", 
-              "Sociability" 
-          
-            
+              "Oral language",
+              "Sociability",
             ]}
             register={register}
             setValue={setValue}
@@ -222,19 +227,25 @@ const LearningAreasSection = ({ register, setValue }) => {
               "Emotion management",
               "Oral language",
               "Understanding instructions",
-              "Sociability" 
+              "Sociability",
             ]}
           />
           <CheckboxGroup
             title=""
             subtitle=""
             bgColor="#3EB489"
-            options={[ "Listening",  "Motor skills",    ]}
+            options={["Listening", "Motor skills"]}
             register={register}
             setValue={setValue}
             groupKey="improvements"
-            hideMinusFor={[ "Motor skills","Listening", "Sociability" ,  "Oral language", "Respect for rules"]}
-          /> 
+            hideMinusFor={[
+              "Motor skills",
+              "Listening",
+              "Sociability",
+              "Oral language",
+              "Respect for rules",
+            ]}
+          />
         </div>
       </div>
     </div>

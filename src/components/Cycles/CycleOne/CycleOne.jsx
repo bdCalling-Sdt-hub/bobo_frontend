@@ -1,5 +1,4 @@
 "use client";
-
 import CycleHeroSection from "@/components/shared/Navber/CycleHeroSection";
 import CycleForm from "./CycleForm";
 import { useEffect, useState } from "react";
@@ -37,7 +36,7 @@ const CycleOne = () => {
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* ============================Hero Section================================ */}
       <section>
         <CycleHeroSection bgImage="/heroone.png" />
       </section>
@@ -80,8 +79,10 @@ const CycleOne = () => {
         )}
       </div>
 
-      {/* Feedback Section */}
-      <CycleForm></CycleForm>
+      {/* ===============================Feedback Section===================================== */}
+      <div className="">
+        <CycleForm></CycleForm>
+      </div>
     </div>
   );
 };

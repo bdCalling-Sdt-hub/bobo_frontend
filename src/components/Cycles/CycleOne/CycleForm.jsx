@@ -67,191 +67,194 @@ const CycleForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="text-center text-3xl font-bold mt-8">
-        {t("Personalized Student Feedback Generation Process")}
-      </h1>
+    <div className="">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h1 className="mt-8 text-center text-3xl font-bold">
+          {t("Personalized Student Feedback Generation Process")}
+        </h1>
 
-      <div className="text-primary-black lg:mx-auto lg:w-[45%] bg-white bg-opacity-70 p-5 rounded-lg">
-        {/* Student Name Input Field */}
-        <div className="mt-8 grid w-full items-center gap-1.5">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="name" className="font-semibold">
-              {t("Student Name")}
-            </Label>
-            <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
-                ?
-              </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
-                Enter the full name of the student
-              </Popover.Panel>
-            </Popover>
-          </div>
-          <div className="relative">
-            <Input
-              id="name"
-              placeholder={t("Name")}
-              className="border-black bg-transparent px-4 py-5"
-              {...register("name", { required: t("Name is required") })}
-            />
-          </div>
-          {errors.name && (
-            <span className="text-red-500">{errors.name.message}</span>
-          )}
-        </div>
-
-        {/* Gender Dropdown */}
-        <div className="mt-8 grid w-full items-center gap-1.5">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="gender" className="font-semibold">
-              {t("Select Gender")}
-            </Label>
-            <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
-                ?
-              </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
-                Select the gender of the student
-              </Popover.Panel>
-            </Popover>
-          </div>
-          <div className="relative">
-            <select
-              id="gender"
-              placeholder="Gender"
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
-              {...register("gender", { required: t("Gender is required") })}
-            >
-              <option value="Boy">{t("Boy")}</option>
-              <option value="Girl">{t("Girl")}</option>
-            </select>
-          </div>
-          {errors.gender && (
-            <span className="text-red-500">{errors.gender.message}</span>
-          )}
-        </div>
-
-        {/* Tone of Voice Dropdown */}
-        <div className="mt-8 grid w-full items-center gap-1.5">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="toneOfVoice" className="font-semibold">
-              {t("Select Tone Of Voice")}
-            </Label>
-            <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
-                ?
-              </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
-                Choose the tone of voice preferred for communication
-              </Popover.Panel>
-            </Popover>
-          </div>
-          <div className="relative">
-            <select
-              id="toneOfVoice"
-              placeholder="Tone of voice "
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
-              {...register("toneOfVoice", {
-                required: t("Tone of Voice is required"),
-              })}
-            >
-              <option value="Caring">{t("Caring")}</option>
-              <option value="Encouraging">{t("Encouraging")}</option>
-              <option value="Enthusiastic">{t("Enthusiastic")}</option>
-              <option value="Rigorous">{t("Rigorous")}</option>
-            </select>
-          </div>
-          {errors.toneOfVoice && (
-            <span className="text-red-500">{errors.toneOfVoice.message}</span>
-          )}
-        </div>
-      </div>
-
-      <h1 className="text-center text-3xl font-bold my-4">
-        {t("PathWay To Growth")}
-      </h1>
-      <hr />
-
-      <LearningAreasSection
-        register={register}
-        setValue={setValue}
-      ></LearningAreasSection>
-
-      {/* Submit Button */}
-      <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
-        <Button
-          type="submit"
-          className="w-full mb-20 bg-purple-950"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <div className="spinner-border animate-spin w-6 h-6 border-4 border-t-transparent border-blue-500 rounded-full"></div>
-          ) : (
-            t("Generate Comment")
-          )}
-        </Button>
-      </div>
-
-      {/* Modal */}
-      <Dialog
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        className="relative z-50"
-      >
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50"
-          aria-hidden="true"
-        />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
-          >
-            <Dialog.Title className="text-lg font-bold">
-              {t("Generated Comment")}
-            </Dialog.Title>
-            <div className="mt-4">
-              <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
-                {result?.feedback ? (
-                  <p className="break-words mb-2">{result?.feedback}</p>
-                ) : (
-                  <p>No feedback available. Please try again.</p>
-                )}
-                {/* Copy Button */}
-                {result?.feedback && (
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(result.feedback);
-
-                      Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: t("Your comment has been copied"),
-                        showConfirmButton: false,
-                        timer: 1500,
-                      });
-                    }}
-                    className="ml-3 px-3 py-1 rounded"
-                  >
-                    <Copy />
-                  </button>
-                )}
-              </div>
+        <div className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[45%]">
+          {/* ===========================Student Name Input Field================================== */}
+          <div className="mt-8 grid w-full items-center gap-1.5">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="name" className="font-semibold">
+                {t("Student Name")}
+              </Label>
+              <Popover className="relative">
+                <Popover.Button className="cursor-help text-blue-500">
+                  ?
+                </Popover.Button>
+                <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
+                  Enter the full name of the student
+                </Popover.Panel>
+              </Popover>
             </div>
-            <Button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 w-full bg-purple-950"
-            >
-              {t("Close")}
-            </Button>
-          </motion.div>
+            <div className="relative">
+              <Input
+                id="name"
+                placeholder={t("Name")}
+                className="border-black bg-transparent px-4 py-5"
+                {...register("name", { required: t("Name is required") })}
+              />
+            </div>
+            {errors.name && (
+              <span className="text-red-500">{errors.name.message}</span>
+            )}
+          </div>
+
+          {/* Gender Dropdown */}
+          <div className="mt-8 grid w-full items-center gap-1.5">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="gender" className="font-semibold">
+                {t("Select Gender")}
+              </Label>
+              <Popover className="relative">
+                <Popover.Button className="cursor-help text-blue-500">
+                  ?
+                </Popover.Button>
+                <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
+                  Select the gender of the student
+                </Popover.Panel>
+              </Popover>
+            </div>
+            <div className="relative">
+              <select
+                id="gender"
+                placeholder="Gender"
+                className="w-full rounded-md border border-black bg-transparent px-4 py-3"
+                {...register("gender", { required: t("Gender is required") })}
+              >
+                <option value="Boy">{t("Boy")}</option>
+                <option value="Girl">{t("Girl")}</option>
+              </select>
+            </div>
+            {errors.gender && (
+              <span className="text-red-500">{errors.gender.message}</span>
+            )}
+          </div>
+
+          {/* ==========================Tone of Voice Dropdown================================= */}
+          <div className="mt-8 grid w-full items-center gap-1.5">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="toneOfVoice" className="font-semibold">
+                {t("Select Tone Of Voice")}
+              </Label>
+              <Popover className="relative">
+                <Popover.Button className="cursor-help text-blue-500">
+                  ?
+                </Popover.Button>
+                <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
+                  Choose the tone of voice preferred for communication
+                </Popover.Panel>
+              </Popover>
+            </div>
+            <div className="relative">
+              <select
+                id="toneOfVoice"
+                placeholder="Tone of voice "
+                className="w-full rounded-md border border-black bg-transparent px-4 py-3"
+                {...register("toneOfVoice", {
+                  required: t("Tone of Voice is required"),
+                })}
+              >
+                <option value="Caring">{t("Caring")}</option>
+                <option value="Encouraging">{t("Encouraging")}</option>
+                <option value="Enthusiastic">{t("Enthusiastic")}</option>
+                <option value="Rigorous">{t("Rigorous")}</option>
+              </select>
+            </div>
+            {errors.toneOfVoice && (
+              <span className="text-red-500">{errors.toneOfVoice.message}</span>
+            )}
+          </div>
         </div>
-      </Dialog>
-    </form>
+
+        <h1 className="my-4 text-center text-3xl font-bold">
+          {t("PathWay To Growth")}
+        </h1>
+        <hr />
+        <div className="">
+          <LearningAreasSection
+            register={register}
+            setValue={setValue}
+          ></LearningAreasSection>
+        </div>
+
+        {/* =================================Submit Button====================================== */}
+        <div className="text-primary-black rounded-lg bg-opacity-70 p-5 lg:mx-auto lg:w-[70%]">
+          <Button
+            type="submit"
+            className="mb-20 w-full bg-purple-950"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <div className="spinner-border h-6 w-6 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+            ) : (
+              t("Generate Comment")
+            )}
+          </Button>
+        </div>
+
+        {/*============================= Modal======================================= */}
+        <Dialog
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          className="relative z-50"
+        >
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50"
+            aria-hidden="true"
+          />
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5 }}
+              className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg"
+            >
+              <Dialog.Title className="text-lg font-bold">
+                {t("Generated Comment")}
+              </Dialog.Title>
+              <div className="mt-4">
+                <div className="flex items-center justify-between rounded bg-gray-100 p-3">
+                  {result?.feedback ? (
+                    <p className="mb-2 break-words">{result?.feedback}</p>
+                  ) : (
+                    <p>No feedback available. Please try again.</p>
+                  )}
+                  {/* Copy Button */}
+                  {result?.feedback && (
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(result.feedback);
+
+                        Swal.fire({
+                          position: "center",
+                          icon: "success",
+                          title: t("Your comment has been copied"),
+                          showConfirmButton: false,
+                          timer: 1500,
+                        });
+                      }}
+                      className="ml-3 rounded px-3 py-1"
+                    >
+                      <Copy />
+                    </button>
+                  )}
+                </div>
+              </div>
+              <Button
+                onClick={() => setIsModalOpen(false)}
+                className="mt-4 w-full bg-purple-950"
+              >
+                {t("Close")}
+              </Button>
+            </motion.div>
+          </div>
+        </Dialog>
+      </form>
+    </div>
   );
 };
 
