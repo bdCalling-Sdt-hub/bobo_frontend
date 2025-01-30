@@ -2,7 +2,9 @@
   "navbar": {
     "Teacher Comment Hub": "Teacher Comment Hub",
     "Go Back": "Go Back",
-    "User Guide": "User Guide"
+    "User Guide": "User Guide",
+    "Dashboard": "Dashboard",
+    "Contact": "Contact"
   },
   "home": {
     "Student Learning Stages": "Pupils Learning Stages",
@@ -194,6 +196,49 @@
     "Italien": "Italien",
     "Espagnol": "Espagnol",
     "Arabe": "Arabe",
-    "Anglais": "Anglais"
+    "Anglais": "Anglais",
+    "Welcome": "Welcome",
+    "Choose how you like to get started": "Choose how you like to get started",
+    "Already have an account?": "Already have an account?",
+    "Signup": "Sign Up",
+    "Submit": "Submit",
+    "To proceed as a guest, please enter your email address for verification": "To proceed as a guest, please enter your email address for verification."
+  },
+  "personalInformation": {
+    "Teacher Comment Hub": "Teacher Comment Hub",
+    "Personal Information": "Personal Information",
+    "Subscription Details": "Subscription Details",
+    "Account Settings": "Account Settings",
+    "Log Out": "Log Out",
+    "Change Picture": "Change Picture",
+    "Full Name": "Full Name",
+    "Enter your full name": "Enter your full name",
+    "Email Address": "Email Address",
+    "Enter your email address": "Enter your email address",
+    "Phone Number (Optional)": "Phone Number (Optional)",
+    "+123456789": "+123456789",
+    "School Name (Optional)": "School Name (Optional)",
+    "Enter your school name": "Enter your school name",
+    "Save Changes": "Save Changes",
+    "Change Password": "Change Password",
+    "Enter New Password": "Enter New Password",
+    "New Password": "New Password",
+    "Confirm Password": "Confirm Password",
+    "Submit": "Submit",
+    "Account Delete": "Account Delete",
+    "Delete Account": "Delete Account"
+  },
+  "contact": {
+    "Contact Us": "Contact Us",
+    "Feel free to share your feedback; it is valuable to us": "Feel free to share your feedback; it is valuable to us.",
+    "Full Name": "Full Name",
+    "Enter your Name": "Enter your Name",
+    "Email Address": "Email Address",
+    "Enter Your Email": "Enter Your Email",
+    "Indicate your Cycle/Term/Stage": "Indicate your Cycle/Term/Stage",
+
+    "Your Suggestion": "Your Suggestion",
+    "Tell us what you'd like to improve or add to the app": "Tell us what you'd like to improve or add to the app...",
+    "Submit": "Submit"
   }
 }

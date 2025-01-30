@@ -27,11 +27,12 @@ const CycleForm = () => {
     formState: { errors },
   } = useForm();
   const [result, setResult] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const onSubmit = async (data) => {
+    console.log("Submitting data:", data);
     setIsLoading(true);
 
     try {
@@ -51,8 +52,8 @@ const CycleForm = () => {
       }
       // router.push("/");
 
-      console.log("result", result);
-      console.log("Submitted data:", comment);
+      // console.log("result", result);
+      // console.log("Submitted data:", comment);
     } catch (error) {
       console.log("Error generating feedback:", error);
       setResult({
@@ -69,22 +70,22 @@ const CycleForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="text-center text-3xl font-bold mt-8">
+      <h1 className="mt-8 text-center text-3xl font-bold">
         {t("Personalized Student Feedback Generation Process")}
       </h1>
 
-      <div className="text-primary-black lg:mx-auto lg:w-[45%] bg-white bg-opacity-70 p-5 rounded-lg">
-        {/* Student Name Input Field */}
+      <div className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[45%]">
+        {/*================================== Student Name Input Field=========================== */}
         <div className="mt-8 grid w-full items-center gap-1.5">
           <div className="flex items-center justify-between">
             <Label htmlFor="name" className="font-semibold">
               {t("Student Name")}
             </Label>
             <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
+              <Popover.Button className="cursor-help text-blue-500">
                 ?
               </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
+              <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
                 Enter the full name of the student
               </Popover.Panel>
             </Popover>
@@ -102,17 +103,17 @@ const CycleForm = () => {
           )}
         </div>
 
-        {/* Gender Dropdown */}
+        {/*====================================== Gender Dropdown================================ =*/}
         <div className="mt-8 grid w-full items-center gap-1.5">
           <div className="flex items-center justify-between">
             <Label htmlFor="gender" className="font-semibold">
               {t("Select Gender")}
             </Label>
             <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
+              <Popover.Button className="cursor-help text-blue-500">
                 ?
               </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
+              <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
                 Select the gender of the student
               </Popover.Panel>
             </Popover>
@@ -120,7 +121,7 @@ const CycleForm = () => {
           <div className="relative">
             <select
               id="gender"
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
+              className="w-full rounded-md border border-black bg-transparent px-4 py-3"
               {...register("gender", { required: t("Gender is required") })}
             >
               <option value="Boy">{t("Boy")}</option>
@@ -132,17 +133,17 @@ const CycleForm = () => {
           )}
         </div>
 
-        {/* Tone of Voice Dropdown */}
+        {/*================================== Tone of Voice Dropdown=============================== */}
         <div className="mt-8 grid w-full items-center gap-1.5">
           <div className="flex items-center justify-between">
             <Label htmlFor="toneOfVoice" className="font-semibold">
               {t("Select Tone Of Voice")}
             </Label>
             <Popover className="relative">
-              <Popover.Button className="text-blue-500 cursor-help">
+              <Popover.Button className="cursor-help text-blue-500">
                 ?
               </Popover.Button>
-              <Popover.Panel className="absolute z-10 bg-white p-4 rounded shadow-lg mt-2 w-48">
+              <Popover.Panel className="absolute z-10 mt-2 w-48 rounded bg-white p-4 shadow-lg">
                 Choose the tone of voice preferred for communication
               </Popover.Panel>
             </Popover>
@@ -150,7 +151,7 @@ const CycleForm = () => {
           <div className="relative">
             <select
               id="toneOfVoice"
-              className="w-full border rounded-md border-black bg-transparent px-4 py-3"
+              className="w-full rounded-md border border-black bg-transparent px-4 py-3"
               {...register("toneOfVoice", {
                 required: t("Tone of Voice is required"),
               })}
@@ -167,7 +168,7 @@ const CycleForm = () => {
         </div>
       </div>
 
-      <h1 className="text-center text-3xl font-bold my-4">
+      <h1 className="my-4 text-center text-3xl font-bold">
         {t("PathWay To Growth")}
       </h1>
       <hr />
@@ -176,15 +177,15 @@ const CycleForm = () => {
         setValue={setValue}
       ></LearningAreaSectionThree>
 
-      {/* Submit Button */}
-      <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
+      {/*==================================== Submit Button===================================================== */}
+      <div className="text-primary-black rounded-lg bg-opacity-70 p-5 lg:mx-auto lg:w-[70%]">
         <Button
           type="submit"
-          className="w-full mb-20 bg-purple-950"
+          className="mb-20 w-full bg-purple-950"
           disabled={isLoading}
         >
           {isLoading ? (
-            <div className="spinner-border animate-spin w-6 h-6 border-4 border-t-transparent border-blue-500 rounded-full"></div>
+            <div className="spinner-border h-6 w-6 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
           ) : (
             t("Generate Comment")
           )}
@@ -202,9 +203,9 @@ const CycleForm = () => {
           aria-hidden="true"
         />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          {/* Modal Animation using Framer Motion */}
+          {/* ===========================Modal Animation using Framer Motion============================== */}
           <motion.div
-            className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
+            className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -214,13 +215,13 @@ const CycleForm = () => {
               {t("Generated Comment")}
             </Dialog.Title>
             <div className="mt-4">
-              <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
+              <div className="flex items-center justify-between rounded bg-gray-100 p-3">
                 {result?.feedback ? (
-                  <p className="break-words mb-2">{result?.feedback}</p>
+                  <p className="mb-2 break-words">{result?.feedback}</p>
                 ) : (
                   <p>No feedback available. Please try again.</p>
                 )}
-                {/* Copy Button */}
+                {/* =====================================Copy Button============================== */}
                 {result?.feedback && (
                   <button
                     onClick={() => {
@@ -233,7 +234,7 @@ const CycleForm = () => {
                         timer: 1500,
                       });
                     }}
-                    className="ml-3 px-3 py-1 rounded"
+                    className="ml-3 rounded px-3 py-1"
                   >
                     <Copy />
                   </button>

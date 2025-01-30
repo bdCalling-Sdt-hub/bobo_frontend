@@ -1,17 +1,22 @@
 
-import SchoolAccountSideber from "@/components/SchoolAccount/SchoolAccountSidebar";
 
+import SchoolAccountSideber from "@/components/SchoolAccount/SchoolAccountSidebar";
+import React from "react";
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-mainColor min-h-screen h-full flex">
+    <div className="bg-mainColor  h-full flex">
+
       {/* Sidebar */}
-     <div className=" mt-20 flex mx-auto w-[80%] ">
-    <div className=" mt-10">
- <SchoolAccountSideber/>
+     <div className="md:flex mx-auto lg:w-[80%] md:p-5 w-full">
+    <div className="mt-[130px]">
+<SchoolAccountSideber/>
     </div>
-     <main className="flex-1 p-8">{children}</main>
+     <main className="lg:flex-1  md:p-8 md:mt-[85px] p-5 ">{children}</main>
      </div>
+     
+
+
     </div>
   );
 };

@@ -36,19 +36,19 @@ const UpgradeAccountPage = () => {
 
   return (
     <div
-      className="flex h-screen items-center justify-center bg-cover bg-center"
+      className="h-screen items-center justify-center bg-cover bg-center md:flex"
       style={{ backgroundImage: "url(/authbg.png)" }}
     >
-      <div className="flex flex-col items-center rounded-lg bg-gray-50 p-5 px-20 py-20">
-        <h1 className="mb-6 text-2xl font-semibold text-gray-800">
+      <div className="flex-col items-center rounded-lg bg-gray-50 p-5 md:flex md:px-20 md:py-20">
+        <h1 className="mb-6 text-center font-semibold text-gray-800 md:text-2xl">
           Your trial has ended! Continue using our platform by upgrading to one
           of the plans below.
         </h1>
-        <div className="grid w-[900px] grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
           {card.map((card, index) => (
             <div
               key={index}
-              className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-md"
+              className="w-full flex-col items-center rounded-lg border bg-white p-6 text-center shadow-md md:flex"
             >
               <Image
                 src={card.image}

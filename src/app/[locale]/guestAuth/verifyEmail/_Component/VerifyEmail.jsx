@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/routing";
 import { Label } from "@radix-ui/react-label";
+import { useTranslations } from "next-intl";
 
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 export default function VerifyEmailForm() {
+  const t = useTranslations("cycleOne");
   const {
     register,
     handleSubmit,
@@ -32,10 +34,12 @@ export default function VerifyEmailForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
+      className="text-primary-black m-2 rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
       <h2 className="mb-3 text-center text-xl font-semibold">
-        To proceed as a guest, please enter your email address for verification.
+        {t(
+          "To proceed as a guest, please enter your email address for verification",
+        )}
       </h2>
       <p className="text-primary-black mb-10 text-center">
         {/* Enter your details below to request an OTP for account password reset. */}
@@ -45,12 +49,12 @@ export default function VerifyEmailForm() {
           htmlFor="email"
           className="text-primary-black mb-1 block font-semibold"
         >
-          Email
+          {t("Email")}
         </Label>
         <Input
           type="email"
           id="email"
-          placeholder="Email"
+          placeholder={t("Email")}
           {...register("email", {
             required: true,
           })}
@@ -60,7 +64,7 @@ export default function VerifyEmailForm() {
       </div>
 
       <Button className="mt-6 h-10 w-full rounded-lg bg-purple-950 py-2 text-center text-xl text-white">
-        Submit
+        {t("Submit")}
       </Button>
     </form>
   );

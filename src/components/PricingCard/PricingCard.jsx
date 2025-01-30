@@ -31,7 +31,7 @@ export const PricingCard = ({
   };
 
   return (
-    <div className="card1 w-80 cursor-pointer rounded-lg bg-white p-6 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="card card1 w-80 cursor-pointer rounded-lg bg-white p-6 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
       <h2 className="mb-4 text-center text-2xl font-semibold text-gray-800">
         {price}
       </h2>
@@ -57,7 +57,10 @@ export const PricingCard = ({
           Buy Now
         </Button>
       )}
-
+      <span class="top"></span>
+      <span class="right"></span>
+      <span class="bottom"></span>
+      <span class="left"></span>
       <TeacherQuantityModal
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}

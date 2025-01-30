@@ -15,12 +15,9 @@ const SetPasswordForm = () => {
     formState: { errors },
     watch,
   } = useForm();
-
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-
   const router = useRouter();
-
   const onUpdatePassSubmit = (data) => {
     console.log(data);
     router.push("/");
@@ -28,7 +25,7 @@ const SetPasswordForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onUpdatePassSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
+      className="text-primary-black m-4 w-full rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
       <h1 className="mb-5 text-center text-2xl font-semibold">
         Update Password
@@ -65,10 +62,9 @@ const SetPasswordForm = () => {
         </div>
 
         {errors.newPassword && (
-          <p className="text-danger mt-1">{errors.newPassword.message}</p>
+          <p className="mt-1 text-danger">{errors.newPassword.message}</p>
         )}
       </div>
-
       <div className="mt-10 grid w-full items-center gap-2">
         <Label
           htmlFor="confirmPassword"
@@ -96,14 +92,14 @@ const SetPasswordForm = () => {
         </div>
 
         {errors.confirmPassword && (
-          <p className="text-danger mt-1">{errors.confirmPassword.message}</p>
+          <p className="mt-1 text-danger">{errors.confirmPassword.message}</p>
         )}
       </div>
 
       <Button
         type="submit"
         //   disabled={isLoading}
-        className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-black text-center"
+        className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-purple-950 text-center"
       >
         {/* {isLoading ? <CustomLoader /> : "Submit"} */}
         Submit

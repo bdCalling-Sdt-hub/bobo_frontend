@@ -36,7 +36,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
+      className="text-primary-black m-4 w-full rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-24"
     >
       <h1 className="text-center text-2xl font-bold">Sign In </h1>
       <div className="grid w-full items-center gap-1.5">

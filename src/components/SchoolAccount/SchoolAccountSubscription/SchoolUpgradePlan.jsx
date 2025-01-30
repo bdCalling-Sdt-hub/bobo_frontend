@@ -27,11 +27,11 @@ const SchoolUpgradePlan = () => {
       </h2>
 
       {/* Plans */}
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex-wrap justify-center gap-4 lg:flex">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="card1 flex w-1/3 flex-col space-y-9 rounded-lg border border-gray-200 bg-white p-3 shadow-md"
+            className="card1 mb-5 flex w-full flex-col space-y-9 rounded-lg border border-gray-200 bg-white p-3 shadow-md lg:w-1/3"
           >
             <div>
               <h2 className="text-3xl font-bold text-darkBlue">{plan.price}</h2>

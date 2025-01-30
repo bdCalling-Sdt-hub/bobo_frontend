@@ -20,13 +20,13 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
   };
 
   return (
-    <div className="text-primary-black lg:mx-auto lg:w-[70%] bg-opacity-70 p-5 rounded-lg">
-      <div className="mt-6 bg-sky-50 rounded-md border-l-2 border-black p-10">
-        <h2 className="text-3xl mb-3 text-purple-600 font-semibold text-center">
+    <div className="text-primary-black rounded-lg bg-opacity-70 p-5 lg:mx-auto lg:w-[70%]">
+      <div className="mt-6 rounded-md border-l-2 border-black bg-sky-50 p-10">
+        <h2 className="mb-3 text-center text-3xl font-semibold text-purple-600">
           {t("Learning Areas")}
         </h2>
 
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-4">
+        <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title=""
             subtitle="French (Language and Literature)"
@@ -74,12 +74,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
           />
           {/* Dropdown for Foreign Language 1 */}
 
-          <div className="mt-3 grid w-full gap-1.5 bg-[#FF72564D] p-3 rounded-3xl">
+          <div className="mt-3 grid w-full gap-1.5 rounded-3xl bg-[#FF72564D] p-3">
             <div>
               <select
                 id="ForeignLanguage1"
                 value={selectedLanguages.language1}
-                className="w-full rounded-2xl bg-[#CC4A31] text-white text-center px-4 py-3"
+                className="w-full rounded-2xl bg-[#CC4A31] px-4 py-3 text-center text-white"
                 {...register("Foreign Language 1")}
                 onChange={(e) =>
                   handleDropdownChange("language1", e.target.value)
@@ -99,7 +99,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
               {/* Show the selected language title */}
               {selectedLanguages.language1 && (
-                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                <h3 className="mt-2 text-xl font-semibold text-purple-600">
                   {t("Foreign Language 1")}:({" "}
                   {t(`${selectedLanguages.language1}`)})
                 </h3>
@@ -119,12 +119,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
           {/* Dropdown for Foreign Language 2 */}
 
-          <div className="mt-3 grid w-full gap-1.5 bg-[#FFFFE0] p-3 rounded-3xl">
+          <div className="mt-3 grid w-full gap-1.5 rounded-3xl bg-[#FFFFE0] p-3">
             <div>
               <select
                 id="ForeignLanguage2"
                 value={selectedLanguages.language2}
-                className="w-full rounded-2xl bg-[#D4A017] text-white text-center px-4 py-3"
+                className="w-full rounded-2xl bg-[#D4A017] px-4 py-3 text-center text-white"
                 {...register("Foreign Language 2")}
                 onChange={(e) =>
                   handleDropdownChange("language2", e.target.value)
@@ -145,7 +145,7 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
               {/* Show the selected language title */}
               {selectedLanguages.language2 && (
-                <h3 className="mt-2 text-xl text-purple-600 font-semibold">
+                <h3 className="mt-2 text-xl font-semibold text-purple-600">
                   {t("Foreign Language 2")}: (
                   {t(`${selectedLanguages.language2}`)})
                 </h3>
@@ -220,12 +220,12 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
       {/* Behavior Section */}
 
-      <div className="bg-orange-50 mt-20 p-10 rounded-2xl border-l border-black ">
-        <h1 className="text-center text-3xl mb-5 font-bold text-[#D65F00]">
+      <div className="mt-20 rounded-2xl border-l border-black bg-orange-50 p-10">
+        <h1 className="mb-5 text-center text-3xl font-bold text-[#D65F00]">
           {t("Behaviors")}
         </h1>
 
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 ">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title=""
             subtitle=""
@@ -271,11 +271,11 @@ const LearningAreaSectionThree = ({ register, setValue }) => {
 
       {/* Improvement Section */}
 
-      <div className="  bg-green-50 mt-20 p-10 rounded-2xl border-l border-black">
-        <h1 className="text-center text-3xl mb-5 font-bold text-[#3EB489]">
+      <div className="mt-20 rounded-2xl border-l border-black bg-green-50 p-10">
+        <h1 className="mb-5 text-center text-3xl font-bold text-[#3EB489]">
           {t("Improvements")}
         </h1>
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           <CheckboxGroup
             title=""
             subtitle=""

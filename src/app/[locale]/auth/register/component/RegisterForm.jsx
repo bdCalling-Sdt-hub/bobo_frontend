@@ -39,9 +39,9 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSignUpSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%] lg:py-12"
+      className="text-primary-black m-2 w-full rounded-lg bg-white bg-opacity-70 p-2 md:p-5 lg:mx-auto lg:w-[35%] lg:py-12"
     >
-      <h1 className="text-center text-2xl font-bold">Create Account</h1>
+      <h1 className="text-center font-bold md:text-2xl">Create Account</h1>
       <div className="space-y-8">
         {/* first name */}
         <div className="grid w-full items-center gap-2">
@@ -211,7 +211,7 @@ const RegisterForm = () => {
         // // loading={isLoading}
         // disabled={isLoading}
         type="submit"
-        className="mt-10 h-[2.8rem] w-full rounded-xl bg-black font-semibold"
+        className="mt-10 h-[2.8rem] w-full rounded-xl bg-purple-950 font-semibold"
       >
         {/* {isLoading ? <CustomLoader /> : "Create Account"} */}
         Create Account

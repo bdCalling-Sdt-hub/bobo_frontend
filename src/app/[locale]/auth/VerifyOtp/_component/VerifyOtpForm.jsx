@@ -51,8 +51,10 @@ export default function VerifyOtpForm() {
   //   };
 
   return (
-    <div className="text-primary-black relative rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]">
-      <h2 className="mb-3 text-center text-4xl font-semibold">Verify OTP</h2>
+    <div className="text-primary-black m-3 w-full rounded-lg bg-white bg-opacity-70 p-1.5 md:p-5 lg:mx-auto lg:w-[35%]">
+      <h2 className="mb-3 text-center text-lg font-semibold md:text-4xl">
+        Verify OTP
+      </h2>
       <p className="font-kumbh-sans text-primary-black mb-10 text-center">
         We&apos;ll send a verification code to your email. Check your inbox and
         enter the code here:
@@ -63,36 +65,36 @@ export default function VerifyOtpForm() {
           pattern={REGEXP_ONLY_DIGITS}
           onChange={(value) => setValue(value)}
         >
-          <InputOTPGroup className="flex items-center gap-x-5">
+          <InputOTPGroup className="flex items-center md:gap-x-5 gap-x-4">
             <InputOTPSlot
               index={0}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
             <InputOTPSlot
               index={1}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
             <InputOTPSlot
               index={2}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
             <InputOTPSlot
               index={3}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
             <InputOTPSlot
               index={4}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
             <InputOTPSlot
               index={5}
-              className="h-[63px] w-[50px] border border-black text-3xl font-extrabold"
+              className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
             />
           </InputOTPGroup>
         </InputOTP>
 
         {showRequired && (
-          <p className="text-danger mt-3 text-center">
+          <p className="mt-3 text-center text-danger">
             Please enter your one-time password correctly
           </p>
         )}

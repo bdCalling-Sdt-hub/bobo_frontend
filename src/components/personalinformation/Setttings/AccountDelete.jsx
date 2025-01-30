@@ -1,9 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import React from "react";
 import Swal from "sweetalert2";
 
 const AccountDelete = () => {
+  const t = useTranslations("personalInformation");
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -26,9 +28,9 @@ const AccountDelete = () => {
 
   return (
     <div className="text-primary-black mt-5 space-y-5 rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto">
-      <h1 className="text-center text-2xl">Account Delete</h1>
+      <h1 className="text-center text-2xl">{t("Account Delete")}</h1>
       <Button onClick={handleDelete} className="h-[2.7rem] w-full text-xl">
-        Delete Account
+        {t("Delete Account")}
       </Button>
     </div>
   );

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5003",
+    "dev": "next dev -p 5004",
     "build": "next build",
     "start": "next start -p 5007",
     "lint": "next lint"
@@ -21,6 +21,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.4",
     "@reactour/tour": "^3.7.0",
+    "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -42,6 +43,7 @@
     "react-joyride": "^2.9.3",
     "react-pagination-bar": "^2.0.1",
     "react-phone-number-input": "^3.4.10",
+    "react-redux": "^9.2.0",
     "sonner": "^1.7.1",
     "sweetalert2": "^11.6.13",
     "tailwind-merge": "^2.5.4",

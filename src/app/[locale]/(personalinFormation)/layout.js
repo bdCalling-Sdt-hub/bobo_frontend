@@ -7,11 +7,11 @@ const Layout = ({ children }) => {
     <div className="bg-mainColor lg:h-screen h-full flex">
 
       {/* Sidebar */}
-     <div className="md:flex mx-auto lg:w-[80%] md:p-5  ">
+     <div className="md:flex mx-auto lg:w-[80%] md:p-5 w-full">
     <div className="mt-[130px]">
     <Sidebar />
     </div>
-     <main className="lg:flex-1  md:p-8 md:mt-[85px] ">{children}</main>
+     <main className="lg:flex-1  md:p-8 md:mt-[85px] p-5 ">{children}</main>
      </div>
      
 

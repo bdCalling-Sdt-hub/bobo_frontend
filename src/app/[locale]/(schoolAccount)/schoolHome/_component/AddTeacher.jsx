@@ -26,7 +26,10 @@ const AddTeacher = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[80%]"
     >
-      <h1 className="mb-10 text-center text-4xl font-bold"> Manual Entry </h1>
+      <h1 className="mb-10 text-center text-2xl font-bold md:text-4xl">
+        {" "}
+        Manual Entry{" "}
+      </h1>
 
       <div className="flex gap-10">
         {/* first name */}

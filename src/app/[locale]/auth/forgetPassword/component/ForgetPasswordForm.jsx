@@ -24,9 +24,9 @@ export default function ForgetPasswordForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
+      className="text-primary-black m-2 rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[35%]"
     >
-      <h2 className="mb-3 text-center text-4xl font-semibold">
+      <h2 className="mb-3 text-center text-lg font-semibold md:text-4xl">
         Forgot Password?
       </h2>
       <p className="text-primary-black mb-10 text-center">

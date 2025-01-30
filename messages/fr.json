@@ -2,7 +2,9 @@
   "navbar": {
     "Teacher Comment Hub": "Plateforme de commentaires des enseignants",
     "Go Back": "Retourner",
-    "User Guide": "Guide de l'utilisateur"
+    "User Guide": "Guide de l'utilisateur",
+    "Dashboard": "Tableau de bord",
+    "Contact": "Contact"
   },
   "home": {
     "Student Learning Stages": "Étapes d'apprentissages des élèves",
@@ -188,6 +190,49 @@
     "Italien": "Italien",
     "Espagnol": "Espagnol",
     "Arabe": "Arabe",
-    "Anglais": "Anglais"
+    "Anglais": "Anglais",
+    "Welcome": "Bienvenue",
+    "Choose how you like to get started": "Choisissez comment vous souhaitez commencer",
+    "Already have an account?": "Vous avez déjà un compte ?",
+    "Signup": "S'inscrire",
+    "Submit": "Soumettre",
+    "To proceed as a guest, please enter your email address for verification": "Pour continuer en tant qu'invité, veuillez entrer votre adresse e-mail pour vérification."
+  },
+  "personalInformation": {
+    "Teacher Comment Hub": "Plateforme de commentaires des enseignants",
+    "Personal Information": "Informations personnelles",
+    "Subscription Details": "Détails de l'abonnement",
+    "Account Settings": "Paramètres du compte",
+    "Log Out": "Se déconnecter",
+    "Change Picture": "Changer la photo",
+    "Full Name": "Nom complet",
+    "Enter your full name": "Entrez votre nom complet",
+    "Email Address": "Adresse e-mail",
+    "Enter your email address": "Entrez votre adresse e-mail",
+    "Phone Number (Optional)": "Numéro de téléphone (Optionnel)",
+    "+123456789": "+123456789",
+    "School Name (Optional)": "Nom de l'école (Optionnel)",
+    "Enter your school name": "Entrez le nom de votre école",
+    "Save Changes": "Enregistrer les modifications",
+    "Change Password": "Changer le mot de passe",
+    "Enter New Password": "Entrez un nouveau mot de passe",
+    "New Password": "Nouveau mot de passe",
+    "Confirm Password": "Confirmez le mot de passe",
+    "Submit": "Soumettre",
+    "Account Delete": "Suppression du compte",
+    "Delete Account": "Supprimer le compte"
+  },
+  "contact": {
+    "Contact Us": "Contactez-nous",
+    "Feel free to share your feedback; it is valuable to us": "N'hésitez pas à partager vos commentaires ; ils sont précieux pour nous.",
+    "Full Name": "Nom complet",
+    "Enter your Name": "Entrez votre nom",
+    "Email Address": "Adresse e-mail",
+    "Enter Your Email": "Entrez votre e-mail",
+    "Indicate your Cycle/Term/Stage": "Indiquez votre cycle/trimestre/étape",
+
+    "Your Suggestion": "Votre suggestion",
+    "Tell us what you'd like to improve or add to the app": "Dites-nous ce que vous aimeriez améliorer ou ajouter à l'application...",
+    "Submit": "Soumettre"
   }
 }

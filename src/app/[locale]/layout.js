@@ -1,16 +1,15 @@
 import ScrollToTopButton from "@/components/ScroltopBUtton/ScrolTopButton";
 import "./globals.css";
-
 import NavbarWithConditionalRendering from "@/components/layouts/NavberwithConditional";
 import { redirect, routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-
 import { Inter, Roboto_Mono } from "next/font/google";
-
-
 import ProtectedRoute from "@/components/ProtectedRoutes/ProtechtedRoutes";
 import { Toaster } from "sonner";
+import ReduxProviders from "@/redux/lib/ReduxProviders";
+
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,7 +50,9 @@ export default async function RootLayout({ children, params }) {
                 <NavbarWithConditionalRendering></NavbarWithConditionalRendering>
               </div>
               <Toaster richColors position="top-center" />
+              <ReduxProviders>
               {children}
+              </ReduxProviders>
               <ScrollToTopButton></ScrollToTopButton>
             </div>
           </NextIntlClientProvider>

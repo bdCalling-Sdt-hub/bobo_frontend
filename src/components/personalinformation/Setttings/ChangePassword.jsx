@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ChangePassword = () => {
+  const t = useTranslations("personalInformation");
   const {
     register,
     handleSubmit,
@@ -31,21 +33,21 @@ const ChangePassword = () => {
       className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto"
     >
       <h1 className="mb-5 text-center text-2xl font-semibold">
-        Change Password
+        {t("Change Password")}
       </h1>
       <div className="grid w-full items-center gap-2">
         <Label
           htmlFor="newPassword"
           className="text-primary-black mb-1 font-semibold"
         >
-          Enter New Password
+          {t("Enter New Password")}
         </Label>
 
         <div className="relative">
           <Input
             type={showNewPass ? "text" : "password"}
             id="newPassword"
-            placeholder="New Password"
+            placeholder={t("New Password")}
             {...register("newPassword", {
               required: "New Password is required",
               pattern: {
@@ -65,7 +67,7 @@ const ChangePassword = () => {
         </div>
 
         {errors.newPassword && (
-          <p className="text-danger mt-1">{errors.newPassword.message}</p>
+          <p className="mt-1 text-danger">{errors.newPassword.message}</p>
         )}
       </div>
 
@@ -74,7 +76,7 @@ const ChangePassword = () => {
           htmlFor="confirmPassword"
           className="text-primary-black mb-1 font-semibold"
         >
-          Confirm Password
+          {t("Confirm Password")}
         </Label>
 
         <div className="relative">
@@ -96,7 +98,7 @@ const ChangePassword = () => {
         </div>
 
         {errors.confirmPassword && (
-          <p className="text-danger mt-1">{errors.confirmPassword.message}</p>
+          <p className="mt-1 text-danger">{errors.confirmPassword.message}</p>
         )}
       </div>
 
@@ -106,7 +108,7 @@ const ChangePassword = () => {
         className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-black text-center text-xl"
       >
         {/* {isLoading ? <CustomLoader /> : "Submit"} */}
-        Submit
+        {t("Submit")}
       </Button>
 
       {/* {formError && <CustomFormError formError={formError} />} */}

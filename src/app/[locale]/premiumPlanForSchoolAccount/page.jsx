@@ -29,9 +29,9 @@ const PremiumPricingTableSchool = () => {
   ];
 
   return (
-    <div className="mx-auto flex h-screen min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
-      <div className="rounded-md bg-subs p-20">
-        <h1 className="mb-4 text-center text-3xl font-bold text-white">
+    <div className="mx-auto flex h-full min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
+      <div className="m-5 rounded-md bg-subs p-2 pb-10 md:p-20">
+        <h1 className="mb-4 text-center text-lg font-bold text-white md:text-3xl">
           Premium Plan: All Cycles, All Features
         </h1>
         <p className="mb-8 text-center text-lg text-white">
@@ -51,7 +51,7 @@ const PremiumPricingTableSchool = () => {
             />
           ))}
         </div>
-      </div>
+      </div>s
     </div>
   );
 };

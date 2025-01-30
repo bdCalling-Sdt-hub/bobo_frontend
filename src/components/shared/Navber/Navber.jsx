@@ -38,7 +38,7 @@ const Navber = () => {
     setIsLanguageLoading(false);
   }, [locale]);
 
-  // Translator from next-intl
+  // Translator from next-intl================================================
   const t = useTranslations("navbar");
   const router = useRouter();
   const [isUserGuide, setIsUserGuide] = useState(false);
@@ -119,7 +119,7 @@ const Navber = () => {
                 onClick={toggleDrawer}
                 className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
               >
-                Dashboard
+                {t("Dashboard")}
               </Button>
             </Link>
 
@@ -150,7 +150,7 @@ const Navber = () => {
             href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
           >
             <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto">
-              Dashboard
+              {t("Dashboard")}
             </Button>
           </Link>
 

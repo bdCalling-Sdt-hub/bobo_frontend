@@ -8,8 +8,10 @@ import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/toast";
 import Image from "next/image";
 import profile from "/public/PImage.jpg";
+import { useTranslations } from "next-intl";
 
 const ProfileForm = () => {
+  const t = useTranslations("personalInformation");
   const {
     register,
     handleSubmit,
@@ -59,7 +61,9 @@ const ProfileForm = () => {
   return (
     <div className="mx-auto mt-2 w-full max-w-5xl bg-white bg-opacity-70 pt-0">
       <CardHeader>
-        <CardTitle className="text-center">Personal Information</CardTitle>
+        <CardTitle className="text-center">
+          {t("Personal Information")}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="text-center">
@@ -79,7 +83,7 @@ const ProfileForm = () => {
               className="cursor-pointer bg-darkBlue text-white"
               onClick={() => document.getElementById("imageUpload").click()}
             >
-              Change Picture
+              {t("Change Picture")}
             </Button>
             <Input
               type="file"
@@ -94,11 +98,11 @@ const ProfileForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
           {/* Full Name */}
           <div>
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label htmlFor="fullName">{t("Full Name")}</Label>
             <Input
               type="text"
               id="fullName"
-              placeholder="Enter your full name"
+              placeholder={t("Enter your full name")}
               className="border-black"
               {...register("fullName", { required: "Full Name is required" })}
             />
@@ -109,12 +113,12 @@ const ProfileForm = () => {
 
           {/* Email Address */}
           <div>
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email">{t("Email Address")}</Label>
             <Input
               type="email"
               id="email"
               className="border-black"
-              placeholder="Enter your email address"
+              placeholder={t("Enter your email address")}
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -130,7 +134,7 @@ const ProfileForm = () => {
 
           {/* Phone Number */}
           <div>
-            <Label htmlFor="phone">Phone Number (Optional)</Label>
+            <Label htmlFor="phone">{t("Phone Number (Optional)")}</Label>
             <Input
               type="text"
               id="phone"
@@ -150,19 +154,19 @@ const ProfileForm = () => {
 
           {/* School Name */}
           <div>
-            <Label htmlFor="schoolName">School Name (Optional)</Label>
+            <Label htmlFor="schoolName">{t("School Name (Optional)")}</Label>
             <Input
               type="text"
               id="schoolName"
               className="border-black"
-              placeholder="Enter your school name"
+              placeholder={t("Enter your school name")}
               {...register("schoolName")}
             />
           </div>
 
           {/* Save Changes */}
           <Button type="submit" className="w-full bg-darkBlue text-white">
-            Save Changes
+            {t("Save Changes")}
           </Button>
         </form>
       </CardContent>

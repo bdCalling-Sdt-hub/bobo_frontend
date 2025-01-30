@@ -41,10 +41,10 @@ const CycleTwo = () => {
 
       <div className="p-8">
         {showPopup && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-              <h2 className="text-xl font-semibold mb-4">{t("User Guide")}</h2>
-              <p className="text-gray-700 mb-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+              <h2 className="mb-4 text-xl font-semibold">{t("User Guide")}</h2>
+              <p className="mb-6 text-gray-700">
                 {guide}{" "}
                 <Link className="text-blue-600" href="/userguide">
                   {" "}
@@ -67,7 +67,7 @@ const CycleTwo = () => {
 
               <div className="flex justify-end">
                 <Button
-                  className="bg-purple-900 text-white px-4 py-2 rounded hover:bg-gray-600"
+                  className="rounded bg-purple-900 px-4 py-2 text-white hover:bg-gray-600"
                   onClick={closePopup}
                 >
                   {t("Close")}

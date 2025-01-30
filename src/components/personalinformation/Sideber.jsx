@@ -1,30 +1,33 @@
 "use client";
 import { Link, usePathname } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const t = useTranslations("personalInformation");
 
   const navItems = [
     {
-      label: "Personal Information",
+      label: t("Personal Information"),
       path: "/personalInfo",
       icon: <FaUser />,
     },
     {
-      label: "Subscription Details",
+      label: t("Subscription Details"),
       path: "/subscriptionDetails",
-      icon: <FaCog />,
+      icon: <GiTakeMyMoney />,
     },
     {
-      label: "Account Settings",
+      label: t("Account Settings"),
       path: "/settings",
       icon: <FaCog />,
     },
 
     {
-      label: "Log Out",
+      label: t("Log Out"),
       path: "/guestAuth/welComePage",
       icon: <FaSignOutAlt />,
     },
@@ -34,7 +37,7 @@ const Sidebar = () => {
     <>
       {/* Sidebar for larger screens */}
       <div className="hidden h-[400px] w-80 bg-lightBlue p-6 md:block">
-        <h2 className="mb-8 text-lg font-bold">Teacher Comment Hub</h2>
+        <h2 className="mb-8 text-lg font-bold">{t("Teacher Comment Hub")}</h2>
         <ul>
           {navItems.map((item) => (
             <li key={item.path} className="mb-4">
@@ -55,7 +58,7 @@ const Sidebar = () => {
       </div>
 
       {/* Tab Navigation for smaller screens */}
-      <div className="z-50 mt-20 flex justify-between gap-2 bg-lightBlue p-4 md:hidden">
+      <div className="z-50 mt-20 flex justify-center gap-10 bg-lightBlue p-4 md:hidden">
         {navItems.map((item) => (
           <Link
             key={item.path}
@@ -67,7 +70,7 @@ const Sidebar = () => {
             }`}
           >
             {item.icon}
-            <span className="absolute bottom-full z-50 hidden text-sm font-bold text-black group-hover:block">
+            <span className="absolute bottom-full z-50 hidden text-[12px] font-bold text-black group-hover:block">
               {item.label}
             </span>
           </Link>

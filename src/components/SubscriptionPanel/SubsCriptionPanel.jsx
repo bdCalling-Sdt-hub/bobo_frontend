@@ -4,7 +4,7 @@ import { Link } from "@/i18n/routing";
 
 const SubsCriptionPanel = () => {
   return (
-    <div className="rounded-lg bg-subs p-8 py-20 text-center md:w-[50%]">
+    <div className="mx-2 mt-28 rounded-lg bg-subs p-8 py-20 text-center md:w-[50%]">
       <h1 className="mb-4 text-2xl font-bold text-white">
         Upgrade to an Individual Teacher Account
       </h1>
