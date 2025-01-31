@@ -13,22 +13,53 @@ import { useTranslations } from "next-intl";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 
 import { Link, useRouter } from "@/i18n/routing";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
+import CustomFormError from "@/components/CustomError/CustomError";
+import { useDispatch } from "react-redux";
+import { useSignInMutation } from "@/redux/api/authApi";
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import { setUser } from "@/redux/features/authSlice";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+  const [formError, setFormError] = useState(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  // Login api handlers
+
+  const [signin, { isLoading }] = useSignInMutation();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    localStorage.setItem("userEmail", data.email);
+    try {
+      const res = await signin(data).unwrap();
+      if (res.success) {
+        toast.success("Login successful");
 
-    router.push("/subscriptionPanel");
+        // Set user info into store
+        dispatch(
+          setUser({
+            user: jwtDecode(res?.data?.accessToken),
+            token: res?.data?.accessToken,
+          }),
+        );
+
+        if (res?.data?.user?.role === "2") {
+          return router.push("/home");
+        }
+        router.refresh();
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(error?.data?.message || error?.error);
+    }
   };
 
   const t = useTranslations("cycleOne");
@@ -109,19 +140,16 @@ export default function LoginForm() {
 
       <div>
         <Button
+          loading={isLoading}
+          disabled={isLoading}
           type="submit"
-          className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 px-12 text-white"
+          className={cn(
+            "mt-10 h-[2.8rem] w-full rounded-xl border bg-purple-900 font-medium capitalize",
+            isLoading && "cursor-not-allowed",
+          )}
         >
-          SIGN IN
+          {isLoading ? <CustomLoader /> : "SIGN IN"}
         </Button>
-
-        {/* <Button
-          varient="default"
-          type="submit"
-          className="mt-10 block h-[2.7rem] w-full border-2 border-black bg-transparent text-black hover:bg-purple-950 hover:text-white"
-        >
-          {t("Continue as a Guest")}
-        </Button> */}
       </div>
 
       <div className="mt-3 flex items-center justify-center gap-2">
@@ -130,6 +158,8 @@ export default function LoginForm() {
           Register
         </Link>
       </div>
+      {/* Show form error message */}
+      {formError && <CustomFormError formError={formError} extraClass="mt-4" />}
     </form>
   );
 }

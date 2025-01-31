@@ -1,5 +1,6 @@
 "use client";
 
+import CustomFormError from "@/components/CustomError/CustomError";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 // import CustomFormError from "@/components/CustomFormError/CustomFormError";
 
@@ -10,16 +11,21 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useRouter } from "@/i18n/routing";
+import { useVerifyEmailMutation } from "@/redux/api/authApi";
 
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function VerifyOtpForm() {
   const [value, setValue] = useState("");
   const [showRequired, setShowRequired] = useState(false);
-  //   const [formError, setFormError] = useState(null);
+  const [formError, setFormError] = useState(null);
   const router = useRouter();
+
+  // verify otp handeler
+  const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
 
   // Verify otp handler
   const handleVerifyOtp = async () => {
@@ -27,8 +33,20 @@ export default function VerifyOtpForm() {
       setShowRequired(true);
       return;
     }
-    console.log("value: " + value);
-    router.push("/auth/setPassword");
+
+    try {
+      const res = await verifyEmail({ otp: Number(value) }).unwrap();
+      if (res.success) {
+        toast.success("OTP Verified", "Please login to your account.");
+
+        router.push("/auth/login");
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(
+        error.response?.data?.error || "Error verifying OTP. Please try again.",
+      );
+    }
   };
 
   // Resend otp handler
@@ -65,7 +83,7 @@ export default function VerifyOtpForm() {
           pattern={REGEXP_ONLY_DIGITS}
           onChange={(value) => setValue(value)}
         >
-          <InputOTPGroup className="flex items-center md:gap-x-5 gap-x-4">
+          <InputOTPGroup className="flex items-center gap-x-4 md:gap-x-5">
             <InputOTPSlot
               index={0}
               className="h-[63px] border border-black text-3xl font-extrabold md:w-[50px]"
@@ -111,12 +129,12 @@ export default function VerifyOtpForm() {
       </Button> */}
 
       <Button
-        // disabled={isLoading || value?.length < 6}
+        disabled={isLoading || value?.length < 6}
         type="submit"
         className="mt-8 h-[2.7rem] w-full bg-black font-medium capitalize text-white"
         onClick={handleVerifyOtp}
       >
-        {/* {isLoading ? <CustomLoader /> : "Verify OTP"} */}
+        {isLoading ? <CustomLoader /> : "Verify OTP"}
         Verify OTP
       </Button>
 
@@ -132,7 +150,7 @@ export default function VerifyOtpForm() {
         </Button>
       </div>
 
-      {/* {formError && <CustomFormError formError={formError} />} */}
+      {formError && <CustomFormError formError={formError} />}
     </div>
   );
 }
