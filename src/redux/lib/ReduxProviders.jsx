@@ -1,13 +1,15 @@
 "use client";
 import { Provider } from "react-redux";
-import { store } from "../store";
+import { persistor, store } from "../store";
+import { PersistGate } from "redux-persist/integration/react";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 
-const ReduxProviders = ({ children }) => {
+export default function ReduxProviders({ children }) {
   return (
-    <div>
-      <Provider store={store}>{children}</Provider>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={<CustomLoader />} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
   );
-};
-
-export default ReduxProviders;
+}

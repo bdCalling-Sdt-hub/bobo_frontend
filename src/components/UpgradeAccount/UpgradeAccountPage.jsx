@@ -1,10 +1,16 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import up1 from "/public/up1.png";
 import up2 from "/public/up2.png";
 import { Button } from "../ui/button";
-import { Link } from "@/i18n/routing";
+import CustomLoader from "../CustomLoader/CustomLoader";
+import { useRouter } from "@/i18n/routing";
+
 const UpgradeAccountPage = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState({});
+
   const card = [
     {
       title: "Upgrade to an Individual Teacher Account",
@@ -33,6 +39,16 @@ const UpgradeAccountPage = () => {
       path: "/schoolAccountAuth/initialForm",
     },
   ];
+
+
+  const handleUpgrade = (index, path) => {
+    setLoading((prev) => ({ ...prev, [index]: true })); 
+
+    // Simulate loading or API call delay
+    setTimeout(() => {
+      router.push(path);
+    }, 1500);
+  };
 
   return (
     <div
@@ -68,11 +84,14 @@ const UpgradeAccountPage = () => {
                   </li>
                 ))}
               </ul>
-              <Link href={card.path} className="w-full">
-                <Button className="hover: w-full rounded-md bg-purple-950 px-6 py-2 text-xl text-white hover:border-2 hover:border-black hover:bg-transparent hover:text-black">
-                  {card.buttonText}
-                </Button>
-              </Link>
+              {/* Button Click to Show Loading and Navigate */}
+              <Button
+                onClick={() => handleUpgrade(index, card.path)}
+                disabled={loading[index]}
+                className="w-full rounded-md bg-purple-950 px-6 py-2 text-xl text-white hover:border-2 hover:border-black hover:bg-transparent hover:text-black"
+              >
+                {loading[index] ? <CustomLoader /> : card.buttonText}
+              </Button>
             </div>
           ))}
         </div>

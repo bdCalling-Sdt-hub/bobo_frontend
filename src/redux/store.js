@@ -1,12 +1,30 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/baseApi"; 
-// import counterReducer from "./features/CounterSlice";
+import storage from "redux-persist/lib/storage";
+import { 
+    FLUSH, PAUSE, PERSIST, persistReducer, persistStore, 
+    PURGE, REGISTER, REHYDRATE 
+} from "redux-persist";
+import authReducer from "./features/authSlice";
+
+const persistConfig = {
+    key: "teacher-comment-hub",
+    storage,
+};
+
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
     reducer: {
-        // counter: counterReducer,
         [baseApi.reducerPath]: baseApi.reducer, 
+        auth: persistedAuthReducer, 
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(baseApi.middleware),
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            }
+        }).concat(baseApi.middleware),
 });
+
+export const persistor = persistStore(store);

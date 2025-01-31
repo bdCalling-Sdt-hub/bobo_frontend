@@ -10,6 +10,7 @@ import ReduxProviders from "@/redux/lib/ReduxProviders";
 
 
 
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

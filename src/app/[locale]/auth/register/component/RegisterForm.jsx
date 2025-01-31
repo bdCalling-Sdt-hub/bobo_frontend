@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useRouter } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,6 @@ import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useSignUpMutation } from "@/redux/api/authApi";
 import Swal from "sweetalert2";
 import CustomFormError from "@/components/CustomError/CustomError";
-import Link from "next/link";
 
 const DEFAULT_COUNTRY = "US";
 
