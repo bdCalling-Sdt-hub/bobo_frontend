@@ -12,6 +12,10 @@ const baseQuery = fetchBaseQuery({
         if (signUpToken) {
             headers.set("token", signUpToken);
         }
+        const guestToken = sessionStorage.getItem("guestToken");
+        if (guestToken) {
+            headers.set("token", guestToken);
+        }
        
         return headers;
     },

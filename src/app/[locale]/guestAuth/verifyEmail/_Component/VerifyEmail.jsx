@@ -39,6 +39,8 @@ export default function VerifyEmailForm() {
           showConfirmButton: false,
           timer: 2000,
         });
+        sessionStorage.setItem("guestToken", res.data.otpToken.token);
+
         router.push("/auth/VerifyOtp");
         reset();
         setFormError(null);

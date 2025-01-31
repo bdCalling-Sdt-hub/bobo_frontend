@@ -39,6 +39,10 @@ export default function VerifyOtpForm() {
       if (res.success) {
         toast.success("OTP Verified", "Please login to your account.");
 
+        if (res.data?.user?.role === "1") {
+          return router.push("/home");
+        }
+
         router.push("/auth/login");
         setFormError(null);
       }
