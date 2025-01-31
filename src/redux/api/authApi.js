@@ -1,3 +1,5 @@
+
+
 const { baseApi } = require("./baseApi");
 
 
@@ -18,6 +20,15 @@ const authApi = baseApi.injectEndpoints({
             body: data
         })
     }),
+
+    GuestAuthSignUp : builder.mutation({
+        query:(data)=>({
+            url: '/auth/create-guest',
+            method: 'POST',
+            body: data
+        })
+    }),
+
     verifyEmail : builder.mutation({
         query:(data)=>({
             url: '/auth/verify-otp',
@@ -52,4 +63,4 @@ const authApi = baseApi.injectEndpoints({
 
 });
 
-export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation}=authApi
+export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation,useGuestAuthSignUpMutation}=authApi

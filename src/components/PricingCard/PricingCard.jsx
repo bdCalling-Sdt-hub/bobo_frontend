@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import { useRouter } from "@/i18n/routing";
 import TeacherQuantityModal from "../TeacherQuantityModal/TeacherQuantityModal";
 import { useState } from "react";
-
 export const PricingCard = ({
   price,
   title,

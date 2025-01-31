@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { useState } from "react";
 import CustomLoader from "../CustomLoader/CustomLoader";
+import { motion } from "framer-motion";
 
 const Categories = () => {
   const router = useRouter();
@@ -49,15 +50,29 @@ const Categories = () => {
   };
 
   return (
-    <div className="grid items-center justify-center gap-8 lg:grid-cols-2 xl:grid-cols-3">
+    <div className="grid items-center justify-center gap-20 lg:grid-cols-2 xl:grid-cols-3">
       {category.map((item, index) => (
-        <div
+        <motion.div
           key={item.id}
           className={`${
             bgColors[index % bgColors.length]
-          } relative rounded-lg pb-8`}
+          } relative rounded-lg border-2 pb-8`}
+          animate={{
+            boxShadow: [
+              "0px 0px 15px rgba(255, 87, 51, 0.8)", // Red
+              "0px 0px 15px rgb(99, 77, 170)", // black
+              "0px 0px 15px rgba(40, 167, 69, 0.8)", // Green
+              "0px 0px 15px rgba(0, 123, 255, 0.8)", // Blue
+              "0px 0px 15px rgba(255, 87, 51, 0.8)", // Back to Red
+            ],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+          }}
         >
-          <div>
+          <div className="">
             <Image className="h-[186px] w-[332px]" src={item.img} alt="img" />
             <div className="relative m-auto -mt-10 flex w-11/12 flex-col items-center justify-center space-y-3 rounded-2xl bg-white py-5">
               <h1 className="text-2xl">{t(`${item.title}`)}</h1>
@@ -73,7 +88,7 @@ const Categories = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

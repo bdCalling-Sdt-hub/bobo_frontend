@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+
 
 const SchoolUpgradePlan = () => {
   const plans = [
@@ -31,17 +31,15 @@ const SchoolUpgradePlan = () => {
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="card1 mb-5 flex w-full flex-col space-y-9 rounded-lg border border-gray-200 bg-white p-3 shadow-md lg:w-1/3"
+            className="card card1 w-80 cursor-pointer rounded-lg bg-white p-6 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
           >
             <div>
               <h2 className="text-3xl font-bold text-darkBlue">{plan.price}</h2>
-              <div className="mt-2 flex items-center gap-2">
-                <CheckCircle className="text-blue-500" size={20} />
-                <span className="text-sm font-medium text-gray-700">
-                  {plan.title}
-                </span>
-              </div>
             </div>
+            <div className="mt-5 flex-1">
+              <p className="text-center text-gray-600">{plan.title}</p>
+            </div>
+
             <div className="flex-1">
               <p className="text-sm text-gray-600">{plan.description}</p>
             </div>

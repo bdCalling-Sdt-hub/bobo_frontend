@@ -1,34 +1,54 @@
 "use client";
 
+import CustomFormError from "@/components/CustomError/CustomError";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "@/i18n/routing";
+import { useGuestAuthSignUpMutation } from "@/redux/api/authApi";
 import { Label } from "@radix-ui/react-label";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 export default function VerifyEmailForm() {
   const t = useTranslations("cycleOne");
+  const [formError, setFormError] = useState(null);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const router = useRouter();
 
+  const [guestAuthSignUp, { isLoading }] = useGuestAuthSignUpMutation();
+
   const onSubmit = async (data) => {
-    console.log(data);
-    // router.push("/auth/VerifyOtp");
-    Swal.fire({
-      title:
-        "Your email has been successfully verified. You now have guest access to the platform with trial restrictions.!",
-      icon: "success",
-      draggable: true,
-    });
-    router.push("/home");
+    try {
+      const res = await guestAuthSignUp(data).unwrap();
+      if (res.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Email Verification Request Sent",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        router.push("/auth/VerifyOtp");
+        reset();
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(
+        error.response?.data?.error ||
+          "Something went wrong. Please try again.",
+      );
+    }
   };
 
   return (
@@ -63,9 +83,14 @@ export default function VerifyEmailForm() {
         {errors.email && <p className="text-red-500">Email is required</p>}
       </div>
 
-      <Button className="mt-6 h-10 w-full rounded-lg bg-purple-950 py-2 text-center text-xl text-white">
-        {t("Submit")}
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className="mt-6 h-10 w-full rounded-lg bg-purple-950 py-2 text-center text-xl text-white"
+      >
+        {isLoading ? <CustomLoader /> : t("Submit")}
       </Button>
+      {formError && <CustomFormError formError={formError} />}
     </form>
   );
 }

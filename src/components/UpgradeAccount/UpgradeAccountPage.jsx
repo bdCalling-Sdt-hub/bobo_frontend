@@ -6,6 +6,7 @@ import up2 from "/public/up2.png";
 import { Button } from "../ui/button";
 import CustomLoader from "../CustomLoader/CustomLoader";
 import { useRouter } from "@/i18n/routing";
+import { CardBody, CardContainer } from "../ui/3d-card";
 
 const UpgradeAccountPage = () => {
   const router = useRouter();
@@ -40,9 +41,8 @@ const UpgradeAccountPage = () => {
     },
   ];
 
-
   const handleUpgrade = (index, path) => {
-    setLoading((prev) => ({ ...prev, [index]: true })); 
+    setLoading((prev) => ({ ...prev, [index]: true }));
 
     // Simulate loading or API call delay
     setTimeout(() => {
@@ -55,16 +55,16 @@ const UpgradeAccountPage = () => {
       className="h-screen items-center justify-center bg-cover bg-center md:flex"
       style={{ backgroundImage: "url(/authbg.png)" }}
     >
-      <div className="flex-col items-center rounded-lg bg-gray-50 p-5 md:flex md:px-20 md:py-20">
+      <div className="flex-col items-center rounded-lg bg-gray-50 p-5 md:flex">
         <h1 className="mb-6 text-center font-semibold text-gray-800 md:text-2xl">
           Your trial has ended! Continue using our platform by upgrading to one
           of the plans below.
         </h1>
-        <div className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
+        <CardContainer className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
           {card.map((card, index) => (
-            <div
+            <CardBody
               key={index}
-              className="w-full flex-col items-center rounded-lg border bg-white p-6 text-center shadow-md md:flex"
+              className="m-0 h-auto w-full flex-col items-center rounded-lg border bg-white p-6 text-center shadow-md md:flex"
             >
               <Image
                 src={card.image}
@@ -92,9 +92,9 @@ const UpgradeAccountPage = () => {
               >
                 {loading[index] ? <CustomLoader /> : card.buttonText}
               </Button>
-            </div>
+            </CardBody>
           ))}
-        </div>
+        </CardContainer>
       </div>
     </div>
   );

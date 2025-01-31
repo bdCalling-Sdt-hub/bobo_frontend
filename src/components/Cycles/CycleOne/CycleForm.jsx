@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "@/i18n/routing";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -187,11 +188,7 @@ const CycleForm = () => {
             className="mb-20 w-full bg-purple-950"
             disabled={isLoading}
           >
-            {isLoading ? (
-              <div className="spinner-border h-6 w-6 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
-            ) : (
-              t("Generate Comment")
-            )}
+            {isLoading ? <CustomLoader /> : t("Generate Comment")}
           </Button>
         </div>
 

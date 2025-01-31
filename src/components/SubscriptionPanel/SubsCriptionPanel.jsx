@@ -14,7 +14,7 @@ const SubsCriptionPanel = () => {
       </p>
       <div className="justify-center gap-6 space-y-5 md:flex md:space-y-0">
         {/* Standard Plan */}
-        <div className="rounded-lg bg-white p-6 text-center shadow-lg md:w-1/2">
+        <div className="rounded-lg bg-white p-6 text-center shadow-lg duration-1000 hover:scale-95 md:w-1/2">
           <h2 className="mb-2 text-lg font-semibold text-black">
             Standard Plan
           </h2>
@@ -28,7 +28,7 @@ const SubsCriptionPanel = () => {
           </Link>
         </div>
         {/* Premium Plan */}
-        <div className="rounded-lg bg-white p-6 text-center shadow-lg md:w-1/2">
+        <div className="rounded-lg bg-white p-6 text-center shadow-lg duration-1000 hover:scale-95 md:w-1/2">
           <h2 className="mb-2 text-lg font-semibold text-black">
             Premium Plan
           </h2>

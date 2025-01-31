@@ -52,7 +52,7 @@ export default function LoginForm() {
         );
 
         if (res?.data?.user?.role === "2") {
-          return router.push("/home");
+          return router.push("/subscriptionPanel");
         }
         router.refresh();
         setFormError(null);
