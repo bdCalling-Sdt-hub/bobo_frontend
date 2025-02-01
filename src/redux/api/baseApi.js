@@ -8,7 +8,7 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set("Authorization", `Bearer ${token}`);
         }
-        const signUpToken = sessionStorage.getItem("signupToken");
+        const signUpToken = localStorage.getItem("signupToken");
         if (signUpToken) {
             headers.set("token", signUpToken);
         }
@@ -16,16 +16,27 @@ const baseQuery = fetchBaseQuery({
         if (guestToken) {
             headers.set("token", guestToken);
         }
+        const forgetPasswordToken = localStorage.getItem("signupToken");
+        if (forgetPasswordToken) {
+            headers.set("token", forgetPasswordToken);
+        }
        
         return headers;
     },
 });
 const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
-  
+
+    const refreshToken = localStorage.getItem("refreshToken");
+    console.log("refresh",refreshToken)
+   
     if (result?.error?.status === 401) {
       const res = await fetch(`http://192.168.10.147:3000/api/auth/refresh`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ refreshToken: refreshToken }),
         credentials: "include",
       });
   

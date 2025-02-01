@@ -9,6 +9,13 @@ const pakageApi = baseApi.injectEndpoints({
                 method: 'GET',
             }),
         }),
+        getPremiumPackages: builder.query({
+            query: () => ({
+                url: '/package?type=premium',
+                method: 'GET',
+            }),
+        }),
+
     }),
 
  
@@ -16,4 +23,4 @@ const pakageApi = baseApi.injectEndpoints({
 
 
 
-export const {useGetStanderdPackagesQuery}=pakageApi
+export const {useGetStanderdPackagesQuery,useGetPremiumPackagesQuery}=pakageApi

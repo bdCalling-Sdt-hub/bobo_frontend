@@ -1,5 +1,4 @@
 "use client";
-
 import CustomFormError from "@/components/CustomError/CustomError";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 // import CustomFormError from "@/components/CustomFormError/CustomFormError";
@@ -11,21 +10,26 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useRouter } from "@/i18n/routing";
-import { useVerifyEmailMutation } from "@/redux/api/authApi";
-
+import {
+  useResendOtpMutation,
+  useVerifyEmailMutation,
+} from "@/redux/api/authApi";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-
 export default function VerifyOtpForm() {
   const [value, setValue] = useState("");
+  const search = useSearchParams();
+  const nextpath = search.get("next") || "/auth/login";
+  console.log("nextpath", nextpath);
   const [showRequired, setShowRequired] = useState(false);
   const [formError, setFormError] = useState(null);
   const router = useRouter();
 
   // verify otp handeler
   const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
+  const [resendOtp, { isLoading: resendOtpLoading }] = useResendOtpMutation();
 
   // Verify otp handler
   const handleVerifyOtp = async () => {
@@ -42,35 +46,33 @@ export default function VerifyOtpForm() {
         if (res.data?.user?.role === "1") {
           return router.push("/home");
         }
+        router.push(nextpath);
 
-        router.push("/auth/login");
         setFormError(null);
       }
     } catch (error) {
-      setFormError(
-        error.response?.data?.error || "Error verifying OTP. Please try again.",
-      );
+      const errorMessage = error?.data?.message;
+      setFormError(errorMessage || "Error verifying OTP. Please try again.");
     }
   };
 
   // Resend otp handler
-  //   const handleResendOtp = async () => {
-  //     const toastId = toast.loading("Sending...");
-
-  //     try {
-  //       const res = await resendOtp().unwrap();
-
-  //       if (res?.success) {
-  //         successToast("OTP re-sent successfully", toastId);
-
-  //         // Reset signUpToken in session-storage
-  //         setToSessionStorage("signUpToken", res?.data?.token);
-  //       }
-  //     } catch (error) {
-  //       setFormError(error?.data?.message || error?.error);
-  //       toast.dismiss(toastId);
-  //     }
-  //   };
+  const handleResendOtp = async () => {
+    const toastId = toast.loading("Sending...");
+    try {
+      const res = await resendOtp().unwrap();
+      if (res?.success) {
+        toast.success("OTP re-sent successfully", toastId);
+        toast.dismiss(toastId);
+        // Reset forgotPassToken in localStorage
+        localStorage.setItem("signupToken", res?.data?.token);
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(error?.data?.message || error?.error);
+      toast.dismiss(toastId);
+    }
+  };
 
   return (
     <div className="text-primary-black m-3 w-full rounded-lg bg-white bg-opacity-70 p-1.5 md:p-5 lg:mx-auto lg:w-[35%]">
@@ -122,16 +124,6 @@ export default function VerifyOtpForm() {
         )}
       </div>
 
-      {/* Resend otp button */}
-      {/* <Button
-        variant="outline"
-        className="absolute -top-9 right-0 h-6 rounded-full border border-primary-black text-xs font-medium"
-        disabled={resendOtpLoading}
-        onClick={handleResendOtp}
-      >
-        Resend Otp <RotateCw size={14} className="ml-2" />
-      </Button> */}
-
       <Button
         disabled={isLoading || value?.length < 6}
         type="submit"
@@ -139,15 +131,14 @@ export default function VerifyOtpForm() {
         onClick={handleVerifyOtp}
       >
         {isLoading ? <CustomLoader /> : "Verify OTP"}
-        Verify OTP
       </Button>
-
-      {/* Resend otp button */}
+      {/* 
+      Resend otp button */}
       <div className="mx-auto my-2 max-w-max">
         <Button
           variant="link"
-          //   disabled={resendOtpLoading}
-          //   onClick={handleResendOtp}
+          disabled={resendOtpLoading}
+          onClick={handleResendOtp}
           className=""
         >
           Resend Otp

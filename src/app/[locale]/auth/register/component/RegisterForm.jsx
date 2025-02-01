@@ -47,10 +47,13 @@ const RegisterForm = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        if (res?.data?.user?.isverified) {
+          router.push("/auth/login");
+        }
         // set signUptoken in session storage
-        sessionStorage.setItem("signupToken", res.data.otpToken.token);
+        localStorage.setItem("signupToken", res.data.otpToken.token);
 
-        router.push("/auth/VerifyOtp");
+        router.push("/auth/VerifyOtp?next=/auth/login");
         reset();
         setFormError(null);
       }

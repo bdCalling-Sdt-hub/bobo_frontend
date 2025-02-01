@@ -40,9 +40,11 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     try {
       const res = await signin(data).unwrap();
+      console.log("API Response:", res.data);
       if (res.success) {
         toast.success("Login successful");
 
+        localStorage.setItem("refreshToken", res?.data?.refreshToken);
         // Set user info into store
         dispatch(
           setUser({
@@ -54,7 +56,6 @@ export default function LoginForm() {
         if (res?.data?.user?.role === "2") {
           return router.push("/subscriptionPanel");
         }
-        router.refresh();
         setFormError(null);
       }
     } catch (error) {

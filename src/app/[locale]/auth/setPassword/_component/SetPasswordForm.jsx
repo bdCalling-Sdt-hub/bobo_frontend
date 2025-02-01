@@ -1,14 +1,19 @@
 "use client";
+import CustomFormError from "@/components/CustomError/CustomError";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 // import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "@/i18n/routing";
+import { useResetPasswordMutation } from "@/redux/api/authApi";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const SetPasswordForm = () => {
+  const [formError, setFormError] = useState(null);
   const {
     register,
     handleSubmit,
@@ -18,9 +23,22 @@ const SetPasswordForm = () => {
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const router = useRouter();
-  const onUpdatePassSubmit = (data) => {
-    console.log(data);
-    router.push("/");
+
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+
+  const onUpdatePassSubmit = async (data) => {
+    try {
+      const res = await resetPassword(data).unwrap();
+      if (res.success) {
+        toast.success("Password saved successfully");
+        router.push("/auth/login");
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(
+        error?.data?.message || "Something went wrong. Please try again.",
+      );
+    }
   };
   return (
     <form
@@ -98,14 +116,14 @@ const SetPasswordForm = () => {
 
       <Button
         type="submit"
-        //   disabled={isLoading}
+        disabled={isLoading}
         className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-purple-950 text-center"
       >
-        {/* {isLoading ? <CustomLoader /> : "Submit"} */}
+        {isLoading ? <CustomLoader /> : "Submit"}
         Submit
       </Button>
 
-      {/* {formError && <CustomFormError formError={formError} />} */}
+      {formError && <CustomFormError formError={formError} />}
     </form>
   );
 };

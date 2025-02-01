@@ -1,32 +1,30 @@
+"use client";
+import { useGetPremiumPackagesQuery } from "@/redux/api/packageApi";
 import { PricingCard } from "../PricingCard/PricingCard";
+import ErrorPage from "../Error";
 
 const PremiumPricingTable = () => {
-  const plans = [
-    {
-      price: "€8.99",
-      title: "Short-Term Plan",
-      duration: "(1 Term / 1 Semester)",
-      description:
-        "This plan covers a single period, ideal for limited use or an extended trial.",
-      comments: 30,
-    },
-    {
-      price: "€16.99",
-      title: "Full-Year Plan",
-      duration: "(2 Terms / 2 Semesters)",
-      description:
-        "This plan covers an entire year in systems operating by semesters or two terms in systems operating by terms.",
-      comments: 60,
-    },
-    {
-      price: "€27.47",
-      title: "Extended-Year Plan",
-      duration: "(3 Terms / 3 Periods)",
-      description:
-        "This plan covers a full year in systems operating by terms.",
-      comments: 90,
-    },
-  ];
+  const { data: plans, isError, isLoading } = useGetPremiumPackagesQuery();
+  if (!plans)
+    return (
+      <ErrorPage message="Something went wrong please try again latter " />
+    );
+
+  const Pakage = plans?.data;
+
+  if (isLoading)
+    return (
+      <div>
+        <CustomLoader />
+      </div>
+    );
+  if (isError) return <p>Error fetching plans</p>;
+
+  const decodeHTML = (html) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
 
   return (
     <div className="mx-auto flex h-full min-h-screen w-full flex-col items-center justify-center bg-[url('/subscription.png')] bg-cover bg-no-repeat py-10 pt-40">
@@ -39,14 +37,15 @@ const PremiumPricingTable = () => {
           across every cycle.
         </p>
         <div className="flex flex-wrap justify-center gap-8">
-          {plans.map((plan, index) => (
+          {Pakage.map((plan, index) => (
             <PricingCard
+              id={plan._id}
               key={index}
               price={plan.price}
-              title={plan.title}
+              title={decodeHTML(plan.shortTitle)}
               duration={plan.duration}
-              description={plan.description}
-              comments={plan.comments}
+              description={plan.shortDescription}
+              comments={plan.comment_limit}
             />
           ))}
         </div>

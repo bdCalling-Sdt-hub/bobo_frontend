@@ -57,147 +57,122 @@ const Navber = () => {
   };
 
   return (
-    <div className="mx-auto w-[80%] justify-between rounded-2xl bg-white bg-opacity-60 p-1 px-4 shadow-md md:flex">
-      {/* ---------------- Avatar -------------- */}
-      <Link href="">
-        <Avatar className="flex items-center justify-center gap-x-5">
-          {role === "school" ? (
-            <Link href={"/editschoolAcount"}>
-              <AvatarImage
-                className="w-10 rounded-full"
-                src="https://github.com/shadcn.png"
-              />
+    <div className="mx-auto flex w-[90%] flex-col items-center justify-between rounded-2xl bg-white bg-opacity-60 p-2 px-4 shadow-md md:flex-row">
+      {/* ---------------- Avatar & Title Section -------------- */}
+      <div className="flex w-full items-center justify-between md:w-auto">
+        <div className="flex justify-between">
+          <div>
+            <Avatar>
+              <Link
+                href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
+              >
+                <AvatarImage
+                  className="w-10 rounded-full"
+                  src="https://github.com/shadcn.png"
+                />
+              </Link>
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </div>
+          <div>
+            <Link href={role === "school" ? "/schoolHome" : "/home"}>
+              <h1 className="ml-12 text-lg font-bold md:text-2xl">
+                {t("Teacher Comment Hub")}
+              </h1>
             </Link>
-          ) : (
-            <Link href={"/personalInfo"}>
-              <AvatarImage
-                className="w-10 rounded-full"
-                src="https://github.com/shadcn.png"
-              />
-            </Link>
-          )}
-          {role === "school" ? (
-            <Link href={"/schoolHome"}>
-              <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
-            </Link>
-          ) : (
-            <Link href={"/home"}>
-              <h1 className="md:text-2xl">{t("Teacher Comment Hub")}</h1>
-            </Link>
-          )}
-
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      </Link>
-
-      {/* ---------------- Navigation Menu -------------- */}
-      <div className="mx-auto justify-center rounded-2xl md:flex">
-        {/* Drawer Button for Small Screens */}
-        <div className="flex items-center md:hidden">
-          <button onClick={toggleDrawer} className="mt-2 text-2xl">
-            {isDrawerOpen ? <HiX /> : <HiMenu />}
-          </button>
+          </div>
         </div>
 
-        {/* Drawer Content */}
-        <div
-          className={`fixed left-0 top-0 z-40 h-full w-3/4 max-w-xs bg-white shadow-md transition-transform ${
-            isDrawerOpen ? "translate-x-0" : "-translate-x-full"
-          } md:hidden`}
+        {/* Mobile Drawer Button */}
+        <button onClick={toggleDrawer} className="text-2xl md:hidden">
+          {isDrawerOpen ? <HiX /> : <HiMenu />}
+        </button>
+      </div>
+
+      {/* ---------------- Drawer Menu for Small Screens -------------- */}
+      <div
+        className={`fixed left-0 top-0 z-50 h-full w-3/4 max-w-xs bg-white shadow-md transition-transform ${
+          isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+        } md:hidden`}
+      >
+        <button
+          onClick={toggleDrawer}
+          className="absolute right-4 top-4 text-2xl"
         >
-          <button
-            onClick={toggleDrawer}
-            className="absolute right-4 top-4 text-2xl"
-          >
-            <HiX />
-          </button>
-          <nav className="mt-16 flex flex-col gap-4 p-4">
-            <Link
-              href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
-            >
-              <Button
-                onClick={toggleDrawer}
-                className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
-              >
-                {t("Dashboard")}
-              </Button>
-            </Link>
+          <HiX />
+        </button>
 
-            <Link href="/contact">
-              <Button
-                onClick={toggleDrawer}
-                className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
-              >
-                Contact
-              </Button>
-            </Link>
-
-            <Button
-              onClick={() => {
-                toggleDrawer();
-                handleToggleNavigation();
-              }}
-              className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
-            >
-              {isUserGuide ? t("Go Back") : t("User Guide")}
-            </Button>
-          </nav>
-        </div>
-
-        {/* Normal Nav for Medium and Larger Screens */}
-        <div className="hidden flex-col items-center justify-center gap-2 md:flex md:flex-row md:gap-5">
+        <nav className="mt-16 flex flex-col gap-4 p-4">
           <Link
             href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
+            onClick={toggleDrawer}
           >
-            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto">
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
               {t("Dashboard")}
             </Button>
           </Link>
 
-          <Link href="/contact">
-            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto">
+          <Link href="/contact" onClick={toggleDrawer}>
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
               Contact
             </Button>
           </Link>
 
           <Button
-            onClick={handleToggleNavigation}
-            className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white sm:w-auto"
+            onClick={() => {
+              toggleDrawer();
+              handleToggleNavigation();
+            }}
+            className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white"
           >
             {isUserGuide ? t("Go Back") : t("User Guide")}
           </Button>
-        </div>
+        </nav>
       </div>
 
-      <div className="-mt-8 flex items-center justify-center md:mt-0 md:gap-5">
-        {/* ---------------- Language Switcher -------------- */}
-        {!isLanguageLoading && (
-          <div className="flex w-32 items-center justify-center rounded-2xl bg-white p-1 px-2">
-            <Button
-              onClick={() => handleChangeLanguage("fr")}
-              className={`rounded px-4 py-2 transition-all duration-300 ease-in-out ${
-                language === "fr"
-                  ? "bg-black text-white"
-                  : "bg-white text-black"
-              }`}
-              // disabled={isPending}
-            >
-              FR
-            </Button>
+      {/* ---------------- Normal Menu for Larger Screens -------------- */}
+      <div className="hidden items-center gap-5 md:flex">
+        <Link href={role === "school" ? "/editschoolAcount" : "/personalInfo"}>
+          <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+            {t("Dashboard")}
+          </Button>
+        </Link>
 
-            <button
-              onClick={() => handleChangeLanguage("en")}
-              className={`rounded px-4 py-2 transition-all duration-300 ease-in-out ${
-                language === "en"
-                  ? "bg-black text-white"
-                  : "bg-white text-black"
-              }`}
-              // disabled={isPending}
-            >
-              EN
-            </button>
-          </div>
-        )}
+        <Link href="/contact">
+          <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+            Contact
+          </Button>
+        </Link>
+
+        <Button
+          onClick={handleToggleNavigation}
+          className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white"
+        >
+          {isUserGuide ? t("Go Back") : t("User Guide")}
+        </Button>
+      </div>
+
+      {/* ---------------- Language Switcher -------------- */}
+      <div className="mt-4 flex items-center justify-center md:mt-0">
+        <div className="flex w-28 items-center justify-center rounded-2xl bg-white p-1 px-2">
+          <Button
+            onClick={() => handleChangeLanguage("fr")}
+            className={`w-12 px-3 py-1 transition-all duration-300 ease-in-out ${
+              language === "fr" ? "bg-black text-white" : "bg-white text-black"
+            }`}
+          >
+            FR
+          </Button>
+
+          <Button
+            onClick={() => handleChangeLanguage("en")}
+            className={`w-12 px-3 py-1 transition-all duration-300 ease-in-out ${
+              language === "en" ? "bg-black text-white" : "bg-white text-black"
+            }`}
+          >
+            EN
+          </Button>
+        </div>
       </div>
     </div>
   );
