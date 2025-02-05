@@ -58,9 +58,27 @@ const authApi = baseApi.injectEndpoints({
             method: 'PATCH',
             body: data
         })
+    }),
+
+    changepassword : builder.mutation({
+        query:(data)=>({
+            url: '/auth/change-password',
+            method: 'PATCH',
+            body: data
+        })
+    }),
+    
+    GuestAuthInitialForm : builder.mutation({
+        query:(data)=>({
+            url: '/auth/admin-register-email',
+            method: 'POST',
+            body: data
+        })
     })
+
+
    }),
 
 });
 
-export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation,useGuestAuthSignUpMutation}=authApi
+export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation,useGuestAuthSignUpMutation,useGuestAuthInitialFormMutation,useChangepasswordMutation}=authApi

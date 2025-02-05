@@ -7,6 +7,7 @@ import { getMessages } from "next-intl/server";
 import { Inter, Roboto_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import ReduxProviders from "@/redux/lib/ReduxProviders";
+import TopLoader from "@/components/TopLoader/TopLoader";
 
 
 
@@ -45,16 +46,18 @@ export default async function RootLayout({ children, params }) {
       <body className={`${inter.variable} ${roboto_mono.variable}`}>
         <>
           <NextIntlClientProvider messages={messages}>
-            <div>
+            <ReduxProviders>
               <div className="absolute top-2 z-50 w-full">
+               
                 <NavbarWithConditionalRendering></NavbarWithConditionalRendering>
               </div>
               <Toaster richColors position="top-center" />
-              <ReduxProviders>
+              <>
+              <TopLoader/>
               {children}
-              </ReduxProviders>
+              </>
               <ScrollToTopButton></ScrollToTopButton>
-            </div>
+            </ReduxProviders>
           </NextIntlClientProvider>
         </>
       </body>

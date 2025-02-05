@@ -1,13 +1,19 @@
 "use client";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
+import { Button } from "../ui/button";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/authSlice";
+import { toast } from "sonner";
 
 const Sidebar = () => {
   const pathname = usePathname();
   const t = useTranslations("personalInformation");
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const navItems = [
     {
@@ -25,13 +31,13 @@ const Sidebar = () => {
       path: "/settings",
       icon: <FaCog />,
     },
-
-    {
-      label: t("Log Out"),
-      path: "/guestAuth/welComePage",
-      icon: <FaSignOutAlt />,
-    },
   ];
+
+  const handlelogout = () => {
+    dispatch(logout());
+    toast.success("Logout successful");
+    router.push("/");
+  };
 
   return (
     <>
@@ -54,6 +60,19 @@ const Sidebar = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <>
+              <div
+                onClick={handlelogout}
+                className="flex cursor-pointer items-center gap-4 rounded-md p-2 hover:bg-white hover:text-darkBlue"
+              >
+                <>
+                  <FaSignOutAlt />
+                  {t("Log Out")}
+                </>
+              </div>
+            </>
+          </li>
         </ul>
       </div>
 
@@ -75,6 +94,14 @@ const Sidebar = () => {
             </span>
           </Link>
         ))}
+        <Link>
+          <div className="flex gap-2">
+            <Button className="bg-black">
+              <FaSignOutAlt />
+              {t("Log Out")}
+            </Button>
+          </div>
+        </Link>
       </div>
     </>
   );

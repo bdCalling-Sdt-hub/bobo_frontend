@@ -14,8 +14,14 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Link } from "@/i18n/routing";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 
 export default function PaymentSuccess() {
+  const user = useSelector(selectUser);
+
+  console.log(user.role);
+
   useEffect(() => {
     // Trigger confetti effect
     confetti({
@@ -46,9 +52,15 @@ export default function PaymentSuccess() {
             </p>
           </CardContent>
           <CardFooter>
-            <Link href="/home" className="w-full">
-              <Button className="w-full">Return to Home</Button>
-            </Link>
+            {user?.role === "3" ? (
+              <Link href="/schoolHome" className="w-full">
+                <Button className="w-full">Return to Home</Button>
+              </Link>
+            ) : (
+              <Link href="/home" className="w-full">
+                <Button className="w-full">Return to Home</Button>
+              </Link>
+            )}
           </CardFooter>
         </Card>
       </motion.div>

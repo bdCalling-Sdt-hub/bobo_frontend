@@ -56,6 +56,11 @@ export default function LoginForm() {
         if (res?.data?.user?.role === "2") {
           return router.push("/subscriptionPanel");
         }
+
+        if (res.data?.user?.role === "3") {
+          // Redirect to school admin page if user is admin
+          return router.push("/premiumPlan");
+        }
         setFormError(null);
       }
     } catch (error) {
@@ -155,7 +160,10 @@ export default function LoginForm() {
 
       <div className="mt-3 flex items-center justify-center gap-2">
         <p>Don&apos;t have an account?</p>
-        <Link href="/auth/register" className="text-primary-orange font-medium">
+        <Link
+          href="/guestAuth/upgradeAccount"
+          className="text-primary-orange font-medium"
+        >
           Register
         </Link>
       </div>

@@ -1,51 +1,91 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "@/components/ui/toast";
+
 import Image from "next/image";
-import profile from "/public/PImage.jpg";
+import profilePlaceholder from "/public/PImage.jpg";
 import { useTranslations } from "next-intl";
+import { useGetUserQuery, useUpdateUserMutation } from "@/redux/api/userApi";
+import ErrorPage from "../Error";
+import CustomLoader from "../CustomLoader/CustomLoader";
+import { toast } from "sonner";
 
 const ProfileForm = () => {
   const t = useTranslations("personalInformation");
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(profile);
+  const [imagePreview, setImagePreview] = useState(profilePlaceholder);
 
-  const onSubmit = (data) => {
-    const formData = new FormData();
+  const { data, isError, isLoading, error } = useGetUserQuery();
+  const [updateUser, { isLoading: updateLoading }] = useUpdateUserMutation();
 
-    formData.append("fullName", data.fullName);
-    formData.append("email", data.email);
-    formData.append("phone", data.phone || "");
-    formData.append("schoolName", data.schoolName || "");
+  useEffect(() => {
+    if (data?.success && data.data) {
+      const userData = data.data;
+      setValue("name", userData.name || "");
+      setValue("email", userData.email || "");
+      setValue("contact", userData.contact || "");
+      setValue("school", userData.school || "");
+
+      // if (userData.image) {
+      //   setImagePreview(userData.image);
+      // }
+    }
+  }, [data, setValue]);
+
+  if (isLoading) return <CustomLoader />;
+  if (isError)
+    return (
+      <ErrorPage
+        statusCode={error?.status}
+        message="Failed to fetch user profile."
+      />
+    );
+
+  // 🔹 Update profile function
+  const onSubmit = async (formData) => {
+    const submitData = new FormData();
+
+    submitData.append("name", formData.name);
+    submitData.append("email", formData.email);
+    submitData.append("contact", formData.contact || "");
+    submitData.append("school", formData.school || "");
 
     if (image) {
-      formData.append("profileImage", image);
+      submitData.append("image", image);
     }
 
-    console.log("Form submitted:", data);
-    toast({
-      title: "Profile Updated",
-      description: "Your changes have been saved.",
-    });
+    try {
+      const res = await updateUser(submitData).unwrap();
+      if (res.success) {
+        toast.success("Profile updated successfully");
+      }
+    } catch (error) {
+      toast({
+        title: "Update Failed",
+        description: "Failed to update user profile.",
+        variant: "destructive",
+      });
+    }
   };
 
+  // 🔹 Handle Image Upload
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       const allowedTypes = ["image/jpeg", "image/png"];
       if (!allowedTypes.includes(file.type)) {
-        toast({
+        toast.error({
           title: "Invalid file type",
           description: "Please upload a JPG or PNG file.",
           variant: "destructive",
@@ -67,16 +107,16 @@ const ProfileForm = () => {
       </CardHeader>
       <CardContent>
         <div className="text-center">
-          {/* Profile Image */}
+          {/* 🔹 Profile Image */}
           <Image
-            src={imagePreview}
+            src={imagePreview || profilePlaceholder}
             alt="Profile"
             width={96}
             height={96}
             className="mx-auto h-24 w-24 rounded-full border-2 border-black object-cover"
           />
 
-          {/* Change Picture Button with Hidden Input */}
+          {/* 🔹 Change Picture Button with Hidden Input */}
           <div className="mt-4">
             <Button
               variant="outline"
@@ -96,77 +136,73 @@ const ProfileForm = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
-          {/* Full Name */}
+          {/* 🔹 Full Name */}
           <div>
-            <Label htmlFor="fullName">{t("Full Name")}</Label>
+            <Label htmlFor="name">{t("Full Name")}</Label>
             <Input
               type="text"
-              id="fullName"
+              id="name"
               placeholder={t("Enter your full name")}
               className="border-black"
-              {...register("fullName", { required: "Full Name is required" })}
+              {...register("name", { required: "Full Name is required" })}
             />
-            {errors.fullName && (
-              <p className="text-sm text-red-500">{errors.fullName.message}</p>
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
 
-          {/* Email Address */}
+          {/* 🔹 Email Address (Disabled) */}
           <div>
             <Label htmlFor="email">{t("Email Address")}</Label>
             <Input
               type="email"
               id="email"
               className="border-black"
+              disabled
               placeholder={t("Enter your email address")}
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email address",
-                },
-              })}
+              {...register("email")}
             />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
-            )}
           </div>
 
-          {/* Phone Number */}
+          {/* 🔹 Phone Number */}
           <div>
-            <Label htmlFor="phone">{t("Phone Number (Optional)")}</Label>
+            <Label htmlFor="contact">{t("Phone Number (Optional)")}</Label>
             <Input
               type="text"
-              id="phone"
+              id="contact"
               placeholder="+123456789"
               className="border-black"
-              {...register("phone", {
+              {...register("contact", {
                 pattern: {
                   value: /^[0-9]+$/,
                   message: "Phone number must contain only digits",
                 },
               })}
             />
-            {errors.phone && (
-              <p className="text-sm text-red-500">{errors.phone.message}</p>
+            {errors.contact && (
+              <p className="text-sm text-red-500">{errors.contact.message}</p>
             )}
           </div>
 
-          {/* School Name */}
+          {/* 🔹 School Name */}
           <div>
-            <Label htmlFor="schoolName">{t("School Name (Optional)")}</Label>
+            <Label htmlFor="school">{t("School Name (Optional)")}</Label>
             <Input
               type="text"
-              id="schoolName"
+              id="school"
               className="border-black"
               placeholder={t("Enter your school name")}
-              {...register("schoolName")}
+              {...register("school")}
             />
           </div>
 
-          {/* Save Changes */}
-          <Button type="submit" className="w-full bg-darkBlue text-white">
-            {t("Save Changes")}
+          {/* 🔹 Save Changes */}
+          <Button
+            type="submit"
+            className="w-full bg-darkBlue text-white"
+            disabled={updateLoading}
+          >
+            {updateLoading ? <CustomLoader /> : t("Save Changes")}
           </Button>
         </form>
       </CardContent>

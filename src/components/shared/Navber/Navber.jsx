@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Button } from "@/components/ui/button";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 
 const Navber = () => {
   const locale = Cookies.get("NEXT_LOCALE");
@@ -23,7 +25,9 @@ const Navber = () => {
     localeSwitcher(lang);
   };
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const role = sessionStorage.getItem("role");
+
+  const user = useSelector(selectUser);
+  const role = user?.role;
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
   //
@@ -63,9 +67,7 @@ const Navber = () => {
         <div className="flex justify-between">
           <div>
             <Avatar>
-              <Link
-                href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
-              >
+              <Link href={role === "3" ? "/editschoolAcount" : "/personalInfo"}>
                 <AvatarImage
                   className="w-10 rounded-full"
                   src="https://github.com/shadcn.png"
@@ -75,7 +77,7 @@ const Navber = () => {
             </Avatar>
           </div>
           <div>
-            <Link href={role === "school" ? "/schoolHome" : "/home"}>
+            <Link href={role === "3" ? "/schoolHome" : "/home"}>
               <h1 className="ml-12 text-lg font-bold md:text-2xl">
                 {t("Teacher Comment Hub")}
               </h1>
@@ -104,7 +106,7 @@ const Navber = () => {
 
         <nav className="mt-16 flex flex-col gap-4 p-4">
           <Link
-            href={role === "school" ? "/editschoolAcount" : "/personalInfo"}
+            href={role === "3" ? "/editschoolAcount" : "/personalInfo"}
             onClick={toggleDrawer}
           >
             <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
@@ -132,7 +134,7 @@ const Navber = () => {
 
       {/* ---------------- Normal Menu for Larger Screens -------------- */}
       <div className="hidden items-center gap-5 md:flex">
-        <Link href={role === "school" ? "/editschoolAcount" : "/personalInfo"}>
+        <Link href={role === "3" ? "/editschoolAcount" : "/personalInfo"}>
           <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
             {t("Dashboard")}
           </Button>

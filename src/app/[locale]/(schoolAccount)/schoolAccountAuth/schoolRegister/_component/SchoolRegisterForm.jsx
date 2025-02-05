@@ -10,6 +10,8 @@ import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useSignUpMutation } from "@/redux/api/authApi";
+import CustomFormError from "@/components/CustomError/CustomError";
 
 const SchoolRegisterForm = () => {
   const [formError, setFormError] = useState(null);
@@ -21,21 +23,40 @@ const SchoolRegisterForm = () => {
     handleSubmit,
     control,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
-  const role = "school";
+  const role = "3";
+  const [signUp, { isLoading }] = useSignUpMutation();
+
   const onSignUpSubmit = async (data) => {
-    const maindata = { role, ...data };
-    console.log(maindata);
-    sessionStorage.setItem("role", maindata.role);
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Acccount create successfully",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    router.push("/premiumPlanForSchoolAccount");
+    delete data[("confirmPassword", "lastName")];
+    const finaldata = { role: role, ...data };
+    try {
+      const res = await signUp(finaldata).unwrap();
+      if (res.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Account created successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        if (res?.data?.user?.isverified) {
+          router.push("/auth/login");
+        }
+        // set signUptoken in session storage
+        localStorage.setItem("signupToken", res.data.otpToken.token);
+
+        router.push("/auth/VerifyOtp?next=/auth/login");
+        reset();
+        setFormError(null);
+      }
+    } catch (error) {
+      setFormError(
+        error?.data?.message || "Something went wrong. Please try again.",
+      );
+    }
   };
 
   return (
@@ -48,16 +69,16 @@ const SchoolRegisterForm = () => {
         {/*  name */}
         <div className="grid w-full items-center gap-1">
           <Label
-            htmlFor="lastName"
+            htmlFor="name"
             className="text-primary-black mb-1 block font-semibold"
           >
             Name
           </Label>
           <Input
             type="text"
-            id="lastName"
+            id="name"
             placeholder="Enter your name"
-            {...register("lastName", { required: true })}
+            {...register("name", { required: true })}
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
@@ -114,7 +135,7 @@ const SchoolRegisterForm = () => {
           )}
         </div>
 
-        {/* new password */}
+        {/* password */}
         <div className="mt-6 grid w-full items-center gap-1">
           <Label
             htmlFor="password"
@@ -199,7 +220,7 @@ const SchoolRegisterForm = () => {
             type="text"
             id="jobrole"
             placeholder="Enter your job role"
-            {...register("jobrole", { required: true })}
+            {...register("job_role", { required: true })}
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
@@ -219,7 +240,7 @@ const SchoolRegisterForm = () => {
             type="text"
             id="lastName"
             placeholder="Enter your School Name"
-            {...register("Schoolname", { required: true })}
+            {...register("school", { required: true })}
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
@@ -230,12 +251,11 @@ const SchoolRegisterForm = () => {
 
       <Button
         // // loading={isLoading}
-        // disabled={isLoading}
+        disabled={isLoading}
         type="submit"
         className="mt-10 h-[2.8rem] w-full rounded-xl bg-purple-950 text-xl font-semibold"
       >
-        {/* {isLoading ? <CustomLoader /> : "Create Account"} */}
-        Create Account
+        {isLoading ? <CustomLoader /> : "Create Account"}
       </Button>
 
       <div className="mt-5 flex items-center justify-center gap-2">
@@ -248,7 +268,7 @@ const SchoolRegisterForm = () => {
         </Link>
       </div>
 
-      {/* {formError && <CustomFormError formError={formError} />} */}
+      {formError && <CustomFormError formError={formError} />}
     </form>
   );
 };

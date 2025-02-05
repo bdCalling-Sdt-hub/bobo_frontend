@@ -1,13 +1,16 @@
 "use client";
+import CustomFormError from "@/components/CustomError/CustomError";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 // import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "@/i18n/routing";
+import { useChangepasswordMutation } from "@/redux/api/authApi";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const ChangePassword = () => {
   const t = useTranslations("personalInformation");
@@ -16,16 +19,28 @@ const ChangePassword = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm();
-
+  const [formError, setFormError] = useState(null);
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
-  const router = useRouter();
+  const [changePassword, { isLoading }] = useChangepasswordMutation();
 
-  const onUpdatePassSubmit = (data) => {
-    console.log(data);
-    router.push("/");
+  const onUpdatePassSubmit = async (data) => {
+    try {
+      const res = await changePassword(data).unwrap();
+      if (res.success) {
+        toast.success("password updated successfully");
+        reset();
+        setFormError(null);
+      } else {
+        toast.error("Somethig wrong try again letter");
+      }
+    } catch (error) {
+      console.error(error);
+      setFormError(error.message);
+    }
   };
   return (
     <form
@@ -36,6 +51,42 @@ const ChangePassword = () => {
         {t("Change Password")}
       </h1>
       <div className="grid w-full items-center gap-2">
+        <Label
+          htmlFor="oldPassword"
+          className="text-primary-black mb-1 font-semibold"
+        >
+          {"Enter Old Password"}
+        </Label>
+
+        <div className="relative">
+          <Input
+            type={showNewPass ? "text" : "password"}
+            id="oldPassword"
+            placeholder={t("New Password")}
+            {...register("oldPassword", {
+              required: "Old Password is required",
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least one uppercase, one lowercase letter, one number, one special character and 8 characters long",
+              },
+            })}
+            className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
+          />
+
+          <EyeIconInverse
+            showPassword={showNewPass}
+            setShowPassword={setShowNewPass}
+          />
+        </div>
+
+        {errors.newPassword && (
+          <p className="mt-1 text-danger">{errors.oldPassword.message}</p>
+        )}
+      </div>
+
+      <div className="mt-10 grid w-full items-center gap-2">
         <Label
           htmlFor="newPassword"
           className="text-primary-black mb-1 font-semibold"
@@ -104,14 +155,13 @@ const ChangePassword = () => {
 
       <Button
         type="submit"
-        //   disabled={isLoading}
+        disabled={isLoading}
         className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-black text-center text-xl"
       >
-        {/* {isLoading ? <CustomLoader /> : "Submit"} */}
-        {t("Submit")}
+        {isLoading ? <CustomLoader /> : "Submit"}
       </Button>
 
-      {/* {formError && <CustomFormError formError={formError} />} */}
+      {formError && <CustomFormError formError={formError} />}
     </form>
   );
 };

@@ -73,22 +73,13 @@ export const PricingCard = ({
           Includes {comments} comments.
         </p>
       </div>
+      <Button
+        onClick={() => handleBuy(id)}
+        className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
+      >
+        Buy Now
+      </Button>
 
-      {role === "school" ? (
-        <Button
-          onClick={handleBuyForSchool}
-          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
-        >
-          Buy Now for School
-        </Button>
-      ) : (
-        <Button
-          onClick={() => handleBuy(id)}
-          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
-        >
-          Buy Now
-        </Button>
-      )}
       <span className="top"></span>
       <span className="right"></span>
       <span className="bottom"></span>

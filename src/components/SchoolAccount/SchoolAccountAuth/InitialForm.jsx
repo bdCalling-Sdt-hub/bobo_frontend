@@ -9,6 +9,8 @@ import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "@/i18n/routing";
+import { useGuestAuthInitialFormMutation } from "../../../redux/api/authApi";
+import CustomFormError from "@/components/CustomError/CustomError";
 
 const InitialForm = () => {
   const [formError, setFormError] = useState(null);
@@ -21,15 +23,27 @@ const InitialForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSignUpSubmit = async (data) => {
-    Swal.fire({
-      title:
-        "Thank you! The school administrator for XYZ School has been notified and will complete the registration process.",
-      icon: "success",
-      draggable: true,
-    });
+  const [GuestAuthInitialForm, { isLoading }] =
+    useGuestAuthInitialFormMutation();
 
-    router.push("/schoolAccountAuth/schoolRegister");
+  const onSignUpSubmit = async (data) => {
+    try {
+      const res = await GuestAuthInitialForm(data).unwrap();
+      if (res.success) {
+        Swal.fire({
+          position: "center",
+          title: "Email sent successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        router.push("/guestAuth/welComePage");
+        setFormError(null);
+      } else {
+        setFormError(res.error);
+      }
+    } catch (error) {
+      setFormError("An error occurred while trying to sign up.");
+    }
   };
 
   return (
@@ -153,11 +167,10 @@ const InitialForm = () => {
         type="submit"
         className="mt-10 h-[2.8rem] w-full rounded-xl bg-purple-950 font-semibold"
       >
-        {/* {isLoading ? <CustomLoader /> : "Create Account"} */}
-        Submit
+        {isLoading ? <CustomLoader /> : "Create Account"}
       </Button>
 
-      {/* {formError && <CustomFormError formError={formError} />} */}
+      {formError && <CustomFormError formError={formError} />}
     </form>
   );
 };

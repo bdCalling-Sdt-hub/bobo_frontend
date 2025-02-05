@@ -2,6 +2,7 @@
 import { useGetPremiumPackagesQuery } from "@/redux/api/packageApi";
 import { PricingCard } from "../PricingCard/PricingCard";
 import ErrorPage from "../Error";
+import CustomLoader from "../CustomLoader/CustomLoader";
 
 const PremiumPricingTable = () => {
   const { data: plans, isError, isLoading } = useGetPremiumPackagesQuery();
