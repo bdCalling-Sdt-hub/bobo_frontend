@@ -7,7 +7,7 @@ const ErrorPage = ({ statusCode, message }) => {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
+    <div className="flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
         <h1 className="text-center text-4xl font-bold text-red-500">
           {statusCode || "Opps !"}

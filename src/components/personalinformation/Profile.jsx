@@ -37,13 +37,19 @@ const ProfileForm = () => {
       setValue("contact", userData.contact || "");
       setValue("school", userData.school || "");
 
-      // if (userData.image) {
-      //   setImagePreview(userData.image);
-      // }
+      if (userData.image) {
+        setImagePreview(userData.image);
+      }
     }
   }, [data, setValue]);
 
-  if (isLoading) return <CustomLoader />;
+  if (isLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        {" "}
+        <CustomLoader />
+      </div>
+    );
   if (isError)
     return (
       <ErrorPage
@@ -71,11 +77,7 @@ const ProfileForm = () => {
         toast.success("Profile updated successfully");
       }
     } catch (error) {
-      toast({
-        title: "Update Failed",
-        description: "Failed to update user profile.",
-        variant: "destructive",
-      });
+      toast.error("Failed to update user profile", error);
     }
   };
 

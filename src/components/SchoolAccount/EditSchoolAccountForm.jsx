@@ -1,16 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
-import { toast } from "@/components/ui/toast";
+
 import Image from "next/image";
 import profile from "/public/PImage.jpg";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+import { useGetUserQuery, useUpdateUserMutation } from "@/redux/api/userApi";
+import CustomLoader from "../CustomLoader/CustomLoader";
+import ErrorPage from "../Error";
 
 const EditSchoolAccountForm = () => {
+  const t = useTranslations("personalInformation");
   const {
     register,
     handleSubmit,
@@ -20,32 +25,67 @@ const EditSchoolAccountForm = () => {
 
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(profile);
+  const { data, isError, isLoading, error } = useGetUserQuery();
+  const [updateUser, { isLoading: updateLoading }] = useUpdateUserMutation();
 
-  const onSubmit = (data) => {
+  useEffect(() => {
+    if (data?.success && data.data) {
+      const userData = data.data;
+      setValue("name", userData.name || "");
+      setValue("email", userData.email || "");
+      setValue("contact", userData.contact || "");
+      setValue("school", userData.school || "");
+
+      if (userData.image) {
+        setImagePreview(userData.image);
+      }
+    }
+  }, [data, setValue]);
+
+  if (isLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <CustomLoader />
+      </div>
+    );
+  if (isError)
+    return (
+      <ErrorPage
+        statusCode={error?.status}
+        message="Failed to fetch user profile."
+      />
+    );
+
+  const onSubmit = async (data) => {
     const formData = new FormData();
 
-    formData.append("fullName", data.fullName);
+    formData.append("name", data.name);
     formData.append("email", data.email);
-    formData.append("phone", data.phone || "");
-    formData.append("schoolName", data.schoolName || "");
+    formData.append("contact", data.contact || "");
+    formData.append("school", data.school || "");
 
     if (image) {
-      formData.append("profileImage", image);
+      formData.append("image", image);
     }
 
-    console.log("Form submitted:", data);
-    toast({
-      title: "Profile Updated",
-      description: "Your changes have been saved.",
-    });
+    try {
+      const res = await updateUser(formData).unwrap();
+      if (res.success) {
+        toast.success("Profile updated successfully");
+      }
+    } catch (error) {
+      toast.error("Failed to update profile. Please try again.");
+      console.error(error);
+    }
   };
 
+  // 🔹 Handle Image Upload
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
       const allowedTypes = ["image/jpeg", "image/png"];
       if (!allowedTypes.includes(file.type)) {
-        toast({
+        toast.error({
           title: "Invalid file type",
           description: "Please upload a JPG or PNG file.",
           variant: "destructive",
@@ -61,7 +101,9 @@ const EditSchoolAccountForm = () => {
   return (
     <div className="mx-auto mt-2 max-w-4xl bg-white bg-opacity-70 pt-0">
       <CardHeader>
-        <CardTitle className="text-center">Personal Information</CardTitle>
+        <CardTitle className="text-center">
+          {t("Personal Information")}
+        </CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -82,7 +124,7 @@ const EditSchoolAccountForm = () => {
               className="cursor-pointer bg-darkBlue text-white"
               onClick={() => document.getElementById("imageUpload").click()}
             >
-              Change Picture
+              {t("Change Picture")}
             </Button>
             <Input
               type="file"
@@ -95,62 +137,28 @@ const EditSchoolAccountForm = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Profile Image */}
-          {/* <div className="mb-6 flex justify-center">
-            <div className="text-center">
-              <Image
-                src={imagePreview || profile}
-                alt="Profile"
-                width={96}
-                height={96}
-                className="mx-auto h-24 w-24 rounded-full border-2 border-black object-cover"
-              />
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mt-2 bg-darkBlue text-white"
-                  >
-                    Change Picture
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <Label htmlFor="imageUpload">
-                    Upload a new profile picture
-                  </Label>
-                  <Input
-                    type="file"
-                    id="imageUpload"
-                    accept="image/jpeg, image/png"
-                    onChange={handleImageChange}
-                    className="mt-2 border-black"
-                  />
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div> */}
-
           {/* Full Name */}
           <div>
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label htmlFor="name">{t("Full Name")}</Label>
             <Input
               type="text"
-              id="fullName"
+              id="name"
               placeholder="Enter your full name"
               className="border-black"
-              {...register("fullName", { required: "Full Name is required" })}
+              {...register("name", { required: "Full Name is required" })}
             />
-            {errors.fullName && (
-              <p className="text-sm text-red-500">{errors.fullName.message}</p>
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
 
           {/* Email Address */}
           <div>
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email">{t("Email Address")}</Label>
             <Input
               type="email"
               id="email"
+              disabled
               className="border-black"
               placeholder="Enter your email address"
               {...register("email", {
@@ -168,7 +176,7 @@ const EditSchoolAccountForm = () => {
 
           {/* School Name */}
           <div>
-            <Label htmlFor="schoolName">School Name</Label>
+            <Label htmlFor="schoolName">{t("School Name")}</Label>
             <Input
               type="text"
               id="schoolName"
@@ -177,53 +185,42 @@ const EditSchoolAccountForm = () => {
               {...register("schoolName")}
             />
           </div>
-          {/* School address */}
-          <div>
-            <Label htmlFor="schooladress">School Address</Label>
-            <Input
-              type="text"
-              id="schooladress"
-              className="border-black"
-              placeholder="Enter your school name"
-              {...register("schooladress")}
-            />
-          </div>
 
-          {/* job role */}
+          {/* Job Role */}
           <div>
-            <Label htmlFor="jobrole">job Role/Position</Label>
+            <Label htmlFor="jobrole">{t("Job Role/Position")}</Label>
             <Input
               type="text"
               id="jobrole"
               className="border-black"
-              placeholder="Enter your school name"
-              {...register("jobrole")}
+              placeholder="Enter your job role"
+              {...register("job_role")}
             />
           </div>
 
           {/* Phone Number */}
           <div>
-            <Label htmlFor="phone">Phone Number (Optional)</Label>
+            <Label htmlFor="contact">{t("Phone Number (Optional)")}</Label>
             <Input
               type="text"
-              id="phone"
+              id="contact"
               placeholder="+123456789"
               className="border-black"
-              {...register("phone", {
+              {...register("contact", {
                 pattern: {
                   value: /^[0-9]+$/,
                   message: "Phone number must contain only digits",
                 },
               })}
             />
-            {errors.phone && (
-              <p className="text-sm text-red-500">{errors.phone.message}</p>
+            {errors.contact && (
+              <p className="text-sm text-red-500">{errors.contact.message}</p>
             )}
           </div>
 
           {/* Save Changes */}
           <Button type="submit" className="w-full bg-darkBlue">
-            Save Changes
+            {updateLoading ? <CustomLoader /> : t("Save Changes")}
           </Button>
         </form>
       </CardContent>

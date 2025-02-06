@@ -1,7 +1,9 @@
 "use client";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAddSchoolTeacherMutation } from "@/redux/api/authApi";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -14,13 +16,24 @@ const AddTeacher = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const [addSchoolTeacher, { isLoading }] = useAddSchoolTeacherMutation();
 
-    toast.success("Teacher added successfully");
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      const res = await addSchoolTeacher(data).unwrap();
+      if (res.success) {
+        toast.success("Teacher Added Successfully");
+        reset();
+      }
+    } catch (error) {
+      const errorMessage =
+        error?.data?.message ||
+        error?.message ||
+        "An error occurred. Please try again.";
+      toast.error(errorMessage);
+    }
   };
-  const t = useTranslations("cycleOne");
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -99,7 +112,7 @@ const AddTeacher = () => {
           type="submit"
           className="text-blac mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 px-12 text-white"
         >
-          Add Teacher
+          {isLoading ? <CustomLoader /> : "Add Teacher"}
         </Button>
       </div>
     </form>

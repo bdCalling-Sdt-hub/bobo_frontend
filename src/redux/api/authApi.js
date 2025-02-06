@@ -74,6 +74,14 @@ const authApi = baseApi.injectEndpoints({
             method: 'POST',
             body: data
         })
+    }),
+    addSchoolTeacher : builder.mutation({
+        query:(data)=>({
+            url: '/users/add-school-teacher',
+            method: 'POST',
+            body: data
+        }),
+        invalidatesTags:["schoolteacher"]
     })
 
 
@@ -81,4 +89,4 @@ const authApi = baseApi.injectEndpoints({
 
 });
 
-export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation,useGuestAuthSignUpMutation,useGuestAuthInitialFormMutation,useChangepasswordMutation}=authApi
+export const {useSignUpMutation,useSignInMutation,useVerifyEmailMutation,useResendOtpMutation,useForgetPasswordMutation,useResetPasswordMutation,useGuestAuthSignUpMutation,useGuestAuthInitialFormMutation,useChangepasswordMutation,useAddSchoolTeacherMutation}=authApi

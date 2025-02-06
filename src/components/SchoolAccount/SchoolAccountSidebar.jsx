@@ -1,16 +1,21 @@
 "use client";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { logout } from "@/redux/features/authSlice";
 
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 const SchoolAccountSideber = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handlelogout = () => {
-    sessionStorage.removeItem("role");
-    router.push("/guestAuth/welComePage");
+    dispatch(logout());
+    toast.success("Logout successful");
+    router.push("/");
   };
 
   const navItems = [

@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
   const {
@@ -20,16 +21,17 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
     setValue,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      firstName: user?.firstName || "",
-      lastName: user?.lastName || "",
-      email: user?.email || "",
-      status: user?.status || "Active",
-    },
-  });
+  } = useForm();
 
   const status = watch("status");
+
+  useEffect(() => {
+    if (user) {
+      setValue("name", user.name);
+      setValue("email", user.email);
+      setValue("status", user.status);
+    }
+  }, [user, setValue]);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -40,18 +42,16 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <h1 className="text-center text-2xl">
-            Update {user.firstName} details
-          </h1>
+          <h1 className="text-center text-2xl">Update {user.name} details</h1>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
           {/* First Name */}
           <div>
-            <Label htmlFor="firstName">First Name</Label>
+            <Label htmlFor="name">First Name</Label>
             <Input
-              id="firstName"
+              id="name"
               className="border-black"
-              {...register("firstName", { required: "First Name is required" })}
+              {...register("name", { required: "First Name is required" })}
               placeholder="John"
             />
             {errors.firstName && (
@@ -60,7 +60,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
           </div>
 
           {/* Last Name */}
-          <div>
+          {/* <div>
             <Label htmlFor="lastName">Last Name</Label>
             <Input
               id="lastName"
@@ -71,7 +71,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
             {errors.lastName && (
               <p className="text-sm text-red-600">{errors.lastName.message}</p>
             )}
-          </div>
+          </div> */}
 
           {/* Email */}
           <div>
@@ -80,6 +80,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
               id="email"
               className="border-black"
               type="email"
+              disabled
               {...register("email", {
                 required: "Email is required",
                 pattern: {

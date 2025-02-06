@@ -16,8 +16,24 @@ const UserApi = baseApi.injectEndpoints({
                 body: data,
             }),
         }),
+
+        getSchoolTeachers: builder.query ({
+            query: () => ({
+                url: '/users/school-teachers',
+                method: 'GET',
+            }),
+            providesTags:["schoolteacher"]
+        }),
+
+        deleteSchoolTeachers: builder.mutation({
+            query: (id) => ({
+                url: `/users/school-teacher/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags:["schoolteacher"]
+        })
     }),
 })
 
 
-export const {useGetUserQuery,useUpdateUserMutation}=UserApi
+export const {useGetUserQuery,useUpdateUserMutation, useGetSchoolTeachersQuery,useDeleteSchoolTeachersMutation}=UserApi

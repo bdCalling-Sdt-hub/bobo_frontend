@@ -1,8 +1,10 @@
 "use client";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useSendContactFormMutation } from "@/redux/api/contactApi";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -16,10 +18,19 @@ const ContactUs = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    toast.success("Thank you for your feedback");
-    reset();
+  const [contactForm, { isLoading }] = useSendContactFormMutation();
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await contactForm(data).unwrap();
+
+      if (res.success) {
+        toast.success("Thank you for your feedback");
+        reset();
+      }
+    } catch (error) {
+      toast.error(error?.data?.message || error?.error);
+    }
   };
 
   return (
@@ -31,21 +42,21 @@ const ContactUs = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Full Name */}
         <div>
-          <Label htmlFor="fullName" className="block text-sm font-medium">
+          <Label htmlFor="fullname" className="block text-sm font-medium">
             {t("Full Name")}
           </Label>
           <Input
             type="text"
-            id="fullName"
+            id="fullname"
             placeholder={t("Enter your Name")}
-            {...register("fullName", { required: "Full Name is required" })}
+            {...register("fullname", { required: "Full Name is required" })}
             className={`mt-1 w-full rounded-md border-2 border-black p-2 ${
               errors.fullName ? "border-red-500" : "border-black"
             }`}
           />
-          {errors.fullName && (
+          {errors.fullname && (
             <p className="mt-1 text-sm text-red-500">
-              {errors.fullName.message}
+              {errors.fullname.message}
             </p>
           )}
         </div>
@@ -100,19 +111,19 @@ const ContactUs = () => {
             {t("Your Suggestion")}
           </Label>
           <Textarea
-            id="suggestion"
+            id="description"
             rows="4"
             placeholder={t(
               "Tell us what you'd like to improve or add to the app",
             )}
-            {...register("suggestion", { required: "Suggestion is required" })}
+            {...register("description", { required: "Suggestion is required" })}
             className={`mt-1 w-full rounded-md border-2 p-2 ${
-              errors.suggestion ? "border-red-500" : "border-black"
+              errors.description ? "border-red-500" : "border-black"
             }`}
           ></Textarea>
-          {errors.suggestion && (
+          {errors.description && (
             <p className="mt-1 text-sm text-red-500">
-              {errors.suggestion.message}
+              {errors.description.message}
             </p>
           )}
         </div>
@@ -122,7 +133,7 @@ const ContactUs = () => {
           type="submit"
           className="w-full rounded-md bg-darkBlue px-4 py-2 text-white"
         >
-          {t("Submit")}
+          {isLoading ? <CustomLoader /> : t("Submit")}
         </Button>
       </form>
     </div>

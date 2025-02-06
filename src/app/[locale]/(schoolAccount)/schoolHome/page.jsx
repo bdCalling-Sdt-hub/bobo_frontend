@@ -1,6 +1,7 @@
 import React from "react";
 import AddTeacher from "./_component/AddTeacher";
 import RecentUser from "@/components/UpgradeAccount/RecentUser/RecentUser";
+import TeachersTable from "@/components/SchoolAccount/TeachersTable";
 
 const page = () => {
   return (
@@ -19,7 +20,7 @@ const page = () => {
           </p>
         </div>
         <AddTeacher />
-        <RecentUser />
+        <TeachersTable />
       </div>
     </div>
   );

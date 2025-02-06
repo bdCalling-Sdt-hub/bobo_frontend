@@ -60,7 +60,7 @@ const UpgradeAccountPage = () => {
           Your trial has ended! Continue using our platform by upgrading to one
           of the plans below.
         </h1>
-        <CardContainer className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
           {card.map((card, index) => (
             <CardBody
               key={index}
@@ -94,7 +94,7 @@ const UpgradeAccountPage = () => {
               </Button>
             </CardBody>
           ))}
-        </CardContainer>
+        </div>
       </div>
     </div>
   );
