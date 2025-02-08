@@ -1,14 +1,17 @@
 "use client";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
+import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAddSchoolTeacherMutation } from "@/redux/api/authApi";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const AddTeacher = () => {
+  const [showPass, setShowPass] = useState(false);
   const {
     register,
     handleSubmit,
@@ -105,6 +108,37 @@ const AddTeacher = () => {
           className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
         />
         {errors.email && <p className="mt-1 text-danger">Email is required</p>}
+      </div>
+
+      {/* Password */}
+      <div className="mt-6 grid w-full items-center gap-2">
+        <Label htmlFor="password" className="text-primary-black font-semibold">
+          Password
+        </Label>
+        <div className="relative">
+          <Input
+            type={showPass ? "text" : "password"}
+            id="password"
+            placeholder="Password"
+            {...register("password", {
+              required: "Password is required",
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character.",
+              },
+            })}
+            className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
+          />
+          <EyeIconInverse
+            showPassword={showPass}
+            setShowPassword={setShowPass}
+          />
+        </div>
+        {errors.password && (
+          <p className="mt-1 text-danger">{errors.password.message}</p>
+        )}
       </div>
 
       <div>
