@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "@/i18n/routing";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
+import { useCreateCommentMutation } from "@/redux/api/commentsApi";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -33,16 +34,46 @@ const CycleForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  const cycle = "1";
+
+  const [createComment, { isLoading: commentLoading, error }] =
+    useCreateCommentMutation();
+
+  const errormessage = error?.data?.message;
+
+  if (error) {
+    Swal.fire({
+      title: "Oppss..",
+      text: errormessage,
+      icon: "error",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Okey",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push("/home");
+      }
+    });
+  }
+
   const onSubmit = async (data) => {
     setIsLoading(true);
     console.log(data);
     try {
-      const response = await axios.post("/api/generateFeedback", {
+      // const response = await axios.post("/api/generateFeedback", {
+      //   feedbackData: data,
+      //   language: locale,
+      // });
+
+      const response = await createComment({
         feedbackData: data,
         language: locale,
+        cycle: cycle,
       });
 
-      let { comment } = response.data;
+      let comment = response?.data?.data?.comment;
+
+      console.log("Comment created", comment);
 
       if (comment) {
         const splitComment = comment?.replace(/(^"|"$)/g, "");
@@ -186,9 +217,16 @@ const CycleForm = () => {
           <Button
             type="submit"
             className="mb-20 w-full bg-purple-950"
-            disabled={isLoading}
+            disabled={commentLoading}
           >
-            {isLoading ? <CustomLoader /> : t("Generate Comment")}
+            {commentLoading ? (
+              <h1 className="flex gap-2">
+                <CustomLoader />
+                Genarating Comment ...
+              </h1>
+            ) : (
+              t("Generate Comment")
+            )}
           </Button>
         </div>
 

@@ -13,6 +13,8 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
+import { useCreateCommentMutation } from "@/redux/api/commentsApi";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -31,29 +33,42 @@ const CycleForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (data) => {
-    console.log("Submitting data:", data);
-    setIsLoading(true);
+  const cycle = "3";
 
+  const [createComment, { isLoading: commentLoading, error }] =
+    useCreateCommentMutation();
+
+  const errormessage = error?.data?.message;
+
+  if (error) {
+    Swal.fire({
+      title: "Oppss..",
+      text: errormessage,
+      icon: "error",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Okey",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push("/home");
+      }
+    });
+  }
+
+  const onSubmit = async (data) => {
     try {
-      const response = await axios.post("/api/generateFeedback", {
+      const response = await createComment({
         feedbackData: data,
         language: locale,
+        cycle: cycle,
       });
-
-      let { comment } = response.data;
+      let comment = response?.data?.data?.comment;
 
       if (comment) {
         const splitComment = comment?.replace(/(^"|"$)/g, "");
         console.log("Submitted data: split", splitComment);
-        // const splitComment = comment.split(". ");
-        // setResult({ feedback: splitComment });
         router.push(`/success?data=${splitComment}`);
       }
-      // router.push("/");
-
-      // console.log("result", result);
-      // console.log("Submitted data:", comment);
     } catch (error) {
       console.log("Error generating feedback:", error);
       setResult({
@@ -63,8 +78,6 @@ const CycleForm = () => {
       });
     } finally {
       reset();
-      setIsLoading(false);
-      // setIsModalOpen(true);
     }
   };
 
@@ -182,13 +195,12 @@ const CycleForm = () => {
         <Button
           type="submit"
           className="mb-20 w-full bg-purple-950"
-          disabled={isLoading}
+          disabled={commentLoading}
         >
-          {isLoading ? (
-            <div className="spinner-border h-6 w-6 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
-          ) : (
-            t("Generate Comment")
-          )}
+          {commentLoading ?  <h1 className="flex gap-2">
+                        <CustomLoader />
+                        Genarating Comment ...
+                      </h1>: t("Generate Comment")}
         </Button>
       </div>
 

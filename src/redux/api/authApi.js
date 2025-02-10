@@ -14,6 +14,7 @@ const authApi = baseApi.injectEndpoints({
     }),
 
     signIn : builder.mutation({
+
         query:(data)=>({
             url: '/auth/login',
             method: 'POST',
@@ -40,7 +41,7 @@ const authApi = baseApi.injectEndpoints({
         query:(data)=>({
             url: '/auth/resend-otp',
             method: 'POST',
-            body: data
+            body: {"email":data}
         })
     }),
 

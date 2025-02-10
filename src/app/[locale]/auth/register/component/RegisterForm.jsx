@@ -53,7 +53,7 @@ const RegisterForm = () => {
         // set signUptoken in session storage
         localStorage.setItem("signupToken", res.data.otpToken.token);
 
-        router.push("/auth/VerifyOtp?next=/auth/login");
+        router.push(`/auth/VerifyOtp?next=/auth/login&emai=${data.email}`);
         reset();
         setFormError(null);
       }

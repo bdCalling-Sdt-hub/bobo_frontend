@@ -21,7 +21,8 @@ import { toast } from "sonner";
 export default function VerifyOtpForm() {
   const [value, setValue] = useState("");
   const search = useSearchParams();
-  const nextpath = search.get("next") || "/auth/login";
+  const email = search.get("email");
+  const nextpath = search.get("next");
   console.log("nextpath", nextpath);
   const [showRequired, setShowRequired] = useState(false);
   const [formError, setFormError] = useState(null);
@@ -43,10 +44,13 @@ export default function VerifyOtpForm() {
       if (res.success) {
         toast.success("OTP Verified", "Please login to your account.");
 
-        if (res.data?.user?.role === "1") {
-          return router.push("/home");
+        console.log("next", nextpath);
+
+        if (nextpath) {
+          router.push(nextpath);
+        } else {
+          router.push("/home");
         }
-        router.push(nextpath);
 
         setFormError(null);
       }
@@ -56,11 +60,11 @@ export default function VerifyOtpForm() {
     }
   };
 
-  // Resend otp handler
+  //============================== Resend otp handler============================
   const handleResendOtp = async () => {
     const toastId = toast.loading("Sending...");
     try {
-      const res = await resendOtp().unwrap();
+      const res = await resendOtp(email).unwrap();
       if (res?.success) {
         toast.success("OTP re-sent successfully", toastId);
         toast.dismiss(toastId);

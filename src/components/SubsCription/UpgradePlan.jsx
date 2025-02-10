@@ -31,20 +31,25 @@ const UpgradePlan = () => {
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="card1 mb-5 flex w-full flex-col space-y-9 rounded-lg border border-gray-200 bg-white p-3 shadow-md lg:w-1/3"
+            className="card1 p- mb-5 flex w-full flex-col space-y-9 rounded-lg border border-gray-200 bg-white p-5 shadow-md lg:w-1/3 flex-grow"
           >
-            <div>
+            <div className="">
               <h2 className="text-3xl font-bold text-darkBlue">{plan.price}</h2>
-              <div className="mt-2 flex items-center gap-2">
-                <CheckCircle className="text-blue-500" size={20} />
-                <span className="text-sm font-medium text-gray-700">
+              <div className="mt-2 flex items-center gap-5">
+                <p>
+                  {" "}
+                  <CheckCircle className="text-blue-500" size={20} />
+                </p>
+                <h2 className="text-sm font-medium text-gray-700">
                   {plan.title}
-                </span>
+                </h2>
               </div>
             </div>
-            <div className="flex-1">
+
+            <div className="">
               <p className="text-sm text-gray-600">{plan.description}</p>
             </div>
+
             <div className="mt-auto">
               <Button className="button w-full bg-darkBlue py-2 text-white">
                 {plan.buttonText}

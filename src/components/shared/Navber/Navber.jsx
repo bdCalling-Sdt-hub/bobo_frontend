@@ -60,6 +60,8 @@ const Navber = () => {
     setIsUserGuide(!isUserGuide);
   };
 
+  console.log("role: ", role);
+
   return (
     <div className="mx-auto flex w-[90%] flex-col items-center justify-between rounded-2xl bg-white bg-opacity-60 p-2 px-4 shadow-md md:flex-row">
       {/* ---------------- Avatar & Title Section -------------- */}
@@ -67,7 +69,15 @@ const Navber = () => {
         <div className="flex justify-between">
           <div>
             <Avatar>
-              <Link href={role === "3" ? "/editschoolAcount" : "/personalInfo"}>
+              <Link
+                href={
+                  role === "3"
+                    ? "/editschoolAcount"
+                    : role === "2"
+                      ? "/personalInfo"
+                      : "/home"
+                }
+              >
                 <AvatarImage
                   className="w-10 rounded-full"
                   src="https://github.com/shadcn.png"
@@ -85,7 +95,7 @@ const Navber = () => {
           </div>
         </div>
 
-        {/* Mobile Drawer Button */}
+        {/*=================================== Mobile Drawer Button=================== */}
         <button onClick={toggleDrawer} className="text-2xl md:hidden">
           {isDrawerOpen ? <HiX /> : <HiMenu />}
         </button>
@@ -106,7 +116,13 @@ const Navber = () => {
 
         <nav className="mt-16 flex flex-col gap-4 p-4">
           <Link
-            href={role === "3" ? "/editschoolAcount" : "/personalInfo"}
+            href={
+              role === "3"
+                ? "/editschoolAcount"
+                : role === "2"
+                  ? "/personalInfo"
+                  : "/home"
+            }
             onClick={toggleDrawer}
           >
             <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
@@ -132,9 +148,17 @@ const Navber = () => {
         </nav>
       </div>
 
-      {/* ---------------- Normal Menu for Larger Screens -------------- */}
+      {/* ----------------================= Normal Menu for Larger Screens============== -------------- */}
       <div className="hidden items-center gap-5 md:flex">
-        <Link href={role === "3" ? "/editschoolAcount" : "/personalInfo"}>
+        <Link
+          href={
+            role === "3"
+              ? "/editschoolAcount"
+              : role === "2"
+                ? "/personalInfo"
+                : "/home"
+          }
+        >
           <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
             {t("Dashboard")}
           </Button>

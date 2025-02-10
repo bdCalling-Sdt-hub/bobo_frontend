@@ -9,6 +9,12 @@ const SubsCriptionApi = baseApi.injectEndpoints ({
                 method: 'POST',
                 body: {"package": data}
             })
+        }),
+        GetrunningSubsCriptions: builder.query({
+            query: ()=>({
+                url: '/subscriptions/my-subscription',
+                method: 'GET'
+            })
         })
     })
  
@@ -17,4 +23,4 @@ const SubsCriptionApi = baseApi.injectEndpoints ({
 
 
 
-export const {useCreateSubsCriptionsMutation}=SubsCriptionApi;
+export const {useCreateSubsCriptionsMutation,useGetrunningSubsCriptionsQuery}=SubsCriptionApi;

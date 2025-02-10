@@ -128,7 +128,7 @@ const TeachersTable = () => {
                     row.status === "1" ? "text-green-600" : "text-red-600"
                   }`}
                 >
-                  {row.status}
+                  {row.status == "1" ? "Active" : "Disabled"}
                 </TableCell>
                 <TableCell>
                   <div className="flex justify-center gap-2">

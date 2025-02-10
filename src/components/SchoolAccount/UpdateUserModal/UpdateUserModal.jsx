@@ -11,19 +11,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form"; // Added Controller
 import { useEffect } from "react";
+import { useUpdateSchoolteacherMutation } from "@/redux/api/userApi";
+import { toast } from "sonner";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
 
 const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
   const {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control, // Added for controlled inputs
     formState: { errors },
   } = useForm();
-
-  const status = watch("status");
 
   useEffect(() => {
     if (user) {
@@ -33,47 +34,59 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
     }
   }, [user, setValue]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    onOpenChange(false);
+  const id = user?._id;
+  const [updateSchoolteacher, { isLoading }] = useUpdateSchoolteacherMutation();
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await updateSchoolteacher({ id, data }).unwrap();
+      if (res.success) {
+        toast.success("Teacher details updated successfully");
+        onOpenChange(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.data?.message || error?.message || "An error occurred.",
+      );
+    }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <h1 className="text-center text-2xl">Update {user.name} details</h1>
+          <h1 className="text-center text-2xl">Update {user?.name} details</h1>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
-          {/* First Name */}
+          {/* Name */}
           <div>
-            <Label htmlFor="name">First Name</Label>
+            <Label htmlFor="firstName">First Name</Label>
             <Input
               id="name"
               className="border-black"
-              {...register("name", { required: "First Name is required" })}
+              {...register("firstName", { required: "Name is required" })}
               placeholder="John"
             />
             {errors.firstName && (
               <p className="text-sm text-red-600">{errors.firstName.message}</p>
             )}
           </div>
-
-          {/* Last Name */}
-          {/* <div>
+          {/* Name */}
+          <div>
             <Label htmlFor="lastName">Last Name</Label>
             <Input
-              id="lastName"
+              id="name"
               className="border-black"
-              {...register("lastName", { required: "Last Name is required" })}
-              placeholder="Doe"
+              {...register("lastName", { required: "Name is required" })}
+              placeholder=" Doe"
             />
             {errors.lastName && (
               <p className="text-sm text-red-600">{errors.lastName.message}</p>
             )}
-          </div> */}
+          </div>
 
-          {/* Email */}
+          {/* Email (Disabled) */}
           <div>
             <Label htmlFor="email">Email Address</Label>
             <Input
@@ -84,7 +97,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
               {...register("email", {
                 required: "Email is required",
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/,
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                   message: "Invalid email address",
                 },
               })}
@@ -95,30 +108,33 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
             )}
           </div>
 
-          {/* Status Select */}
+          {/* Status Select (Using Controller for react-hook-form) */}
           <div>
             <Label htmlFor="status">Status</Label>
-            <Select
-              value={status}
-              onValueChange={(value) => setValue("status", value)}
-            >
-              <SelectTrigger id="status" className="w-full border-black">
-                <SelectValue placeholder="Select a status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Active">Active</SelectItem>
-                <SelectItem value="Inactive">Inactive</SelectItem>
-              </SelectContent>
-            </Select>
+            <Controller
+              name="status"
+              control={control}
+              rules={{ required: "Status is required" }}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger id="status" className="w-full border-black">
+                    <SelectValue placeholder="Select a status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">Active</SelectItem>
+                    <SelectItem value="2">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
             {errors.status && (
               <p className="text-sm text-red-600">{errors.status.message}</p>
             )}
           </div>
 
-          {/* Footer */}
-
+          {/* Submit Button */}
           <Button type="submit" className="w-full bg-darkBlue text-white">
-            Update
+            {isLoading ? <CustomLoader /> : "Update"}
           </Button>
         </form>
       </DialogContent>

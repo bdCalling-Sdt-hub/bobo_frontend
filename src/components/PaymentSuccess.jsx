@@ -20,8 +20,6 @@ import { selectUser } from "@/redux/features/authSlice";
 export default function PaymentSuccess() {
   const user = useSelector(selectUser);
 
-  console.log(user.role);
-
   useEffect(() => {
     // Trigger confetti effect
     confetti({

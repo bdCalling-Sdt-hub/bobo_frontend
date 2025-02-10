@@ -35,9 +35,10 @@ export default function LoginForm() {
 
   // Login api handlers
 
-  const [signin, { isLoading }] = useSignInMutation();
+  const [signin, { isLoading, error }] = useSignInMutation();
 
   const onSubmit = async (data) => {
+    console.log("data", data);
     try {
       const res = await signin(data).unwrap();
       console.log("API Response:", res.data);
@@ -61,9 +62,18 @@ export default function LoginForm() {
           // Redirect to school admin page if user is admin
           return router.push("/premiumPlan");
         }
+        if (res.data?.user?.role === "4") {
+          // Redirect to school admin page if user is admin
+          return router.push("/home");
+        }
+
         setFormError(null);
       }
     } catch (error) {
+      if (error?.data?.message === "Your account is not verified") {
+        router.push(`/auth/VerifyOtp?email=${data.email}&next=/auth/login`);
+      }
+
       setFormError(error?.data?.message || error?.error);
     }
   };

@@ -4,17 +4,16 @@ import LearningAreaSectionTwo from "@/components/Form/LearningAreaSection/Learni
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-import { Dialog, Popover } from "@headlessui/react";
-import axios from "axios";
+import { Popover } from "@headlessui/react";
 import Cookies from "js-cookie";
-import { Copy } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link, useRouter } from "@/i18n/routing";
+import CustomLoader from "@/components/CustomLoader/CustomLoader";
+import { useCreateCommentMutation } from "@/redux/api/commentsApi";
+import { toast } from "sonner";
 import Swal from "sweetalert2";
-
-import { useRouter } from "@/i18n/routing";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
@@ -28,35 +27,56 @@ const CycleForm = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const [result, setResult] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
-  const onSubmit = async (data) => {
-    console.log("Submitted data:", data);
-    setIsLoading(true);
+  const cycle = "2";
 
+  const [createComment, { isLoading: commentLoading, error }] =
+    useCreateCommentMutation();
+
+  const errormessage = error?.data?.message;
+
+  if (error) {
+    Swal.fire({
+      title: "Oppss..",
+      text: errormessage,
+      icon: "error",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Okey",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push("/home");
+      }
+    });
+  }
+
+  const onSubmit = async (data) => {
     try {
-      const response = await axios.post("/api/generateFeedback", {
+      const response = await createComment({
         feedbackData: data,
         language: locale,
+        cycle: cycle,
       });
-
-      let { comment } = response.data;
-
+      let comment = response?.data?.data?.comment;
       if (comment) {
         const splitComment = comment?.replace(/(^"|"$)/g, "");
         console.log("Submitted data: split", splitComment);
-        // const splitComment = comment.split(". ");`
         router.push(`/success?data=${splitComment}`);
-
-        // setResult({ feedback: splitComment });
       }
-      console.log("result", result);
-      console.log("Submitted data:", comment);
     } catch (error) {
-      console.log("Error generating feedback:", error);
+      console.error("Error generating feedback:", error);
+
+      const errorMessage =
+        error?.data?.message ||
+        error?.errorSources?.[0]?.message ||
+        error?.response?.data?.error ||
+        "An error occurred. Please try again.";
+      toast.error(errorMessage);
+
       setResult({
         feedback:
           error.response?.data?.error ||
@@ -64,7 +84,7 @@ const CycleForm = () => {
       });
     } finally {
       reset();
-      setIsLoading(false);
+
       // setIsModalOpen(true);
     }
   };
@@ -184,74 +204,18 @@ const CycleForm = () => {
         <Button
           type="submit"
           className="mb-20 w-full bg-purple-950"
-          disabled={isLoading}
+          disabled={commentLoading}
         >
-          {isLoading ? (
-            <div className="spinner-border h-6 w-6 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+          {commentLoading ? (
+            <h1 className="flex gap-2">
+              <CustomLoader />
+              Genarating Comment ...
+            </h1>
           ) : (
             t("Generate Comment")
           )}
         </Button>
       </div>
-
-      {/* Modal */}
-      {/* <Dialog
-          open={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          className="relative z-50"
-        >
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50"
-            aria-hidden="true"
-          />
-          <div className="fixed inset-0 flex items-center justify-center p-4">
-          
-            <motion.div
-              className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Dialog.Title className="text-lg font-bold">
-                {t("Generated Comment")}
-              </Dialog.Title>
-              <div className="mt-4">
-                <div className="bg-gray-100 p-3 rounded flex justify-between items-center">
-                  {result?.feedback ? (
-                    <p className="break-words mb-2">{result?.feedback}</p>
-                  ) : (
-                    <p>No feedback available. Please try again.</p>
-                  )}
-                  
-                  {result?.feedback && (
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(result.feedback);
-                        Swal.fire({
-                          position: "center",
-                          icon: "success",
-                          title: t("Your comment has been copied"),
-                          showConfirmButton: false,
-                          timer: 1500,
-                        });
-                      }}
-                      className="ml-3 px-3 py-1 rounded"
-                    >
-                      <Copy />
-                    </button>
-                  )}
-                </div>
-              </div>
-              <Button
-                onClick={() => setIsModalOpen(false)}
-                className="mt-4 w-full bg-purple-950"
-              >
-                {t("Close")}
-              </Button>
-            </motion.div>
-          </div>
-        </Dialog> */}
     </form>
   );
 };

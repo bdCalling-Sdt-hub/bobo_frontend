@@ -4,6 +4,7 @@ import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "@/i18n/routing";
 import { useAddSchoolTeacherMutation } from "@/redux/api/authApi";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -11,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const AddTeacher = () => {
+  const router = useRouter();
   const [showPass, setShowPass] = useState(false);
   const {
     register,
@@ -34,6 +36,7 @@ const AddTeacher = () => {
         error?.message ||
         "An error occurred. Please try again.";
       toast.error(errorMessage);
+      router.push("/premiumPlan")
     }
   };
 
