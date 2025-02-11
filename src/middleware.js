@@ -2,7 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextResponse } from "next/server";
 
-
+const intlMiddleware = createMiddleware(routing);
 
 export function middleware(req) {
   const { nextUrl } = req;
@@ -10,25 +10,33 @@ export function middleware(req) {
 
   const isAuthRoute =
     nextUrl.pathname.startsWith("/fr/auth/") ||
-    ["/fr/schoolAccountAuth/schoolRegister","/fr/schoolAccountAuth/initialForm", "/fr/guestAuth/upgradeAccount", "/fr/guestAuth/verifyEmail"].includes(nextUrl.pathname);
+    ["/fr/schoolAccountAuth/schoolRegister", "/fr/schoolAccountAuth/initialForm", "/fr/guestAuth/upgradeAccount", "/fr/guestAuth/verifyEmail"].includes(nextUrl.pathname);
   const isGuestRoute = nextUrl.pathname === "/fr/guestAuth/welComePage";
   const isRootRoute = nextUrl.pathname === "/";
 
   console.log("Middleware triggered:", nextUrl.pathname);
 
+  // Run next-intl middleware first to handle language redirection
+  const response = intlMiddleware(req);
+  if (response) return response;
+
   // Allow access to the guest welcome page without redirection
   if (isGuestRoute) {
     return NextResponse.next();
   }
-  if(isRootRoute){
+
+  // Redirect root path to home page
+  if (isRootRoute) {
     return NextResponse.redirect(new URL("/fr/home", req.url));
   }
+
+  // Allow access to authentication routes
   if (isAuthRoute) {
     return NextResponse.next();
   }
+
   // Redirect logged-in users away from auth routes or the root page
   if (isLoggedIn) {
-    
     return NextResponse.next();
   }
 
@@ -39,7 +47,7 @@ export function middleware(req) {
 
   return NextResponse.next();
 }
-export default createMiddleware(routing);
+
 export const config = {
   matcher: ["/", "/(fr|en)/:path*"],
 };
