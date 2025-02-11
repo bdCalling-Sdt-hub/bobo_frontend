@@ -6,9 +6,9 @@ import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
 
 import { Dialog, Popover } from "@headlessui/react";
-import axios from "axios";
+
 import Cookies from "js-cookie";
-import { Copy, Loader2 } from "lucide-react";
+import { Copy } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,9 +16,14 @@ import Swal from "sweetalert2";
 import { useRouter } from "@/i18n/routing";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useCreateCommentMutation } from "@/redux/api/commentsApi";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
+
+  const user = useSelector(selectUser);
+  const role = user?.role;
 
   const locale = Cookies.get("NEXT_LOCALE");
 
@@ -52,12 +57,21 @@ const CycleForm = () => {
       confirmButtonText: "Okey",
     }).then((result) => {
       if (
-        result.isConfirmed &
-        (errormessage === "Your free limit is expired!")
+        result.isConfirmed &&
+        errormessage === "Your free limit is expired!"
       ) {
         router.push("/guestAuth/upgradeAccount");
+      } else if (
+        result.isConfirmed &&
+        errormessage === "You have not any subscription"
+      ) {
+        if (role === "3") {
+          router.push("/premiumPlan");
+        } else {
+          router.push("/subscriptionPanel");
+        }
       } else {
-        router.push("/home");
+        router.push("/");
       }
     });
   }

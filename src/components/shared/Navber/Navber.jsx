@@ -89,7 +89,7 @@ const Navber = () => {
             </Avatar>
           </div>
           <div>
-            <Link href={role === "3" ? "/schoolHome" : "/home"}>
+            <Link href={role === "3" ? "/home" : "/home"}>
               <h1 className="ml-12 text-lg font-bold md:text-2xl">
                 {t("Teacher Comment Hub")}
               </h1>
