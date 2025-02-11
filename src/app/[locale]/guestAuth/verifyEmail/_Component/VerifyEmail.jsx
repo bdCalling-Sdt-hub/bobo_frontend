@@ -47,8 +47,7 @@ export default function VerifyEmailForm() {
       }
     } catch (error) {
       setFormError(
-        error.response?.data?.error ||
-          "Something went wrong. Please try again.",
+        error?.data?.message || "Something went wrong. Please try again.",
       );
     }
   };

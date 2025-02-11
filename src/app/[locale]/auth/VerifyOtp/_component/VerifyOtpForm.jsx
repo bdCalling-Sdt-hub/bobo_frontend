@@ -14,9 +14,12 @@ import {
   useResendOtpMutation,
   useVerifyEmailMutation,
 } from "@/redux/api/authApi";
+import { setUser } from "@/redux/features/authSlice";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { jwtDecode } from "jwt-decode";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 export default function VerifyOtpForm() {
   const [value, setValue] = useState("");
@@ -27,7 +30,7 @@ export default function VerifyOtpForm() {
   const [showRequired, setShowRequired] = useState(false);
   const [formError, setFormError] = useState(null);
   const router = useRouter();
-
+  const dispatch = useDispatch();
   // verify otp handeler
   const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
   const [resendOtp, { isLoading: resendOtpLoading }] = useResendOtpMutation();
@@ -43,9 +46,13 @@ export default function VerifyOtpForm() {
       const res = await verifyEmail({ otp: Number(value) }).unwrap();
       if (res.success) {
         toast.success("OTP Verified", "Please login to your account.");
-
-        console.log("next", nextpath);
-
+        // Set user info into store
+        dispatch(
+          setUser({
+            user: jwtDecode(res?.data?.accessToken),
+            token: res?.data?.accessToken,
+          }),
+        );
         if (nextpath) {
           router.push(nextpath);
         } else {

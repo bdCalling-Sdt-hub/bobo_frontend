@@ -22,7 +22,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
     register,
     handleSubmit,
     setValue,
-    control, // Added for controlled inputs
+    control,
     formState: { errors },
   } = useForm();
 
@@ -61,31 +61,17 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
           {/* Name */}
           <div>
-            <Label htmlFor="firstName">First Name</Label>
+            <Label htmlFor="name"> Name</Label>
             <Input
               id="name"
               className="border-black"
-              {...register("firstName", { required: "Name is required" })}
+              {...register("name", { required: "Name is required" })}
               placeholder="John"
             />
-            {errors.firstName && (
-              <p className="text-sm text-red-600">{errors.firstName.message}</p>
+            {errors.name && (
+              <p className="text-sm text-red-600">{errors.name.message}</p>
             )}
           </div>
-          {/* Name */}
-          <div>
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input
-              id="name"
-              className="border-black"
-              {...register("lastName", { required: "Name is required" })}
-              placeholder=" Doe"
-            />
-            {errors.lastName && (
-              <p className="text-sm text-red-600">{errors.lastName.message}</p>
-            )}
-          </div>
-
           {/* Email (Disabled) */}
           <div>
             <Label htmlFor="email">Email Address</Label>
@@ -122,7 +108,7 @@ const UpdateUserModal = ({ isOpen, onOpenChange, user }) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="1">Active</SelectItem>
-                    <SelectItem value="2">Inactive</SelectItem>
+                    <SelectItem value="0">Inactive</SelectItem>
                   </SelectContent>
                 </Select>
               )}

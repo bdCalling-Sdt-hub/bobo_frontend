@@ -75,7 +75,9 @@ const Navber = () => {
                     ? "/editschoolAcount"
                     : role === "2"
                       ? "/personalInfo"
-                      : "/home"
+                      : role === "4"
+                        ? "/editSchoolTeacherProfile"
+                        : "/home"
                 }
               >
                 <AvatarImage
@@ -121,7 +123,9 @@ const Navber = () => {
                 ? "/editschoolAcount"
                 : role === "2"
                   ? "/personalInfo"
-                  : "/home"
+                  : role === "4"
+                    ? "/editSchoolTeacherProfile"
+                    : "/home"
             }
             onClick={toggleDrawer}
           >
@@ -156,7 +160,9 @@ const Navber = () => {
               ? "/editschoolAcount"
               : role === "2"
                 ? "/personalInfo"
-                : "/home"
+                : role === "4"
+                  ? "/editSchoolTeacherProfile"
+                  : "/home"
           }
         >
           <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">

@@ -40,6 +40,7 @@ const CycleForm = () => {
     useCreateCommentMutation();
 
   const errormessage = error?.data?.message;
+  // const errorStatus = error?.data?.err?.statusCode;
 
   if (error) {
     Swal.fire({
@@ -50,7 +51,12 @@ const CycleForm = () => {
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Okey",
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (
+        result.isConfirmed &
+        (errormessage === "Your free limit is expired!")
+      ) {
+        router.push("/guestAuth/upgradeAccount");
+      } else {
         router.push("/home");
       }
     });
