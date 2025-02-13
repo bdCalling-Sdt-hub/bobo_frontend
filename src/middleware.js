@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const intlMiddleware = createMiddleware(routing);
 
-export function middleware(req) {
+export async function middleware(req) {
   const { nextUrl } = req;
   const isLoggedIn = req.cookies.get("bobo-accessToken")?.value;
 
@@ -16,9 +16,7 @@ export function middleware(req) {
 
   console.log("Middleware triggered:", nextUrl.pathname);
 
-  // Run next-intl middleware first to handle language redirection
-  const response = intlMiddleware(req);
-  if (response) return response;
+ 
 
   // Allow access to the guest welcome page without redirection
   if (isGuestRoute) {
@@ -44,6 +42,10 @@ export function middleware(req) {
   if (!isLoggedIn && !isAuthRoute) {
     return NextResponse.redirect(new URL("/fr/guestAuth/welComePage", req.url));
   }
+
+   // Run next-intl middleware first to handle language redirection
+   const response = await intlMiddleware(req);
+   if (response) return response;
 
   return NextResponse.next();
 }

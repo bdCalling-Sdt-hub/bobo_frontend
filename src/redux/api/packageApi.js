@@ -16,6 +16,7 @@ const pakageApi = baseApi.injectEndpoints({
             }),
         }),
 
+      
     }),
 
  
@@ -23,4 +24,4 @@ const pakageApi = baseApi.injectEndpoints({
 
 
 
-export const {useGetStanderdPackagesQuery,useGetPremiumPackagesQuery}=pakageApi
+export const {useGetStanderdPackagesQuery,useGetPremiumPackagesQuery,}=pakageApi

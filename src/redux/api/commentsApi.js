@@ -18,6 +18,15 @@ const commentsApi = baseApi.injectEndpoints({
                 }
             }),
         }),
+
+        
+        getComments: builder.query({
+            query: ()=>({
+                url: '/comments',
+                method: 'GET',
+            })
+        })
+        
   
     
     }),
@@ -25,4 +34,4 @@ const commentsApi = baseApi.injectEndpoints({
 })
 
 
-export const {useCreateCommentMutation}=commentsApi
+export const {useCreateCommentMutation,useGetCommentsQuery}=commentsApi

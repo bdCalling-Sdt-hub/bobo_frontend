@@ -35,6 +35,11 @@ const SchoolAccountSideber = () => {
       icon: <GiTakeMyMoney />,
     },
     {
+      label: "Comments History",
+      path: "/commentHistory",
+      icon: <GiTakeMyMoney />,
+    },
+    {
       label: "Account Settings",
       path: "/schoolAccountSettings",
       icon: <FaCog />,

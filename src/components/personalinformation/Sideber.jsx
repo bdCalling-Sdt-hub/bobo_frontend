@@ -27,6 +27,11 @@ const Sidebar = () => {
       icon: <GiTakeMyMoney />,
     },
     {
+      label: "Comment history",
+      path: "/commentHistory",
+      icon: <GiTakeMyMoney />,
+    },
+    {
       label: t("Account Settings"),
       path: "/settings",
       icon: <FaCog />,
