@@ -27,7 +27,7 @@ const Sidebar = () => {
       icon: <GiTakeMyMoney />,
     },
     {
-      label: "Comment history",
+      label: t("Comment History"),
       path: "/commentHistory",
       icon: <GiTakeMyMoney />,
     },

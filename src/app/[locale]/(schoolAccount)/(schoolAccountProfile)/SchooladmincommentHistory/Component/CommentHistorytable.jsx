@@ -15,6 +15,8 @@ import { FaEye } from "react-icons/fa";
 import { useGetCommentsQuery } from "@/redux/api/commentsApi";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import CommentDetailsModal from "./CommentDetailsModal";
+import Image from "next/image";
+import nodata from "/public/nodata.png";
 
 const CommentHistorytable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,35 +62,44 @@ const CommentHistorytable = () => {
               <TableHead className="text-center text-white">Date</TableHead>
               <TableHead className="text-center text-white">Cycle</TableHead>
               <TableHead className="text-center text-white">Name</TableHead>
-
               <TableHead className="text-center text-white">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedData?.map((row, index) => (
-              <TableRow key={row._id} className="text-center">
-                <TableCell>
-                  {index + 1 + (currentPage - 1) * pagePostsLimit}
-                </TableCell>
-                <TableCell>
-                  {new Date(row.createdAt).toLocaleDateString()}
-                </TableCell>
-                <TableCell>{row.cycle}</TableCell>
-                <TableCell>{row.prompt.name}</TableCell>
-                <TableCell>
-                  <div className="flex justify-center gap-2">
-                    <Button
-                      onClick={() => openModal(row)}
-                      variant="outline"
-                      size="sm"
-                      className="text-[#303060]"
-                    >
-                      <FaEye />
-                    </Button>
+            {paginatedData?.length > 0 ? (
+              paginatedData.map((row, index) => (
+                <TableRow key={row._id} className="text-center">
+                  <TableCell>
+                    {index + 1 + (currentPage - 1) * pagePostsLimit}
+                  </TableCell>
+                  <TableCell>
+                    {new Date(row.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell>{row.cycle}</TableCell>
+                  <TableCell>{row.prompt.name}</TableCell>
+                  <TableCell>
+                    <div className="flex justify-center gap-2">
+                      <Button
+                        onClick={() => openModal(row)}
+                        variant="outline"
+                        size="sm"
+                        className="text-[#303060]"
+                      >
+                        <FaEye />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center">
+                  <div className="flex justify-center">
+                    <Image className="w-1/2" alt="No data found" src={nodata} />
                   </div>
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </div>
@@ -100,7 +111,7 @@ const CommentHistorytable = () => {
         />
       </div>
 
-      {/* Update User Modal */}
+      {/* Comment Details Modal */}
       {selectedUser && (
         <CommentDetailsModal
           isOpen={isModalOpen}

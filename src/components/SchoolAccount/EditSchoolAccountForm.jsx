@@ -176,7 +176,7 @@ const EditSchoolAccountForm = () => {
 
           {/* School Name */}
           <div>
-            <Label htmlFor="schoolName">{t("School Name")}</Label>
+            <Label htmlFor="schoolName">{t("School Name (Optional)")}</Label>
             <Input
               type="text"
               id="schoolName"
@@ -188,7 +188,7 @@ const EditSchoolAccountForm = () => {
 
           {/* Job Role */}
           <div>
-            <Label htmlFor="jobrole">{t("Job Role/Position")}</Label>
+            <Label htmlFor="jobrole">{t("Job Role Position")}</Label>
             <Input
               type="text"
               id="jobrole"

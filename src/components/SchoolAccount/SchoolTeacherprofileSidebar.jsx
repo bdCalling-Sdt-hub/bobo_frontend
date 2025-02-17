@@ -24,16 +24,11 @@ const SchoolTeacherAccountSideber = () => {
       path: "/editSchoolTeacherProfile",
       icon: <FaUser />,
     },
-    // {
-    //   label: "Teachers Account",
-    //   path: "/teachersProfile",
-    //   icon: <FaCog />,
-    // },
-    // {
-    //   label: "Subscription Management ",
-    //   path: "/subsCriptionManagement",
-    //   icon: <GiTakeMyMoney />,
-    // },
+    {
+      label: "Comment History",
+      path: "/SchoolTeacherCommentHistory",
+      icon: <FaCog />,
+    },
     {
       label: "Account Settings",
       path: "/accountsetting",

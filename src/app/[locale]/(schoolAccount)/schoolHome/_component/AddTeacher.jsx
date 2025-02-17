@@ -13,6 +13,7 @@ import { toast } from "sonner";
 
 const AddTeacher = () => {
   const router = useRouter();
+  const t = useTranslations("personalInformation");
   const [showPass, setShowPass] = useState(false);
   const {
     register,
@@ -36,7 +37,7 @@ const AddTeacher = () => {
         error?.message ||
         "An error occurred. Please try again.";
       toast.error(errorMessage);
-      router.push("/premiumPlan")
+      router.push("/premiumPlan");
     }
   };
 
@@ -46,8 +47,7 @@ const AddTeacher = () => {
       className="text-primary-black rounded-lg bg-white bg-opacity-70 p-5 lg:mx-auto lg:w-[80%]"
     >
       <h1 className="mb-10 text-center text-2xl font-bold md:text-4xl">
-        {" "}
-        Manual Entry{" "}
+        {t("Manual Entry")}
       </h1>
 
       <div className="flex gap-10">
@@ -57,7 +57,7 @@ const AddTeacher = () => {
             htmlFor="firstName"
             className="text-primary-black mb-1 block font-semibold"
           >
-            First Name
+            {t("First Name")}
           </Label>
 
           <Input
@@ -78,7 +78,7 @@ const AddTeacher = () => {
             htmlFor="lastName"
             className="text-primary-black mb-1 block font-semibold"
           >
-            Last Name
+            {t("Last Name")}
           </Label>
           <Input
             type="text"
@@ -99,7 +99,7 @@ const AddTeacher = () => {
           htmlFor="email"
           className="text-primary-black mb-1 mt-2 block font-semibold"
         >
-          Email
+          {t("Email")}
         </Label>
         <Input
           type="email"
@@ -116,7 +116,7 @@ const AddTeacher = () => {
       {/* Password */}
       <div className="mt-6 grid w-full items-center gap-2">
         <Label htmlFor="password" className="text-primary-black font-semibold">
-          Password
+          {t("Password")}
         </Label>
         <div className="relative">
           <Input
@@ -149,7 +149,7 @@ const AddTeacher = () => {
           type="submit"
           className="text-blac mt-10 block h-[2.7rem] w-full border-2 border-black bg-purple-950 px-12 text-white"
         >
-          {isLoading ? <CustomLoader /> : "Add Teacher"}
+          {isLoading ? <CustomLoader /> : t("Add Teacher")}
         </Button>
       </div>
     </form>

@@ -16,6 +16,10 @@ export async function middleware(req) {
 
   console.log("Middleware triggered:", nextUrl.pathname);
 
+    // Run next-intl middleware first to handle language redirection
+    const response = await intlMiddleware(req);
+    if (response) return response;
+
  
 
   // Allow access to the guest welcome page without redirection
@@ -42,11 +46,6 @@ export async function middleware(req) {
   if (!isLoggedIn && !isAuthRoute) {
     return NextResponse.redirect(new URL("/fr/guestAuth/welComePage", req.url));
   }
-
-   // Run next-intl middleware first to handle language redirection
-   const response = await intlMiddleware(req);
-   if (response) return response;
-
   return NextResponse.next();
 }
 

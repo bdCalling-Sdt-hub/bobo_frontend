@@ -1,6 +1,7 @@
 "use client";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { logout } from "@/redux/features/authSlice";
+import { useTranslations } from "next-intl";
 
 import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -11,6 +12,7 @@ const SchoolAccountSideber = () => {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useDispatch();
+  const t = useTranslations("personalInformation");
 
   const handlelogout = () => {
     dispatch(logout());
@@ -20,27 +22,27 @@ const SchoolAccountSideber = () => {
 
   const navItems = [
     {
-      label: "Edit School Account",
+      label: t("Edit School Account"),
       path: "/editschoolAcount",
       icon: <FaUser />,
     },
     {
-      label: "Teachers Account",
+      label: t("Teachers Account"),
       path: "/teachersProfile",
       icon: <FaCog />,
     },
     {
-      label: "Subscription Management ",
+      label: t("Subscription Management"),
       path: "/subsCriptionManagement",
       icon: <GiTakeMyMoney />,
     },
     {
-      label: "Comments History",
-      path: "/commentHistory",
+      label: t("Comment History"),
+      path: "/SchooladmincommentHistory",
       icon: <GiTakeMyMoney />,
     },
     {
-      label: "Account Settings",
+      label: t("Account Settings"),
       path: "/schoolAccountSettings",
       icon: <FaCog />,
     },
@@ -49,8 +51,8 @@ const SchoolAccountSideber = () => {
   return (
     <>
       {/* Sidebar for larger screens */}
-      <div className="hidden h-[400px] w-80 bg-lightBlue p-6 md:block">
-        <h2 className="mb-8 text-lg font-bold">Teacher Comment Hub</h2>
+      <div className="hidden h-[450px] w-80 bg-lightBlue p-6 md:block">
+        <h2 className="mb-8 text-lg font-bold">{t("Teacher Comment Hub")}</h2>
         <ul>
           {navItems.map((item) => (
             <li key={item.path} className="mb-4">

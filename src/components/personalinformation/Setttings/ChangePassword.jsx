@@ -55,7 +55,7 @@ const ChangePassword = () => {
           htmlFor="oldPassword"
           className="text-primary-black mb-1 font-semibold"
         >
-          {"Enter Old Password"}
+          {t("Enter Old Password")}
         </Label>
 
         <div className="relative">
@@ -158,7 +158,7 @@ const ChangePassword = () => {
         disabled={isLoading}
         className="mt-10 h-[2.7rem] w-full rounded-xl border-black bg-black text-center text-xl"
       >
-        {isLoading ? <CustomLoader /> : "Submit"}
+        {isLoading ? <CustomLoader /> : t("Submitt")}
       </Button>
 
       {formError && <CustomFormError formError={formError} />}
