@@ -21,7 +21,6 @@ const PricingTable = () => {
   console.log("plans: ", plans?.data);
 
   const Pakage = plans?.data;
-
   if (isLoading)
     return (
       <div>
@@ -53,17 +52,23 @@ const PricingTable = () => {
           teaching journey.
         </p>
         <div className="flex flex-wrap justify-center gap-8">
-          {Pakage.map((plan, index) => (
-            <PricingCard
-              id={plan._id}
-              key={index}
-              price={plan.price}
-              title={decodeHTML(plan.shortTitle)}
-              duration={plan.duration}
-              description={plan.shortDescription}
-              comments={plan.comment_limit}
-            />
-          ))}
+          {Pakage.length > 0 ? (
+            Pakage.map((plan, index) => (
+              <PricingCard
+                id={plan._id}
+                key={index}
+                price={plan.price}
+                title={decodeHTML(plan.shortTitle)}
+                duration={plan.duration}
+                description={plan.shortDescription}
+                comments={plan.comment_limit}
+              />
+            ))
+          ) : (
+            <div className="text-center text-2xl text-white">
+              No pricing plans found. Please try again later.
+            </div>
+          )}
         </div>
       </div>
     </div>
