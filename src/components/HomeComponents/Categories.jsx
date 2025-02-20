@@ -10,6 +10,7 @@ import { useRouter } from "@/i18n/routing";
 import { useState } from "react";
 import CustomLoader from "../CustomLoader/CustomLoader";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Categories = () => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const Categories = () => {
     setLoading((prev) => ({ ...prev, [index]: true }));
     setTimeout(() => {
       router.push(`${link}?guide=${encodeURIComponent(guide)}`);
-    }, 1000);
+    }, 0.0);
   };
 
   return (
@@ -80,7 +81,10 @@ const Categories = () => {
               <Button
                 varient="default"
                 size="lg"
-                className="border-2 border-black bg-white text-lg text-black shadow-lg hover:bg-purple-950 hover:text-white"
+                className={cn(
+                  "border-2 border-black bg-white text-lg text-black shadow-lg hover:bg-purple-950 hover:text-white",
+                  loading[index] ? "bg-purple-950" : "bg-white",
+                )}
                 onClick={() => handleNavigate(index, item.link, item.guide)}
                 // disabled={loading[index] === true}
               >

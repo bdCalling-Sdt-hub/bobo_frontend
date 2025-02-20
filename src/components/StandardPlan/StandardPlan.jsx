@@ -65,7 +65,7 @@ const PricingTable = () => {
               />
             ))
           ) : (
-            <div className="text-center text-2xl text-white">
+            <div className="text-center text-2xl text-danger">
               No pricing plans found. Please try again later.
             </div>
           )}

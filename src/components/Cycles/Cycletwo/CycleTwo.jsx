@@ -1,11 +1,12 @@
 "use client";
 import CycleHeroSection from "@/components/shared/Navber/CycleHeroSection";
-import CycleTwoForm from "./CycleTwoForm";
+
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import CycleTwoForm from "./CycleTwoForm";
 
 const CycleTwo = () => {
   const searchParams = useSearchParams();

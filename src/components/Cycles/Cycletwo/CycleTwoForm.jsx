@@ -9,15 +9,18 @@ import Cookies from "js-cookie";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useRouter } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useCreateCommentMutation } from "@/redux/api/commentsApi";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 
-const CycleForm = () => {
+const CycleTwoForm = () => {
   const t = useTranslations("cycleOne");
-
+  const user = useSelector(selectUser);
+  const role = user?.role;
   const locale = Cookies.get("NEXT_LOCALE");
 
   const {
@@ -48,8 +51,22 @@ const CycleForm = () => {
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Okey",
     }).then((result) => {
-      if (result.isConfirmed) {
-        router.push("/home");
+      if (
+        result.isConfirmed &&
+        errormessage === "Your free limit is expired!"
+      ) {
+        router.push("/guestAuth/upgradeAccount");
+      } else if (
+        result.isConfirmed &&
+        errormessage === "You have not any subscription"
+      ) {
+        if (role === "3") {
+          router.push("/premiumPlan");
+        } else {
+          router.push("/subscriptionPanel");
+        }
+      } else {
+        router.push("/");
       }
     });
   }
@@ -220,4 +237,4 @@ const CycleForm = () => {
   );
 };
 
-export default CycleForm;
+export default CycleTwoForm;

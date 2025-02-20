@@ -15,10 +15,13 @@ import { motion } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
 import { useCreateCommentMutation } from "@/redux/api/commentsApi";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 
 const CycleForm = () => {
   const t = useTranslations("cycleOne");
-
+  const user = useSelector(selectUser);
+  const role = user?.role;
   const locale = Cookies.get("NEXT_LOCALE");
 
   const {
@@ -49,8 +52,22 @@ const CycleForm = () => {
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Okey",
     }).then((result) => {
-      if (result.isConfirmed) {
-        router.push("/home");
+      if (
+        result.isConfirmed &&
+        errormessage === "Your free limit is expired!"
+      ) {
+        router.push("/guestAuth/upgradeAccount");
+      } else if (
+        result.isConfirmed &&
+        errormessage === "You have not any subscription"
+      ) {
+        if (role === "3") {
+          router.push("/premiumPlan");
+        } else {
+          router.push("/subscriptionPanel");
+        }
+      } else {
+        router.push("/");
       }
     });
   }
@@ -197,10 +214,14 @@ const CycleForm = () => {
           className="mb-20 w-full bg-purple-950"
           disabled={commentLoading}
         >
-          {commentLoading ?  <h1 className="flex gap-2">
-                        <CustomLoader />
-                        Genarating Comment ...
-                      </h1>: t("Generate Comment")}
+          {commentLoading ? (
+            <h1 className="flex gap-2">
+              <CustomLoader />
+              Genarating Comment ...
+            </h1>
+          ) : (
+            t("Generate Comment")
+          )}
         </Button>
       </div>
 
