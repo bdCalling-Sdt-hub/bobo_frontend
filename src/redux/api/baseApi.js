@@ -31,7 +31,7 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
     console.log("refresh",refreshToken)
    
     if (result?.error?.status === 401) {
-      const res = await fetch(`http://192.168.10.147:3000/api/auth/refresh`, {
+      const res = await fetch(`${ process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
