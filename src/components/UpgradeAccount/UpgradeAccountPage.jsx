@@ -6,7 +6,6 @@ import up2 from "/public/up2.png";
 import { Button } from "../ui/button";
 import CustomLoader from "../CustomLoader/CustomLoader";
 import { useRouter } from "@/i18n/routing";
-import { CardBody, CardContainer } from "../ui/3d-card";
 
 const UpgradeAccountPage = () => {
   const router = useRouter();
@@ -62,7 +61,7 @@ const UpgradeAccountPage = () => {
         </h1>
         <div className="grid w-full grid-cols-1 gap-10 md:w-[900px] md:grid-cols-2">
           {card.map((card, index) => (
-            <CardBody
+            <div
               key={index}
               className="m-0 h-auto w-full flex-col items-center rounded-lg border bg-white p-6 text-center shadow-md md:flex"
             >
@@ -92,7 +91,7 @@ const UpgradeAccountPage = () => {
               >
                 {loading[index] ? <CustomLoader /> : card.buttonText}
               </Button>
-            </CardBody>
+            </div>
           ))}
         </div>
       </div>
