@@ -17,8 +17,8 @@ export async function middleware(req) {
   console.log("Middleware triggered:", nextUrl.pathname);
 
     // Run next-intl middleware first to handle language redirection
-    const response = await intlMiddleware(req);
-    if (response) return response;
+    // const response = await intlMiddleware(req);
+    // if (response) return response;
 
  
 
