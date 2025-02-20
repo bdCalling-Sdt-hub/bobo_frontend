@@ -117,22 +117,31 @@ const Navber = () => {
         </button>
 
         <nav className="mt-16 flex flex-col gap-4 p-4">
-          <Link
-            href={
-              role === "3"
-                ? "/editschoolAcount"
-                : role === "2"
-                  ? "/personalInfo"
-                  : role === "4"
-                    ? "/editSchoolTeacherProfile"
-                    : "/home"
-            }
-            onClick={toggleDrawer}
-          >
-            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
-              {t("Dashboard")}
-            </Button>
-          </Link>
+          {role === "1" ? (
+            <Link href={"/guestAuth/upgradeAccount"}>
+              {" "}
+              <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+                Upgrage Account
+              </Button>
+            </Link>
+          ) : (
+            <Link
+              href={
+                role === "3"
+                  ? "/editschoolAcount"
+                  : role === "2"
+                    ? "/personalInfo"
+                    : role === "4"
+                      ? "/editSchoolTeacherProfile"
+                      : "/home"
+              }
+              onClick={toggleDrawer}
+            >
+              <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+                {t("Dashboard")}
+              </Button>
+            </Link>
+          )}
 
           <Link href="/contact" onClick={toggleDrawer}>
             <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
@@ -154,21 +163,31 @@ const Navber = () => {
 
       {/* ----------------================= Normal Menu for Larger Screens============== -------------- */}
       <div className="hidden items-center gap-5 md:flex">
-        <Link
-          href={
-            role === "3"
-              ? "/editschoolAcount"
-              : role === "2"
-                ? "/personalInfo"
-                : role === "4"
-                  ? "/editSchoolTeacherProfile"
-                  : "/home"
-          }
-        >
-          <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
-            {t("Dashboard")}
-          </Button>
-        </Link>
+        {role === "1" ? (
+          <Link href={"/guestAuth/upgradeAccount"}>
+            {" "}
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+              Upgrage Account
+            </Button>
+          </Link>
+        ) : (
+          <Link
+            href={
+              role === "3"
+                ? "/editschoolAcount"
+                : role === "2"
+                  ? "/personalInfo"
+                  : role === "4"
+                    ? "/editSchoolTeacherProfile"
+                    : "/home"
+            }
+            onClick={toggleDrawer}
+          >
+            <Button className="w-full rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">
+              {t("Dashboard")}
+            </Button>
+          </Link>
+        )}
 
         <Link href="/contact">
           <Button className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white">

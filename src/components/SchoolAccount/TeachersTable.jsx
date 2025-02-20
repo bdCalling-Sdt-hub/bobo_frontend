@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pagination } from "react-pagination-bar";
+import nodata from "/public/nodata.png";
 import "react-pagination-bar/dist/index.css";
 import { FaEye, FaTrash } from "react-icons/fa";
 import { CustomPagination } from "../shared/CustomPagination/CustomPagination";
@@ -23,6 +23,7 @@ import {
 import CustomLoader from "../CustomLoader/CustomLoader";
 import ErrorPage from "../Error";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const TeachersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,41 +117,51 @@ const TeachersTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedData.map((row, index) => (
-              <TableRow key={row._id} className="text-center">
-                <TableCell>
-                  {index + 1 + (currentPage - 1) * pagePostsLimit}
-                </TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.email}</TableCell>
-                <TableCell
-                  className={`${
-                    row.status === "1" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {row.status == "1" ? "Active" : "Disabled"}
-                </TableCell>
-                <TableCell>
-                  <div className="flex justify-center gap-2">
-                    <Button
-                      onClick={() => openModal(row)}
-                      variant="outline"
-                      size="sm"
-                      className="text-[#303060]"
-                    >
-                      <FaEye />
-                    </Button>
-                    <Button
-                      onClick={() => handleDelete(row._id)}
-                      size="sm"
-                      className="bg-white text-red-600"
-                    >
-                      {deleteLoading ? <CustomLoader /> : <FaTrash />}
-                    </Button>
+            {paginatedData.length > 0 ? (
+              paginatedData.map((row, index) => (
+                <TableRow key={row._id} className="text-center">
+                  <TableCell>
+                    {index + 1 + (currentPage - 1) * pagePostsLimit}
+                  </TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.email}</TableCell>
+                  <TableCell
+                    className={`${
+                      row.status === "1" ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {row.status == "1" ? "Active" : "Disabled"}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex justify-center gap-2">
+                      <Button
+                        onClick={() => openModal(row)}
+                        variant="outline"
+                        size="sm"
+                        className="text-[#303060]"
+                      >
+                        <FaEye />
+                      </Button>
+                      <Button
+                        onClick={() => handleDelete(row._id)}
+                        size="sm"
+                        className="bg-white text-red-600"
+                      >
+                        {deleteLoading ? <CustomLoader /> : <FaTrash />}
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center">
+                  <div className="flex justify-center">
+                    <Image className="w-1/2" alt="No data found" src={nodata} />
                   </div>
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </div>
