@@ -6,11 +6,6 @@ import CustomLoader from "../CustomLoader/CustomLoader";
 
 const PremiumPricingTable = () => {
   const { data: plans, isError, isLoading } = useGetPremiumPackagesQuery();
-  if (!plans)
-    return (
-      <ErrorPage message="Something went wrong please try again latter " />
-    );
-
   const Pakage = plans?.data;
 
   if (isLoading)
@@ -19,7 +14,10 @@ const PremiumPricingTable = () => {
         <CustomLoader />
       </div>
     );
-  if (isError) return <p>Error fetching plans</p>;
+  if (isError)
+    return (
+      <ErrorPage message="Something went wrong please try again latter " />
+    );
 
   const decodeHTML = (html) => {
     const parser = new DOMParser();

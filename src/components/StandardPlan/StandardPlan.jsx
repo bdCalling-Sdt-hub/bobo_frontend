@@ -13,12 +13,12 @@ const PricingTable = () => {
     error,
   } = useGetStanderdPackagesQuery();
 
-  if (!plans)
-    return (
-      <ErrorPage message="Something went wrong please try again latter " />
-    );
+  // if (!plans)
+  //   return (
+  //     <ErrorPage message="Something went wrong please try again latter " />
+  //   );
 
-  console.log("plans: ", plans?.data);
+  // console.log("plans: ", plans?.data);
 
   const Pakage = plans?.data;
   if (isLoading)
