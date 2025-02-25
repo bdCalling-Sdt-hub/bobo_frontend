@@ -171,7 +171,7 @@ p {
 }
 
 span {
-  position: absolute;
+  /* position: absolute; */
   border-radius: 100vmax;
 }
 

@@ -238,7 +238,8 @@
     "First Name": "Prénom",
     "Email": "Email",
     "Password": "Mot de passe",
-    "Last Name": "Nom de famille"
+    "Last Name": "Nom de famille",
+    "Back to Cycle": "Retour au cycle"
   },
   "contact": {
     "Contact Us": "Contactez-nous",

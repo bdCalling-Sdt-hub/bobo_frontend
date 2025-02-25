@@ -2,7 +2,7 @@
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
-import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaCog, FaSignOutAlt, FaHome } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
@@ -36,6 +36,11 @@ const Sidebar = () => {
       path: "/settings",
       icon: <FaCog />,
     },
+    {
+      label: t("Back to Cycle"),
+      path: "/home",
+      icon: <FaHome />,
+    },
   ];
 
   const handlelogout = () => {
@@ -47,7 +52,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Sidebar for larger screens */}
-      <div className="hidden h-[400px] w-80 bg-lightBlue p-6 md:block">
+      <div className="hidden h-[450px] w-80 bg-lightBlue p-6 md:block">
         <h2 className="mb-8 text-lg font-bold">{t("Teacher Comment Hub")}</h2>
         <ul>
           {navItems.map((item) => (

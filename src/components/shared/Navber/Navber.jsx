@@ -82,7 +82,7 @@ const Navber = () => {
               >
                 <AvatarImage
                   className="w-10 rounded-full"
-                  src="https://github.com/shadcn.png"
+                  src={"/favicon.ico"}
                 />
               </Link>
               <AvatarFallback>CN</AvatarFallback>
@@ -199,7 +199,7 @@ const Navber = () => {
           onClick={handleToggleNavigation}
           className="rounded border border-darkBlue bg-transparent px-4 py-2 text-black hover:bg-darkBlue hover:text-white"
         >
-          {isUserGuide ? t("Go Back") : t("User Guide")}
+          {isUserGuide ? t("User Guide") : t("User Guide")}
         </Button>
       </div>
 

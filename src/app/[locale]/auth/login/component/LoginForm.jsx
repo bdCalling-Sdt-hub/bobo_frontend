@@ -54,8 +54,14 @@ export default function LoginForm() {
           }),
         );
 
-        if (res?.data?.user?.role === "2") {
+        if (
+          res?.data?.user?.role === "2" &&
+          res?.data?.subscription === false
+        ) {
           return router.push("/subscriptionPanel");
+        }
+        if (res?.data?.user?.role === "2" && res?.data?.subscription === true) {
+          return router.push("/home");
         }
 
         if (res.data?.user?.role === "3") {

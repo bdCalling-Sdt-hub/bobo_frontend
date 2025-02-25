@@ -2,7 +2,7 @@
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { logout } from "@/redux/features/authSlice";
 
-import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaCog, FaSignOutAlt, FaHome } from "react-icons/fa";
 
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
@@ -34,12 +34,17 @@ const SchoolTeacherAccountSideber = () => {
       path: "/accountsetting",
       icon: <FaCog />,
     },
+    {
+      label: t("Back to Cycle"),
+      path: "/home",
+      icon: <FaHome />,
+    },
   ];
 
   return (
     <>
       {/* Sidebar for larger screens */}
-      <div className="hidden h-[400px] w-80 bg-lightBlue p-6 md:block">
+      <div className="hidden h-[450px] w-80 bg-lightBlue p-6 md:block">
         <h2 className="mb-8 text-lg font-bold">Teacher Comment Hub</h2>
         <ul>
           {navItems.map((item) => (

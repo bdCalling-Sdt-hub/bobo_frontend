@@ -21,6 +21,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
 export default function VerifyOtpForm() {
   const [value, setValue] = useState("");
   const search = useSearchParams();
@@ -57,6 +58,17 @@ export default function VerifyOtpForm() {
           router.push(nextpath);
         } else {
           router.push("/home");
+          if (res?.data?.user?.role === "1") {
+            Swal.fire({
+              title: "Welcome!",
+              text: "You have joined as a guest and are now eligible to generate up to 5 comments.",
+              icon: "info",
+              confirmButtonText: "Got it",
+              background: "#f0f0f0",
+              confirmButtonColor: "#4CAF50",
+              footer: "Enjoy your stay!",
+            });
+          }
         }
 
         setFormError(null);

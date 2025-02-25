@@ -55,7 +55,8 @@ const InitialForm = () => {
         Welcome
       </h2>
       <p className="text-primary-black mb-10 text-center">
-        Enter your details below to request an Email for create account.
+        Please provide the contact details of the admin from your school who
+        will handle the process on your behalf.
       </p>
       <div className="space-y-8">
         {/* first name */}

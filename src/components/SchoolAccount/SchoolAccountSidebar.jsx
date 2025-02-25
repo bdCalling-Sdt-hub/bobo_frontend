@@ -3,7 +3,7 @@ import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { logout } from "@/redux/features/authSlice";
 import { useTranslations } from "next-intl";
 
-import { FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaCog, FaSignOutAlt, FaHome } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
@@ -45,6 +45,11 @@ const SchoolAccountSideber = () => {
       label: t("Account Settings"),
       path: "/schoolAccountSettings",
       icon: <FaCog />,
+    },
+    {
+      label: t("Back to Cycle"),
+      path: "/home",
+      icon: <FaHome />,
     },
   ];
 
