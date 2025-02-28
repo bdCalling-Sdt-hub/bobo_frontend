@@ -114,7 +114,7 @@ const AddTeacher = () => {
       </div>
 
       {/* Password */}
-      <div className="mt-6 grid w-full items-center gap-2">
+      {/* <div className="mt-6 grid w-full items-center gap-2">
         <Label htmlFor="password" className="text-primary-black font-semibold">
           {t("Password")}
         </Label>
@@ -142,7 +142,7 @@ const AddTeacher = () => {
         {errors.password && (
           <p className="mt-1 text-danger">{errors.password.message}</p>
         )}
-      </div>
+      </div> */}
 
       <div>
         <Button

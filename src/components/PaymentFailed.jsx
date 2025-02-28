@@ -13,6 +13,9 @@ import {
 import { Link } from "@/i18n/routing";
 
 export default function PaymentFailed() {
+  const handleback = () => {
+    window.history.back();
+  };
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-red-50 to-red-100 p-4">
       <motion.div
@@ -38,8 +41,11 @@ export default function PaymentFailed() {
               </p>
             </CardContent>
             <CardFooter className="flex flex-col gap-3">
-              <Link href={"/subscriptionPanel"} className="w-full">
-                <Button className="w-full bg-red-600 text-white hover:bg-red-700">
+              <Link href={""} className="w-full">
+                <Button
+                  onClick={handleback}
+                  className="w-full bg-red-600 text-white hover:bg-red-700"
+                >
                   Retry Payment
                 </Button>
               </Link>

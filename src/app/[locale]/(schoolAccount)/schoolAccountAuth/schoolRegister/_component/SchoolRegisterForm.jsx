@@ -96,7 +96,7 @@ const SchoolRegisterForm = () => {
           </Label>
           <Controller
             name="contact"
-            rules={{ required: "Contact is required" }}
+            // rules={{ required: "Contact is required" }}
             control={control}
             render={({ field }) => (
               <PhoneInput

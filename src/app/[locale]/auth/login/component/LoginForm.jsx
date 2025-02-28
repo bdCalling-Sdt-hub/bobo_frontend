@@ -1,17 +1,13 @@
 "use client";
-// import { Link, redirect } from "@/i18n/routing";
 import { Checkbox } from "@/components/ui/checkbox";
 // import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
 import { useState } from "react";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-
 import EyeIconInverse from "@/components/EyeIcon/EyeIcon";
-
 import { Link, useRouter } from "@/i18n/routing";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import CustomFormError from "@/components/CustomError/CustomError";
@@ -21,7 +17,6 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { setUser } from "@/redux/features/authSlice";
 import { jwtDecode } from "jwt-decode";
-
 export default function LoginForm() {
   const {
     register,
@@ -63,11 +58,16 @@ export default function LoginForm() {
         if (res?.data?.user?.role === "2" && res?.data?.subscription === true) {
           return router.push("/home");
         }
-
-        if (res.data?.user?.role === "3") {
-          // Redirect to school admin page if user is admin
+        if (
+          res?.data?.user?.role === "3" &&
+          res?.data?.subscription === false
+        ) {
           return router.push("/premiumPlan");
         }
+        if (res?.data?.user?.role === "3" && res?.data?.subscription === true) {
+          return router.push("/home");
+        }
+
         if (res.data?.user?.role === "4") {
           // Redirect to school admin page if user is admin
           return router.push("/home");
@@ -79,13 +79,10 @@ export default function LoginForm() {
       if (error?.data?.message === "Your account is not verified") {
         router.push(`/auth/VerifyOtp?email=${data.email}&next=/auth/login`);
       }
-
       setFormError(error?.data?.message || error?.error);
     }
   };
-
   const t = useTranslations("cycleOne");
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

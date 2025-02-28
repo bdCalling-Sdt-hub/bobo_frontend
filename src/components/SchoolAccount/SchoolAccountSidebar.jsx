@@ -56,7 +56,7 @@ const SchoolAccountSideber = () => {
   return (
     <>
       {/* Sidebar for larger screens */}
-      <div className="hidden h-[450px] w-80 bg-lightBlue p-6 md:block">
+      <div className="hidden h-[500px] w-80 bg-lightBlue p-6 md:block">
         <h2 className="mb-8 text-lg font-bold">{t("Teacher Comment Hub")}</h2>
         <ul>
           {navItems.map((item) => (

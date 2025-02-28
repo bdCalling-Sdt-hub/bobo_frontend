@@ -53,7 +53,7 @@ const RegisterForm = () => {
         // set signUptoken in session storage
         localStorage.setItem("signupToken", res.data.otpToken.token);
 
-        router.push(`/auth/VerifyOtp?next=/auth/login&emai=${data.email}`);
+        router.push(`/auth/VerifyOtp?next=/auth/login&email=${data.email}`);
         reset();
         setFormError(null);
       }
@@ -86,9 +86,7 @@ const RegisterForm = () => {
             {...register("name", { required: "First Name is required" })}
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none focus:outline-none"
           />
-          {errors.firstName && (
-            <p className="mt-1 text-danger">{errors.firstName.message}</p>
-          )}
+          {errors.name && <p className="text-danger">{errors.name.message}</p>}
         </div>
 
         {/* Last Name */}
@@ -107,7 +105,7 @@ const RegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.lastName && (
-            <p className="mt-1 text-danger">{errors.lastName.message}</p>
+            <p className="text-danger">{errors.lastName.message}</p>
           )}
         </div>
 
@@ -121,7 +119,7 @@ const RegisterForm = () => {
           </Label>
           <Controller
             name="contact"
-            rules={{ required: "Contact is required" }}
+            // rules={{ required: "Contact is required" }}
             control={control}
             render={({ field }) => (
               <PhoneInput
@@ -133,7 +131,7 @@ const RegisterForm = () => {
             )}
           />
           {errors.contact && (
-            <p className="mt-1 text-danger">{errors.contact.message}</p>
+            <p className="text-danger">{errors.contact.message}</p>
           )}
         </div>
 
@@ -153,7 +151,7 @@ const RegisterForm = () => {
             className="text-primary-black rounded-xl border border-black bg-transparent outline-none"
           />
           {errors.email && (
-            <p className="mt-1 text-danger">{errors.email.message}</p>
+            <p className="text-danger">{errors.email.message}</p>
           )}
         </div>
 
@@ -187,7 +185,7 @@ const RegisterForm = () => {
             />
           </div>
           {errors.password && (
-            <p className="mt-1 text-danger">{errors.password.message}</p>
+            <p className="text-danger">{errors.password.message}</p>
           )}
         </div>
 
