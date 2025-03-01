@@ -3,10 +3,10 @@
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import ErrorPage from "@/components/Error";
 import { PricingCard } from "@/components/PricingCard/PricingCard";
-import { useGetPremiumPackagesQuery } from "@/redux/api/packageApi";
+import { useGetPremiumProPackagesQuery } from "@/redux/api/packageApi";
 
 const PremiumPricingTable = () => {
-  const { data: plans, isError, isLoading } = useGetPremiumPackagesQuery();
+  const { data: plans, isError, isLoading } = useGetPremiumProPackagesQuery();
   if (!plans)
     return (
       <ErrorPage message="Something went wrong please try again latter " />

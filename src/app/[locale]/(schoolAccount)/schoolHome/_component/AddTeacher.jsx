@@ -37,7 +37,7 @@ const AddTeacher = () => {
         error?.message ||
         "An error occurred. Please try again.";
       toast.error(errorMessage);
-      router.push("/premiumPlan");
+      router.push("/premiumPlanForSchoolAccount");
     }
   };
 

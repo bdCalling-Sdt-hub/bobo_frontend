@@ -9,7 +9,7 @@ const SchoolSubsCriptionContainer = () => {
     <div className="bg-white bg-opacity-70 p-10">
       <CurrentPlan />
       <div className="mt-10 flex items-center justify-center gap-10">
-        <Link href={"/premiumPlan"}>
+        <Link href={"/premiumPlanForSchoolAccount"}>
           <button className="mt-5 w-full items-center rounded-lg border-2 border-black bg-darkBlue p-1 px-3 text-lg text-white hover:border hover:bg-transparent hover:text-black">
             {t("Upgrade Premium")}
           </button>

@@ -4,10 +4,12 @@ const { baseApi } = require("./baseApi");
 const SubsCriptionApi = baseApi.injectEndpoints ({
     endpoints: (builder)=>({
         CreateSubsCriptions: builder.mutation({
-            query: (data)=>({
+            query: ({pakage,member})=>({
                 url: '/subscriptions',
                 method: 'POST',
-                body: {"package": data}
+                body: {"package": pakage,
+                    "member":member
+                 }
             })
         }),
         GetrunningSubsCriptions: builder.query({

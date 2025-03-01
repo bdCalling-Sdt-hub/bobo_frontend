@@ -113,6 +113,9 @@ const TeachersTable = () => {
                 Email Address
               </TableHead>
               <TableHead className="text-center text-white">Status</TableHead>
+              <TableHead className="text-center text-white">
+                Invatation Status
+              </TableHead>
               <TableHead className="text-center text-white">Action</TableHead>
             </TableRow>
           </TableHeader>
@@ -131,6 +134,15 @@ const TeachersTable = () => {
                     }`}
                   >
                     {row.status == "1" ? "Active" : "Disabled"}
+                  </TableCell>
+                  <TableCell
+                    className={`${
+                      row.accept_invitation === true
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {row.accept_invitation == true ? "Accecpted" : "Pending"}
                   </TableCell>
                   <TableCell>
                     <div className="flex justify-center gap-2">

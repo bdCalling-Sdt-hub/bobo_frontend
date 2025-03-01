@@ -62,7 +62,7 @@ export default function LoginForm() {
           res?.data?.user?.role === "3" &&
           res?.data?.subscription === false
         ) {
-          return router.push("/premiumPlan");
+          return router.push("/premiumPlanForSchoolAccount");
         }
         if (res?.data?.user?.role === "3" && res?.data?.subscription === true) {
           return router.push("/home");

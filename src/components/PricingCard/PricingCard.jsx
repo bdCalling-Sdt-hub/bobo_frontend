@@ -6,22 +6,27 @@ import { useState } from "react";
 import { useCreateSubsCriptionsMutation } from "@/redux/api/SubsCriptionApi";
 import { useCheckOutMutation } from "@/redux/api/PaymentApi";
 import { toast } from "sonner";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/authSlice";
 export const PricingCard = ({
   price,
   title,
   duration,
   description,
   comments,
-  role,
   id,
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [CreateSubscription, { isLoading }] = useCreateSubsCriptionsMutation();
   const [checkOut, { isLoading: paymentLoading }] = useCheckOutMutation();
+  const [pakageId, SetPakageId] = useState("pakageId");
+  const user = useSelector(selectUser);
+  const role = user?.role;
+  console.log("sdsd", role);
 
-  const handleBuyForSchool = () => {
+  const handleBuyForSchool = (id) => {
+    SetPakageId(id);
     setIsModalOpen(true);
   };
 
@@ -29,7 +34,7 @@ export const PricingCard = ({
     const pakage = id;
 
     try {
-      const res = await CreateSubscription(pakage).unwrap();
+      const res = await CreateSubscription({ pakage }).unwrap();
       const toastId = toast.loading("Creating SubsCription...");
       if (res.success) {
         const subscription = res?.data._id;
@@ -73,12 +78,22 @@ export const PricingCard = ({
           Includes {comments} comments.
         </p>
       </div>
-      <Button
-        onClick={() => handleBuy(id)}
-        className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
-      >
-        Buy Now
-      </Button>
+
+      {role === "3" ? (
+        <Button
+          onClick={() => handleBuyForSchool(id)}
+          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
+        >
+          Buy Now
+        </Button>
+      ) : (
+        <Button
+          onClick={() => handleBuy(id)}
+          className="button w-full rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white"
+        >
+          Buy Now
+        </Button>
+      )}
 
       <span className="top"></span>
       <span className="right"></span>
@@ -87,6 +102,7 @@ export const PricingCard = ({
       <TeacherQuantityModal
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
+        id={pakageId}
       />
     </div>
   );

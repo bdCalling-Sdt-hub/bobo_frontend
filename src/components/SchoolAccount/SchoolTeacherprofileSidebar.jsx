@@ -35,7 +35,7 @@ const SchoolTeacherAccountSideber = () => {
       icon: <FaCog />,
     },
     {
-      label: t("Back to Cycle"),
+      label: "Back to Cycle",
       path: "/home",
       icon: <FaHome />,
     },
